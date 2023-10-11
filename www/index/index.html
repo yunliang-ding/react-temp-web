@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="https://v3.ice.work/img/logo.png" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width" />
+  <title>中后台项目模版</title>
+</head>
+
+<body>
+  <div id="ice-container"></div>
+</body>
+{% if config.env === "development" %}
+<script>
+  const script = document.createElement('script')
+  script.defer = true;
+  script.src = `http://${location.hostname}:3333/js/index.js`
+  document.body.appendChild(script)
+  const link = document.createElement('link')
+  link.rel = "stylesheet"
+  link.href = `http://${location.hostname}:3333/css/index.css`
+  document.body.appendChild(link)
+</script>
+{% else %}
+<script defer src="/build/js/index.js"></script>
+<link rel="stylesheet" href="/build/css/index.css" />
+{% endif %}
+</html>

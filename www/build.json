@@ -1,5 +1,6 @@
 {
   "vite": false,
+  "port": 4444,
   "externals": {
     "axios": "window.axios",
     "react": "window.React",

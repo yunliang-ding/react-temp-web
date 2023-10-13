@@ -16,11 +16,11 @@
 <script>
   const script = document.createElement('script')
   script.defer = true;
-  script.src = `http://${location.hostname}:3333/js/index.js`
+  script.src = `http://${location.hostname}:{{port}}/js/index.js`
   document.body.appendChild(script)
   const link = document.createElement('link')
   link.rel = "stylesheet"
-  link.href = `http://${location.hostname}:3333/css/index.css`
+  link.href = `http://${location.hostname}:{{port}}/css/index.css`
   document.body.appendChild(link)
 </script>
 {% else %}

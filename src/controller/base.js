@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const instance = axios.create({
   withCredentials: true,
-  baseURL: 'http://server.yunliang.cloud',
+  baseURL: 'http://center.yunliang.cloud',
 })
 
 module.exports = class extends think.Controller {

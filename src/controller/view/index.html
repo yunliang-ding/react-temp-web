@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="{{icon}}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{title}}</title>
+  {{cdn}}
+</head>
+
+<body>
+  <div id="ice-container"></div>
+</body>
+<script>
+  function __asyncLoadModuleScript(src) {
+    const script = document.createElement('script')
+    script.src = src;
+    document.body.appendChild(script)
+  }
+  function __asyncLoadCss(href) {
+    const link = document.createElement('link')
+    link.rel = "stylesheet"
+    link.href = href;
+    document.body.appendChild(link)
+  }
+</script>
+<script>
+  {{script}}
+  {{link}}
+</script>
+
+</html>

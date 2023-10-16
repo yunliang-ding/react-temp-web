@@ -9,5 +9,5 @@ module.exports = {
   script:
     think.env === "development"
       ? [`\`http://$\{location.hostname\}:3333/js/index.js\``]
-      : ["'/build/index.js'"],
+      : ["'/build/js/index.js'"],
 };

@@ -24,6 +24,21 @@
     link.href = href;
     document.body.appendChild(link)
   }
+  if (io) {
+    const socket = io(location.origin);
+    setTimeout(() => {
+      socket.emit('addUser', '1212');
+    }, 1000)
+    socket.on('opend', function (data) {
+      console.log(`%c opend ${data}`, 'color:green;')
+    });
+    socket.on('joined', function (data) {
+      console.log(`%c joined ${data}`, 'color:green;')
+    });
+    socket.on('add', function (data) {
+      console.log(`%c add ${data}`, 'color:green;')
+    });
+  }
 </script>
 <script>
   {{script}}

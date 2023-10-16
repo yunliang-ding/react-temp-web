@@ -3,6 +3,7 @@ const nunjucks = require('think-view-nunjucks');
 const fileSession = require('think-session-file');
 const mysql = require('think-model-mysql');
 const {Console, File, DateFile} = require('think-logger3');
+const socketio = require('think-websocket-socket.io');
 const path = require('path');
 const isDev = think.env === 'development';
 
@@ -107,3 +108,20 @@ exports.logger = {
     filename: path.join(think.ROOT_PATH, 'logs/app.log')
   }
 };
+
+exports.websocket = {
+  type: 'socketio',
+  common: {
+    // common config
+  },
+  socketio: {
+    handle: socketio,
+    // allowOrigin: '127.0.0.1:8360',  // 默认所有的域名都允许访问
+    path: '/socket.io',             // 默认 '/socket.io'
+    adapter: null,                  // 默认无 adapter
+    messages: {
+      open: '/websocket/open',
+      addUser: '/websocket/addUser'
+    }
+  }
+}

@@ -21,6 +21,8 @@
     "think-view-nunjucks": "^1.0.1",
     "think-model-mysql": "^1.0.0",
     "think-logger3": "^1.0.0",
+    "think-websocket": "1.0.8",
+    "think-websocket-socket.io": "1.0.13",
     "thinkjs": "^3.0.0",
     "axios": "1.5.1"
   },

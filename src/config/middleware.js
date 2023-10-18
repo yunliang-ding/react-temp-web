@@ -1,5 +1,6 @@
 const path = require('path');
 const isDev = think.env === 'development';
+const cors = require("@koa/cors");
 
 module.exports = [
   {
@@ -34,6 +35,21 @@ module.exports = [
   {
     handle: 'router',
     options: {}
+  },
+  {
+    handle: cors,
+    options: {
+      origin: function (ctx) {
+        if(ctx.isWebsocket){
+          return '.yunliang-ding.com'
+        } else {
+          return ctx.request.header.origin;
+        }
+      },
+      allowMethods: "GET,POST,PUT,DELETE",
+      allowHeaders: "appid, appkey, content-type",
+      credentials: true,
+    },
   },
   'logic',
   'controller'

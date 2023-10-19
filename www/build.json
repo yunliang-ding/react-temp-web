@@ -1,5 +1,8 @@
 {
   "vite": false,
+  "devServer": {
+    "port": 3333
+  },
   "externals": {
     "axios": "window.axios",
     "react": "window.React",

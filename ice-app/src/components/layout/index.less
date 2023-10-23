@@ -1,8 +1,27 @@
 .ant-layout {
   height: 100vh;
   overflow: hidden;
+  .ant-layout-content {
+    overflow: auto;
+  }
+  .ant-pro-base-menu-horizontal-horizontal{
+    gap: 4px;
+  }
+  .ant-menu-item-active::after, .ant-menu-item-selected::after{
+    display: none;
+  }
+  .ant-pro-top-nav-header-menu {
+    .ant-menu-title-content {
+      &::after {
+        border-color: transparent !important;
+      }
+    }
+  }
   .ant-pro-menu-item-title {
     font-weight: bold;
+  }
+  .ant-pro-top-nav-header-main-left {
+    min-width: 194px;
   }
   .ant-pro-sider-logo,
   .ant-pro-sider-collapsed {
@@ -11,7 +30,10 @@
       font-size: 16px;
     }
   }
-  .ant-layout-sider-children{
+  .ant-layout-sider{
+    padding: 0 !important;
+  }
+  .ant-layout-sider-children {
     padding: 0 !important;
   }
   .ant-pro-page-container {
@@ -29,28 +51,17 @@
       color: #fff !important;
     }
   }
-}
-.ant-pro-sider-footer {
-  height: 40px;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  .anticon {
-    margin-right: 8px;
-    font-size: 13px;
-    color: #808b95;
-  }
-  span {
-    color: #808b95;
+  .ant-pro-sider-footer{
     font-size: 12px;
-    white-space: nowrap;
+    padding-block-end: 8px;
   }
-}
-
-.ant-pro-base-menu-horizontal-horizontal {
-  height: 100%;
-  .ant-menu-overflow-item {
-    display: flex;
-    align-items: center;
+  .ant-page-header{
+    padding: 10px 16px !important;
+    .ant-page-header-heading{
+      padding-top: 0;
+    }
+  }
+  .ant-pro-page-container-children-container{
+    padding: 10px;
   }
 }

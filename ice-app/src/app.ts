@@ -49,7 +49,12 @@ export const storeConfig = defineStoreConfig(async (appData) => {
   return {
     initialStates: {
       user,
-      ui,
+      ui: {
+        title: "中后台模版",
+        navTheme: "light",
+        status: "loading",
+        ...ui,
+      },
     },
   };
 });

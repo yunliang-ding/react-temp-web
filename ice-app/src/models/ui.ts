@@ -6,25 +6,8 @@ export interface LayoutProps {
   layout: any;
 }
 
-const initState: LayoutProps = {
-  title: '通用项目模版',
-  navTheme: 'light',
-  status: 'loading',
-  pathname: '',
-  // 一级的菜单是位于顶部
-  layout: {
-    splitMenus: true,
-    layout: 'mix',
-    fixedHeader: true,
-    // collapsedButtonRender: false,
-  },
-};
-
 export default {
-  // 定义 model 的初始 state
-  state: {
-    ...initState,
-  },
+  state: {} as LayoutProps,
   // 定义改变该模型状态的纯函数
   reducers: {
     update(prevState, payload) {

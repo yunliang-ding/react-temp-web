@@ -3,7 +3,7 @@ import { history } from "ice";
 
 export default () => {
   useEffect(() => {
-    history?.replace("/user/list");
+    history?.replace("/dict/list");
   }, []);
   return null;
 };

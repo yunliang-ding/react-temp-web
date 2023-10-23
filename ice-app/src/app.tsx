@@ -4,6 +4,7 @@ import { defineAuthConfig } from "@ice/plugin-auth/types";
 import { defineStoreConfig } from "@ice/plugin-store/types";
 import { defineRequestConfig } from "@ice/plugin-request/types";
 import { notification } from "antd";
+import NoAuth from "@/components/403";
 
 // App config, see https://v3.ice.work/docs/guide/basic/app
 export default defineAppConfig(() => ({
@@ -41,6 +42,9 @@ export const authConfig = defineAuthConfig(async (appData) => {
   recursion(user.menus, auth);
   return {
     initialAuth: auth,
+    NoAuthFallback: (routeConfig) => {
+      return <NoAuth />;
+    },
   };
 });
 

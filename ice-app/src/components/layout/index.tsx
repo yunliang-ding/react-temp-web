@@ -1,15 +1,13 @@
 import { useState } from "react";
 import { Outlet, history, useLocation } from "ice";
 import ProLayout, { PageContainer } from "@ant-design/pro-layout";
-import AvatarDropdown from "@/components/avatar-dropdown";
 import { iconUrl, Icon } from "@/util";
 import AppBreadcrumb from "@/components/breadcrumb";
 import AlertNotice from "@/components/alert-notice";
 import store from "@/store";
-import "./index.less";
 import { Dropdown } from "antd";
 import { outLogin } from "@/services";
-import { LayoutProps } from "@/models/ui";
+import "./index.less";
 
 export default function Layout() {
   const location = useLocation();
@@ -22,7 +20,6 @@ export default function Layout() {
       window.location.reload();
     }
   };
-  console.log("uiState", uiState);
   return (
     <ProLayout
       locale={"zh-CN"}

@@ -1,14 +1,30 @@
-import { defineAppConfig, history, defineDataLoader } from "ice";
+import { defineAppConfig, defineDataLoader, definePageConfig } from "ice";
 import { fetchUserInfo } from "@/services";
 import { defineAuthConfig } from "@ice/plugin-auth/types";
 import { defineStoreConfig } from "@ice/plugin-store/types";
 import { defineRequestConfig } from "@ice/plugin-request/types";
 import { notification } from "antd";
 
-export const APPID = 11; // 具体的应用ID
-
 // App config, see https://v3.ice.work/docs/guide/basic/app
-export default defineAppConfig(() => ({}));
+export default defineAppConfig(() => ({
+  router: {
+    type: "hash",
+  },
+}));
+
+export const pageConfig = definePageConfig(() => ({
+  links: [
+    // {
+    //   rel: 'stylesheet',
+    //   href: 'https://example.com/some/styles.css',
+    // },
+  ],
+  scripts: [
+    {
+      // src: 'https://example.com/some/index.js',
+    },
+  ],
+}));
 
 export const authConfig = defineAuthConfig(async (appData) => {
   const { user = {} } = appData;
@@ -38,32 +54,9 @@ export const storeConfig = defineStoreConfig(async (appData) => {
   };
 });
 
-export const dataLoader = defineDataLoader(async () => {
-  try {
-    const { code, data } = await fetchUserInfo();
-    if (code === 200) {
-      return {
-        user: data,
-        ui: {
-          status: 'success',
-        }
-      };
-    }
-  } catch (error) {
-    console.log(error);
-    return {
-      user: {},
-      ui: {
-        status: 'error',
-      }
-    };
-  }
-  return {}
-});
-
-export const request = defineRequestConfig(() => ({
+export const requestConfig = defineRequestConfig(() => ({
   withFullResponse: false,
-  baseURL: 'http://center.yunliang.cloud/',
+  baseURL: "http://center.yunliang.cloud/",
   timeout: 1000 * 60,
   withCredentials: true,
   maxContentLength: 5000,
@@ -75,7 +68,7 @@ export const request = defineRequestConfig(() => ({
     request: {
       onConfig: (requestConfig) => {
         requestConfig.headers = {
-          appId: APPID,
+          appId: 11,
         };
         return requestConfig;
       },
@@ -95,7 +88,9 @@ export const request = defineRequestConfig(() => ({
         } = response;
         if (code === 40005) {
           // 登录信息失效，之后重新登录
-          location.href = `http://ulp.yunliang.cloud?redirect=${location.href}&appId=${APPID}`;
+          location.href = `http://ulp.yunliang.cloud?redirect=${
+            location.href
+          }&appId=${11}`;
           return response;
         }
         if (code === 200) {
@@ -120,3 +115,26 @@ export const request = defineRequestConfig(() => ({
     },
   },
 }));
+
+export const dataLoader = defineDataLoader(async () => {
+  try {
+    const { code, data } = await fetchUserInfo();
+    if (code === 200) {
+      return {
+        user: data,
+        ui: {
+          status: "success",
+        },
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      user: {},
+      ui: {
+        status: "error",
+      },
+    };
+  }
+  return {};
+});

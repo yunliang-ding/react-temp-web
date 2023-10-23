@@ -1,5 +1,5 @@
 import { history } from 'ice';
 
 export default () => {
-  history?.push('/success');
+  history?.push('/user/list');
 }

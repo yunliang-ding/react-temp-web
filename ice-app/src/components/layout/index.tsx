@@ -1,4 +1,4 @@
-import { Outlet, Link, useLocation } from "ice";
+import { Outlet, history, useLocation } from "ice";
 import ProLayout, { PageContainer, WaterMark } from "@ant-design/pro-layout";
 import AvatarDropdown from "@/components/avatar-dropdown";
 import store from "@/store";
@@ -6,16 +6,14 @@ import { iconUrl, Icon } from "@/util";
 import AppBreadcrumb from "@/components/breadcrumb";
 import AlertNotice from "@/components/alert-notice";
 import { useState } from "react";
-import { LayoutProps } from "@/models/ui";
 import { ConfigProvider } from "antd";
 import zhCN from "antd/lib/locale/zh_CN";
-import "./layout.less";
+import "./index.less";
 
 export default function Layout() {
   const location = useLocation();
   const [userState] = store.useModel("user");
-  const [uiState, uiDispatchers] = store.useModel("ui");
-  const { pathname, navTheme, title, layout }: LayoutProps = uiState;
+  const [uiState] = store.useModel("ui");
   const [collapsed, setCollapsed] = useState(false);
   return (
     <ConfigProvider locale={zhCN}>
@@ -41,13 +39,14 @@ export default function Layout() {
             />
           }
           iconfontUrl={iconUrl}
-          title={title}
-          navTheme={navTheme}
-          {...layout}
+          title={uiState.title}
+          navTheme={uiState.navTheme}
+          splitMenus
+          fixedHeader
+          layout="mix"
           location={{
             pathname: location.pathname,
           }}
-          layout={layout}
           rightContentRender={() => (
             <AvatarDropdown
               avatarUrl={userState.avatarUrl}
@@ -59,7 +58,15 @@ export default function Layout() {
             if (!item.path) {
               return defaultDom;
             }
-            return <Link to={item.path}>{defaultDom}</Link>;
+            return (
+              <a
+                onClick={() => {
+                  history?.push(item.path as string);
+                }}
+              >
+                {defaultDom}
+              </a>
+            );
           }}
           footerRender={() => <AlertNotice />}
         >

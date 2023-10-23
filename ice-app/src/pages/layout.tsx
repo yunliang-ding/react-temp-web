@@ -1,4 +1,4 @@
-import Layout from './layout';
+import Layout from '@/components/layout';
 import Loading from '@/components/loading';
 import Error from '@/components/error';
 import NoPermissions from '@/components/403';

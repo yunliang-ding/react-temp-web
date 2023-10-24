@@ -1,8 +1,8 @@
-import { Breadcrumb } from 'antd';
-import store from '@/store';
+import { Breadcrumb } from "antd";
+import store from "@/store";
 
 const AppBreadcrumb: any = () => {
-  const [breadcrumb]: any = store.useModel('breadcrumb');
+  const [breadcrumb]: any = store.useModel("breadcrumb");
   return (
     <Breadcrumb>
       {breadcrumb.list.map((item: any) => {
@@ -13,7 +13,7 @@ const AppBreadcrumb: any = () => {
 };
 
 AppBreadcrumb.options = () => {
-  const [breadcrumb]: any = store.useModel('breadcrumb');
+  const [breadcrumb]: any = store.useModel("breadcrumb");
   return breadcrumb;
 };
 export default AppBreadcrumb;

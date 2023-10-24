@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import useBreadCrumb from "@/hooks/useBreadCrumb";
-import tableSchema from './schema-table';
-import { Table } from 'react-core-form';
+import tableSchema from "./schema-table";
+import { Table, Button } from "react-core-form";
 import { definePageConfig } from "ice";
 
 export default () => {
@@ -10,6 +10,7 @@ export default () => {
     breadCrumb?.update({
       list: ["用户管理", "用户列表"],
       title: "用户列表",
+      extra: [<Button type="primary">测试按钮</Button>],
     });
   }, []);
   return <Table {...tableSchema} />;

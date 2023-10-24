@@ -52,12 +52,13 @@ export default function Layout() {
       }}
       token={{
         header: {
-          colorBgMenuItemSelected: "rgba(0,0,0,0.04)",
+          colorBgMenuItemSelected: "#f0f5ff",
+          colorTextMenuSelected: "#4e61d4"
         },
       }}
       avatarProps={{
-        src: "https://gw.alipayobjects.com/zos/antfincdn/efFD%24IOql2/weixintupian_20170331104822.jpg",
         size: "small",
+        src: userState.avatarUrl,
         title: userState.name,
         render: (props, dom) => {
           return (

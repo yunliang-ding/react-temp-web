@@ -19,11 +19,11 @@ export default defineConfig(() => ({
   ssg: false,
   minify,
   plugins: [
+    watchPlugin(),
     request(),
     store(),
     auth(),
     antd({
-      // importStyle: true,
       theme: {
         "primary-color": "#4e61d4",
         "primary-background-color": "#4e61d4",
@@ -31,7 +31,6 @@ export default defineConfig(() => ({
         "font-size-small": "12px",
       },
     }),
-    watchPlugin(),
   ],
   compileDependencies: false,
   codeSplitting: false,

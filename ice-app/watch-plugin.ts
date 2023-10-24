@@ -1,6 +1,9 @@
-const plugin = () => ({
-  setup: ({ onGetConfig }) => {
-    onGetConfig((config) => { config.useDevServer = false })
-  },
-})
-export default plugin;
+export default () => {
+  return {
+    setup: ({ onGetConfig }) => {
+      onGetConfig((config) => {
+        config.useDevServer = false;
+      });
+    },
+  };
+};

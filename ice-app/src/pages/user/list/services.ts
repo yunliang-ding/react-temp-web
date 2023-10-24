@@ -3,7 +3,7 @@ export const getList = async (data = {}): Promise<any> => {
   return {
     code: 200,
     data: {
-      total: 2,
+      total: 20,
       list: [
         {
           name: "测试001",

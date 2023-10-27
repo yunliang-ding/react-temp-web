@@ -7,7 +7,7 @@ module.exports = {
       ? ["'/build/css/index.css'"]
       : [`\`http://$\{location.hostname\}:3333/css/index.css\``],
   script:
-    think.env === "development"
-      ? [`\`http://$\{location.hostname\}:3333/js/index.js\``]
-      : ["'/build/js/index.js'"],
+    think.env === "production"
+      ? ["'/build/js/index.js'"]
+      : [`\`http://$\{location.hostname\}:3333/js/index.js\``],
 };

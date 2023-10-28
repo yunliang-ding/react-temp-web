@@ -17,7 +17,7 @@
     "type": "file",
     "file": {
       "timeout": 86400000,
-      "cachePath": "/home/lighthouse/local/thinkjs-icejs-template/server/runtime/cache",
+      "cachePath": "/Users/dingyunliang/Desktop/thinkjs-icejs-template/server/runtime/cache",
       "pathDepth": 1,
       "gcInterval": 86400000
     }
@@ -43,13 +43,13 @@
       "cookie": {
         "name": "thinkjs"
       },
-      "sessionPath": "/home/lighthouse/local/thinkjs-icejs-template/server/runtime/session"
+      "sessionPath": "/Users/dingyunliang/Desktop/thinkjs-icejs-template/server/runtime/session"
     }
   },
   "view": {
     "type": "nunjucks",
     "nunjucks": {
-      "viewPath": "/home/lighthouse/local/thinkjs-icejs-template/server/www",
+      "viewPath": "/Users/dingyunliang/Desktop/thinkjs-icejs-template/server/www",
       "sep": "/",
       "extname": ".html"
     }
@@ -61,14 +61,14 @@
       "backups": 10,
       "absolute": true,
       "maxLogSize": 51200,
-      "filename": "/home/lighthouse/local/thinkjs-icejs-template/server/logs/app.log"
+      "filename": "/Users/dingyunliang/Desktop/thinkjs-icejs-template/server/logs/app.log"
     },
     "dateFile": {
       "level": "ALL",
       "absolute": true,
       "pattern": "-yyyy-MM-dd",
       "alwaysIncludePattern": true,
-      "filename": "/home/lighthouse/local/thinkjs-icejs-template/server/logs/app.log"
+      "filename": "/Users/dingyunliang/Desktop/thinkjs-icejs-template/server/logs/app.log"
     }
   },
   "websocket": {

@@ -9,15 +9,19 @@
     padding: 8px !important;
     h1 {
       font-size: 16px;
+      font-weight: bold;
+      color: #222 !important;
+    }
+  }
+  .ant-pro-top-nav-header-logo{
+    h1{
+      color: #222 !important;
+      font-weight: bold;
+      font-size: 16px;
     }
   }
   .has-breadcrumb{
-    padding: 6px 20px;
-  }
-  .ant-pro-page-container {
-    .ant-pro-grid-content {
-      overflow: auto;
-    }
+    padding: 6px 20px !important;
   }
   .app-right-header {
     display: flex;
@@ -45,3 +49,13 @@
     white-space: nowrap;
   }
 }
+
+// 内部容器滚动
+.ant-pro-page-container{
+  height: calc(100% + 48px);
+  overflow: auto;
+  .ant-pro-page-container-children-content{
+    margin: 16px !important
+  }
+}
+

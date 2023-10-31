@@ -72,6 +72,7 @@ export default ({ children }) => {
                 fontSize: 20,
                 position: 'relative',
                 top: compact ? 0 : 3,
+                left: compact ? 8 : 0,
               }}
             />
           }

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import useBreadCrumb from '@/hooks/useBreadCrumb';
+import { Button } from 'antd';
 
 const Page = () => {
   const breadCrumb = useBreadCrumb();
@@ -7,6 +8,7 @@ const Page = () => {
     breadCrumb?.update({
       list: ['工作台', '我的工作台'],
       title: '我的工作台',
+      extra: [<Button type="primary">刷新</Button>],
     });
   }, []);
   return <span>我的工作台</span>;

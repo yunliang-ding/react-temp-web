@@ -3,7 +3,7 @@ import { createFromIconfontCN } from '@ant-design/icons';
 /**
  * iconUrl
  */
-export const iconUrl = '//at.alicdn.com/t/c/font_3520199_myxvkjekli.js';
+export const iconUrl = '//at.alicdn.com/t/c/font_3520199_jep8sd84mqm.js';
 /**
  * icon
  */

@@ -7,7 +7,8 @@ import store from '@/store';
 import { LayoutProps } from '@/types';
 import { iconUrl, Icon } from '@/util';
 import AppBreadcrumb from '@/components/breadcrumb';
-import AlertNotice from './alert-notice';
+import FooterRender from './footer-render';
+import HeaderRender from './header-render';
 import { outLogin } from '@/services/common';
 import './index.less';
 
@@ -17,7 +18,7 @@ export default ({ children }) => {
   const [, breadcrumbDispatcher]: any = store.useModel('breadcrumb');
   const [uiState, uiDispatchers] = store.useModel('ui');
   const [userState] = store.useModel('user'); // 获取 user model
-  const { pathname, navTheme, title, layout }: LayoutProps = uiState;
+  const { pathname, navTheme, title, compact }: LayoutProps = uiState;
   const setPathName = () => {
     const path = location.hash.substr(1);
     const index = location.hash.substr(1).indexOf('?'); // 去除参数
@@ -59,15 +60,22 @@ export default ({ children }) => {
           location={{ pathname }}
           collapsed={collapsed}
           fixSiderbar
+          splitMenus={!compact}
+          fixedHeader={!compact}
+          collapsedButtonRender={compact ? false : undefined}
+          layout={compact ? undefined : 'mix'}
           title={title}
           logo={
             <Icon
               type="icon-model"
-              style={{ fontSize: 20, position: 'relative', top: 3 }}
+              style={{
+                fontSize: 20,
+                position: 'relative',
+                top: compact ? 0 : 3,
+              }}
             />
           }
           navTheme={navTheme}
-          {...layout}
           menuDataRender={() => menus}
           onCollapse={setCollapsed}
           menuItemRender={(item: any, dom) => (
@@ -90,6 +98,13 @@ export default ({ children }) => {
             >
               {dom}
             </a>
+          )}
+          headerContentRender={() => (
+            <HeaderRender
+              compact={compact}
+              collapsed={collapsed}
+              setCollapsed={setCollapsed}
+            />
           )}
           rightContentRender={() => (
             <div className="app-right-header">
@@ -115,7 +130,6 @@ export default ({ children }) => {
                 >
                   <a
                     style={{
-                      marginRight: 12,
                       whiteSpace: 'nowrap',
                       fontWeight: 'bold',
                     }}
@@ -123,16 +137,31 @@ export default ({ children }) => {
                     {name}
                   </a>
                 </Dropdown>
+                <Icon
+                  type="icon-buju"
+                  style={{
+                    fontSize: 20,
+                    position: 'relative',
+                    top: 3,
+                    color: '#666',
+                  }}
+                  onClick={() => {
+                    uiDispatchers.update({
+                      compact: !compact,
+                    });
+                  }}
+                />
               </Space>
             </div>
           )}
-          footerRender={() => {
-            return <AlertNotice />;
-          }}
+          footerRender={() => <FooterRender />}
         >
           <PageContainer
             {...AppBreadcrumb.options()}
             breadcrumbRender={() => {
+              if (compact) {
+                return <div></div>;
+              }
               return <AppBreadcrumb />;
             }}
           >

@@ -5,13 +5,7 @@ const initState: LayoutProps = {
   navTheme: 'light',
   status: 'loading',
   pathname: '',
-  // 一级的菜单是位于顶部
-  layout: {
-    splitMenus: true,
-    layout: 'mix',
-    fixedHeader: true,
-    // collapsedButtonRender: false,
-  },
+  compact: true, // 紧凑模式
 };
 
 export default {

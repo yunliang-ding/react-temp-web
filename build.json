@@ -1,6 +1,6 @@
 {
   "vite": false,
-  "outputDir": "../server/www/build",
+  "outputDir": "./app/www/build",
   "devServer": {
     "port": 3333
   },

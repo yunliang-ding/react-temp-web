@@ -29,5 +29,5 @@
     }
   },
   // "include": ["src/*", ".ice"],
-  "exclude": ["node_modules", "build", "public"]
+  "exclude": ["node_modules", "app", "build", "public"]
 }

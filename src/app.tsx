@@ -23,8 +23,8 @@ const appConfig: any = {
       request: {
         onConfig: (requestConfig) => {
           requestConfig.headers = {
-            appId: APPID
-          }
+            appId: APPID,
+          };
           return requestConfig;
         },
         onError: (error) => {

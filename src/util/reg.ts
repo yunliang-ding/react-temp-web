@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 export const maxEnglishOrNumber = /^[A-Z0-9-]+$/;
 export const mobilePhoneReg = /^1[345789]\d{9}$/;
 export const telephoneReg = /^[0-9]{3,5}-[0-9]{7,8}$/;

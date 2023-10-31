@@ -161,7 +161,7 @@ export default ({ children }) => {
             {...AppBreadcrumb.options()}
             breadcrumbRender={() => {
               if (compact) {
-                return <div></div>;
+                return <div />;
               }
               return <AppBreadcrumb />;
             }}

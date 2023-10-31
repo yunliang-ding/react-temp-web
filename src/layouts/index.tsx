@@ -15,7 +15,7 @@ export default (props: any) => {
   }, []);
   if (uiState.status === 'loading') {
     return <Loading />;
-  }else if (uiState.status === 'error') {
+  } else if (uiState.status === 'error') {
     return <Error />;
   } else if (uiState.status === 'noPermissions') {
     return <NoPermissions />;

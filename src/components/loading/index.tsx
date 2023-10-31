@@ -9,10 +9,10 @@ export default () => {
         width: '100vw',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
       }}
     >
-      <Spin wrapperClassName='app-loading' size='large' />
+      <Spin wrapperClassName="app-loading" size="large" />
     </div>
   );
 };

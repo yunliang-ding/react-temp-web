@@ -66,13 +66,11 @@ export default ({ children }) => {
           layout={compact ? undefined : 'mix'}
           title={title}
           logo={
-            <Icon
-              type="icon-model"
+            <img
+              src="https://v2.ice.work/img/logo.png"
               style={{
-                fontSize: 20,
-                position: 'relative',
-                top: compact ? 0 : 3,
-                left: compact ? 8 : 0,
+                width: 32,
+                height: 32,
               }}
             />
           }
@@ -110,6 +108,31 @@ export default ({ children }) => {
           rightContentRender={() => (
             <div className="app-right-header">
               <Space>
+                <Icon
+                  type="icon-pinglun"
+                  style={{
+                    fontSize: 20,
+                    marginRight: 20,
+                    position: 'relative',
+                    top: 3,
+                    color: '#999',
+                  }}
+                />
+                <Icon
+                  type="icon-palette"
+                  style={{
+                    fontSize: 20,
+                    marginRight: 20,
+                    position: 'relative',
+                    top: 3,
+                    color: '#999',
+                  }}
+                  onClick={() => {
+                    uiDispatchers.update({
+                      compact: !compact,
+                    });
+                  }}
+                />
                 <Avatar size={32} src={avatarUrl} />
                 <Dropdown
                   placement="bottom"
@@ -138,20 +161,6 @@ export default ({ children }) => {
                     {name}
                   </a>
                 </Dropdown>
-                <Icon
-                  type="icon-buju"
-                  style={{
-                    fontSize: 20,
-                    position: 'relative',
-                    top: 3,
-                    color: '#666',
-                  }}
-                  onClick={() => {
-                    uiDispatchers.update({
-                      compact: !compact,
-                    });
-                  }}
-                />
               </Space>
             </div>
           )}

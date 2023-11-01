@@ -17,7 +17,12 @@ export default ({ compact, collapsed, setCollapsed }) => {
             setCollapsed(!collapsed);
           }}
           type="icon-caidan"
-          style={{ fontSize: 26 }}
+          style={{
+            fontSize: 26,
+            color: 'var(--antd-wave-shadow-color)',
+            transform: collapsed ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: '.3s',
+          }}
         />
         <AppBreadcrumb />
       </div>

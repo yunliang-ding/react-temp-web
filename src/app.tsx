@@ -5,6 +5,14 @@ import { runApp, config } from 'ice';
 import { notification } from 'antd';
 import NoAuthority from '@/pages/403';
 import ErrorBoundary from '@/pages/error-boundary';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
+
+NProgress.configure({
+  showSpinner: false,
+  minimum: 0.3,
+  easing: 'ease-in-out',
+});
 
 const APPID = 11; // 具体的应用ID
 
@@ -25,6 +33,7 @@ const appConfig: any = {
           requestConfig.headers = {
             appId: APPID,
           };
+          NProgress.start();
           return requestConfig;
         },
         onError: (error) => {
@@ -37,6 +46,7 @@ const appConfig: any = {
       },
       response: {
         onConfig: (response) => {
+          NProgress.done();
           // 对响应数据做点什么
           const {
             data: { code, msg },

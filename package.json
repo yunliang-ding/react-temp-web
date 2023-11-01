@@ -11,7 +11,7 @@
     "@ant-design/icons": "^4.0.2",
     "@ant-design/pro-card": "1.16.2",
     "@ant-design/pro-layout": "6.20.0",
-    "@ant-design/pro-skeleton": "1.0.1"
+    "nprogress": "^0.2.0"
   },
   "devDependencies": {
     "@types/fs-extra": "9.0.13",

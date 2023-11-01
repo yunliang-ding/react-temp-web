@@ -29,6 +29,7 @@
     &-menu {
       height: calc(100% - 48px);
       overflow: auto;
+      transition: 0.3s;
       .ant-menu-title-content {
         font-weight: bold;
       }
@@ -94,5 +95,15 @@
   .app-layout-right {
     width: calc(100% - 48px);
     transition: 0.3s;
+  }
+}
+.app-layout-dark {
+  .app-layout-left-menu,
+  .app-layout-left-logo {
+    background-color: #001629;
+    transition: 0.3s;
+    h1 {
+      color: #fff !important;
+    }
   }
 }

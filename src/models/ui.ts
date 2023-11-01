@@ -2,10 +2,10 @@ import { LayoutProps } from '@/types';
 
 const initState: LayoutProps = {
   title: '通用项目模版',
-  navTheme: 'light',
   status: 'loading',
-  pathname: '',
   compact: true, // 紧凑模式
+  dark: false,
+  collapsed: false,
 };
 
 export default {

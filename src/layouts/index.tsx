@@ -8,6 +8,8 @@ import { useAuth } from 'ice';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/lib/locale/zh_CN';
 
+const defaultPrimaryColor = '#4e61d4';
+
 export default (props: any) => {
   const [, setAuth] = useAuth();
   const [, userDispatchers] = store.useModel('user');
@@ -15,12 +17,15 @@ export default (props: any) => {
   useEffect(() => {
     userDispatchers.fetchUserInfo(setAuth);
   }, []);
-  useEffect(() => {
+  const setTheme = (primaryColor: string) => {
     ConfigProvider.config({
       theme: {
-        primaryColor: '#25b864',
+        primaryColor,
       },
     });
+  };
+  useEffect(() => {
+    setTheme(defaultPrimaryColor);
   }, []);
   let Vnode: any = null;
   if (uiState.status === 'loading') {
@@ -30,7 +35,7 @@ export default (props: any) => {
   } else if (uiState.status === 'noPermissions') {
     Vnode = <NoPermissions />;
   } else {
-    Vnode = <Layout {...props} />;
+    Vnode = <Layout {...props} setTheme={setTheme} theme={defaultPrimaryColor} />;
   }
   return <ConfigProvider locale={zhCN}>{Vnode}</ConfigProvider>;
 };

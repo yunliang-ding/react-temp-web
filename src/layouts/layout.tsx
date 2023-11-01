@@ -1,14 +1,5 @@
-import { useState, useEffect } from 'react';
 import AppLayout from '@/components/app-layout';
-import {
-  ConfigProvider,
-  Dropdown,
-  Menu,
-  Space,
-  Avatar,
-  PageHeader,
-} from 'antd';
-import { useHistory } from 'ice';
+import { Dropdown, Menu, Space, Avatar, PageHeader, Input } from 'antd';
 import store from '@/store';
 import { LayoutProps } from '@/types';
 import { Icon } from '@/util';
@@ -18,12 +9,15 @@ import HeaderRender from './header-render';
 import { outLogin } from '@/services/common';
 import './index.less';
 
-export default ({ children }) => {
-  const history = useHistory();
+export default ({ children, setTheme, theme }) => {
   const [uiState, uiDispatchers] = store.useModel('ui');
-  const [userState] = store.useModel('user'); // 获取 user model
-  const { dark, title, compact }: LayoutProps = uiState;
-  const [collapsed, setCollapsed] = useState(false);
+  const [userState] = store.useModel('user');
+  const { dark, title, compact, collapsed }: LayoutProps = uiState;
+  const setCollapsed = (v: boolean) => {
+    uiDispatchers.update({
+      collapsed: v,
+    });
+  };
   const { name, avatarUrl, menus } = userState;
   const logout = async () => {
     const { code } = await outLogin();
@@ -31,13 +25,6 @@ export default ({ children }) => {
       location.reload();
     }
   };
-  useEffect(() => {
-    ConfigProvider.config({
-      theme: {
-        primaryColor: '#25b864',
-      },
-    });
-  }, []);
   return (
     <AppLayout
       waterMarkProps={{
@@ -55,7 +42,7 @@ export default ({ children }) => {
       menu={{
         items: menus,
         onClick: ({ item }: any) => {
-          history.push(item.props.path);
+          location.hash = item.props.path;
         },
       }}
       headerContentRender={() => (
@@ -81,6 +68,14 @@ export default ({ children }) => {
                 uiDispatchers.update({
                   dark: !dark,
                 });
+              }}
+            />
+            <Input
+              type="color"
+              defaultValue={theme}
+              style={{ padding: 4, width: 32, marginRight: 20 }}
+              onChange={(e) => {
+                setTheme(e.target.value);
               }}
             />
             <Icon

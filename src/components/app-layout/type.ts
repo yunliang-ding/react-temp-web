@@ -6,7 +6,7 @@ export default interface ProLayout {
   collapsed?: boolean;
   onCollapse?: Function;
   compact?: boolean;
-  navTheme?: 'dark' | 'light';
+  dark?: boolean;
   menu: MenuProps;
   title?: ReactNode;
   logo?: ReactNode;

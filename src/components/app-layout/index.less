@@ -8,6 +8,7 @@
     box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
     position: relative;
     z-index: 999;
+    transition: 0.3s;
     &-logo {
       padding: 8px 10px !important;
       height: 48px;
@@ -21,19 +22,21 @@
           font-weight: bold;
           color: #222 !important;
           margin: 0;
+          white-space: nowrap;
         }
       }
     }
     &-menu {
       height: calc(100% - 48px);
       overflow: auto;
-      .ant-menu-title-content{
+      .ant-menu-title-content {
         font-weight: bold;
       }
     }
   }
   &-right {
     width: calc(100% - 200px);
+    transition: 0.3s;
     &-header {
       height: 48px;
       width: 100%;
@@ -75,18 +78,21 @@
       z-index: 999;
     }
   }
+  .ant-menu.ant-menu-inline-collapsed {
+    width: 48px;
+  }
 }
 
 .app-layout-compact {
   display: flex;
 }
-.app-layout-collapsed{
-  .app-layout-left{
+.app-layout-collapsed {
+  .app-layout-left {
     width: 48px;
-    transition: .3s
+    transition: 0.3s;
   }
-  .app-layout-right{
+  .app-layout-right {
     width: calc(100% - 48px);
-    transition: .3s
+    transition: 0.3s;
   }
 }

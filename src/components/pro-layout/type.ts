@@ -7,13 +7,11 @@ export default interface ProLayout {
   onCollapse?: Function;
   compact?: boolean;
   navTheme?: 'dark' | 'light';
-  menus: MenuProps[];
-  menusOnClick?: Function;
+  menu: MenuProps;
   title?: ReactNode;
   logo?: ReactNode;
   className?: string;
   children: ReactNode;
-  iconfontUrl?: string;
   waterMarkProps?: any;
   headerContentRender: () => ReactNode;
   rightContentRender: () => ReactNode;

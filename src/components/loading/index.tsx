@@ -12,7 +12,7 @@ export default () => {
         justifyContent: 'center',
       }}
     >
-      <Spin wrapperClassName="app-loading" size="large" />
+      <Spin size="large" />
     </div>
   );
 };

@@ -1,11 +1,17 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 import { userInfo } from '@/services/common';
+import { Icon } from '@/util';
 
-const recursion = (menuList, auths) => {
-  menuList?.forEach((menu) => {
+const recursion = (menus: any, auths: any) => {
+  menus?.forEach((menu: any) => {
+    menu.key = menu.path;
+    menu.label = menu.name;
+    menu.icon = <Icon type={menu.icon} />;
     if (menu.children?.length > 0) {
       recursion(menu.children, auths);
     } else {
+      delete menu.children;
       auths[menu.name] = true;
     }
   });
@@ -38,7 +44,7 @@ export default {
         if (code === 200) {
           const auth = {}; // 权限集合
           recursion(data.menus, auth);
-          setAuth(auth)
+          setAuth(auth);
           dispatch.user.update({
             ...data,
           });

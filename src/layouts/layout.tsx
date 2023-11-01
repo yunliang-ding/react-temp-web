@@ -9,10 +9,9 @@ import {
   PageHeader,
 } from 'antd';
 import { useHistory, createBrowserHistory } from 'ice';
-import zhCN from 'antd/lib/locale/zh_CN';
 import store from '@/store';
 import { LayoutProps } from '@/types';
-import { iconUrl, Icon } from '@/util';
+import { Icon } from '@/util';
 import AppBreadcrumb from '@/components/breadcrumb';
 import FooterRender from './footer-render';
 import HeaderRender from './header-render';
@@ -20,6 +19,7 @@ import { outLogin } from '@/services/common';
 import './index.less';
 
 const { listen } = createBrowserHistory(); // 创建实例，用于监听浏览器会退前进
+
 export default ({ children }) => {
   const history = useHistory();
   const [, breadcrumbDispatcher]: any = store.useModel('breadcrumb');
@@ -50,119 +50,111 @@ export default ({ children }) => {
       location.reload();
     }
   };
+  useEffect(() => {
+    ConfigProvider.config({
+      theme: {
+        primaryColor: '#25b864',
+      },
+    });
+  }, []);
   return (
-    <ConfigProvider locale={zhCN}>
-      <ProLayout
-        iconfontUrl={iconUrl}
-        waterMarkProps={{
-          rotate: -20,
-          content: name,
-          fontColor: 'rgba(0,0,0,.05)',
-          fontSize: 16,
-          gapY: 70,
-          zIndex: 999,
-        }}
-        location={pathname}
-        collapsed={collapsed}
-        onCollapse={setCollapsed}
-        title={title}
-        navTheme={navTheme}
-        menus={menus}
-        menusOnClick={(item) => {
-          history.push(item.path);
-          // 这个地方不能依赖于监听，因为监听是原生事件，原生事件中调用hooks会不同步
+    <ProLayout
+      waterMarkProps={{
+        rotate: -20,
+        content: name,
+        fontColor: 'rgba(0,0,0,.05)',
+        fontSize: 16,
+        gapY: 70,
+        zIndex: 999,
+      }}
+      location={pathname}
+      collapsed={collapsed}
+      onCollapse={setCollapsed}
+      title={title}
+      navTheme={navTheme}
+      menu={{
+        items: menus,
+        onClick: ({ item }: any) => {
+          history.push(item.props.path);
           setPathName();
-          let list = [];
-          const bread = item.locale.split('.');
-          if (bread.length > 2) {
-            // 二级菜单,设置面包屑
-            list = bread.filter((i) => i !== 'menu').map((menu) => menu);
-          }
-          breadcrumbDispatcher.update({
-            list,
-            title: item.name,
-          });
-        }}
-        headerContentRender={() => (
-          <HeaderRender
-            compact={compact}
-            collapsed={collapsed}
-            setCollapsed={setCollapsed}
-          />
-        )}
-        rightContentRender={() => (
-          <div className="app-right-header">
-            <Space>
-              <Icon
-                type="icon-pinglun"
+        },
+      }}
+      headerContentRender={() => (
+        <HeaderRender
+          compact={compact}
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+        />
+      )}
+      rightContentRender={() => (
+        <div className="app-right-header">
+          <Space>
+            <Icon
+              type="icon-pinglun"
+              style={{
+                fontSize: 20,
+                marginRight: 20,
+                position: 'relative',
+                top: 3,
+                color: '#999',
+              }}
+            />
+            <Icon
+              type="icon-palette"
+              style={{
+                fontSize: 20,
+                marginRight: 20,
+                position: 'relative',
+                top: 3,
+                color: '#999',
+              }}
+              onClick={() => {
+                uiDispatchers.update({
+                  compact: !compact,
+                });
+              }}
+            />
+            <Avatar size={32} src={avatarUrl} />
+            <Dropdown
+              placement="bottom"
+              overlay={
+                <Menu>
+                  <Menu.Item
+                    onClick={logout}
+                    icon={
+                      <Icon type="icon-tuichudenglu" style={{ fontSize: 18 }} />
+                    }
+                  >
+                    退出登录
+                  </Menu.Item>
+                </Menu>
+              }
+            >
+              <a
                 style={{
-                  fontSize: 20,
-                  marginRight: 20,
-                  position: 'relative',
-                  top: 3,
-                  color: '#999',
+                  whiteSpace: 'nowrap',
+                  fontWeight: 'bold',
                 }}
-              />
-              <Icon
-                type="icon-palette"
-                style={{
-                  fontSize: 20,
-                  marginRight: 20,
-                  position: 'relative',
-                  top: 3,
-                  color: '#999',
-                }}
-                onClick={() => {
-                  uiDispatchers.update({
-                    compact: !compact,
-                  });
-                }}
-              />
-              <Avatar size={32} src={avatarUrl} />
-              <Dropdown
-                placement="bottom"
-                overlay={
-                  <Menu>
-                    <Menu.Item
-                      onClick={logout}
-                      icon={
-                        <Icon
-                          type="icon-tuichudenglu"
-                          style={{ fontSize: 18 }}
-                        />
-                      }
-                    >
-                      退出登录
-                    </Menu.Item>
-                  </Menu>
-                }
               >
-                <a
-                  style={{
-                    whiteSpace: 'nowrap',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  {name}
-                </a>
-              </Dropdown>
-            </Space>
-          </div>
-        )}
-        footerRender={() => <FooterRender />}
+                {name}
+              </a>
+            </Dropdown>
+          </Space>
+        </div>
+      )}
+      footerRender={() => <FooterRender />}
+    >
+      <PageHeader
+        {...AppBreadcrumb.options()}
+        breadcrumbRender={() => {
+          if (compact) {
+            return <div />;
+          }
+          return <AppBreadcrumb />;
+        }}
       >
-        <PageHeader
-          {...AppBreadcrumb.options()}
-          breadcrumbRender={() => {
-            if (compact) {
-              return <div />;
-            }
-            return <AppBreadcrumb />;
-          }}
-        >
-          {children}
-        </PageHeader>
-      </ProLayout>
-    </ConfigProvider>
+        {children}
+      </PageHeader>
+    </ProLayout>
   );
 };

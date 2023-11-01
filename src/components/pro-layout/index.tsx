@@ -1,16 +1,15 @@
 import LayoutProps from './type';
 import './index.less';
+import { Menu } from 'antd';
 
 export default ({
   compact = true,
   className,
-  iconfontUrl = '',
   navTheme = 'light',
   location = '/',
   collapsed = false,
-  menus = [],
-  menusOnClick = () => {},
-  waterMarkProps = {},
+  menu = {},
+  // waterMarkProps = {},
   title = '默认应用标题',
   logo = (
     <img
@@ -21,14 +20,17 @@ export default ({
       }}
     />
   ),
-  headerContentRender = () => <div />,
-  rightContentRender = () => <div />,
-  footerRender = () => <div />,
+  headerContentRender = () => null,
+  rightContentRender = () => null,
+  footerRender = () => null,
   children = null,
 }: LayoutProps) => {
   const classNames: string[] = ['app-layout'];
   if (className) {
     classNames.push(className);
+  }
+  if (collapsed) {
+    classNames.push('app-layout-collapsed');
   }
   if (compact) {
     classNames.push('app-layout-compact');
@@ -44,7 +46,9 @@ export default ({
                 <h1>{title}</h1>
               </a>
             </div>
-            <div className="app-layout-left-menu">menu</div>
+            <div className="app-layout-left-menu">
+              <Menu inlineIndent={16} mode="inline" {...menu} selectedKeys={[location]} />
+            </div>
           </div>
           <div className="app-layout-right">
             <div className="app-layout-right-header">

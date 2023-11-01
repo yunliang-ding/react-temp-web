@@ -5,6 +5,8 @@ import Error from '@/components/error';
 import NoPermissions from '@/pages/403';
 import store from '@/store';
 import { useAuth } from 'ice';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/lib/locale/zh_CN';
 
 export default (props: any) => {
   const [, setAuth] = useAuth();
@@ -13,12 +15,22 @@ export default (props: any) => {
   useEffect(() => {
     userDispatchers.fetchUserInfo(setAuth);
   }, []);
+  useEffect(() => {
+    ConfigProvider.config({
+      theme: {
+        primaryColor: '#25b864',
+      },
+    });
+  }, []);
+  let Vnode: any = null;
   if (uiState.status === 'loading') {
-    return <Loading />;
+    Vnode = <Loading />;
   } else if (uiState.status === 'error') {
-    return <Error />;
+    Vnode = <Error />;
   } else if (uiState.status === 'noPermissions') {
-    return <NoPermissions />;
+    Vnode = <NoPermissions />;
+  } else {
+    Vnode = <Layout {...props} />;
   }
-  return <Layout {...props} />;
+  return <ConfigProvider locale={zhCN}>{Vnode}</ConfigProvider>;
 };

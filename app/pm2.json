@@ -1,6 +1,6 @@
 {
   "apps": [{
-    "name": "thinkjs-icejs-template",
+    "name": "thinkjs-icejs-template:8361",
     "script": "production.js",
     "cwd": "/home/lighthouse/local/thinkjs-icejs-template/app",
     "exec_mode": "fork",

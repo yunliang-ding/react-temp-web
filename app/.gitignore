@@ -1,2 +1,4 @@
 node_modules
 runtime
+logs
+www/build

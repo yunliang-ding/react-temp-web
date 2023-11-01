@@ -11,11 +11,11 @@ export default interface ProLayout {
   menusOnClick?: Function;
   title?: ReactNode;
   logo?: ReactNode;
-  headerContentRender?: ReactNode;
-  rightContentRender?: ReactNode;
-  footerRender?: ReactNode;
   className?: string;
   children: ReactNode;
   iconfontUrl?: string;
   waterMarkProps?: any;
+  headerContentRender: () => ReactNode;
+  rightContentRender: () => ReactNode;
+  footerRender: () => ReactNode;
 }

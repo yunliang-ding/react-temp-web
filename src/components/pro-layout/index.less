@@ -1,0 +1,72 @@
+.app-layout {
+  width: 100vw;
+  height: 100vh;
+  &-left {
+    width: 200px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
+    position: relative;
+    z-index: 999;
+    &-logo {
+      padding: 8px 10px !important;
+      height: 48px;
+      a {
+        display: flex;
+        align-items: center;
+        height: 80%;
+        gap: 10px;
+        h1 {
+          font-size: 16px;
+          font-weight: bold;
+          color: #222 !important;
+          margin: 0;
+        }
+      }
+    }
+    &-menus {
+      height: calc(100% - 48px);
+      overflow: auto;
+    }
+  }
+  &-right {
+    width: calc(100% - 200px);
+    &-header {
+      height: 48px;
+      width: 100%;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0px 2px 4px rgba(0,21,41,.08);
+      z-index: 999;
+      position: relative;
+    }
+    &-content {
+      height: calc(100% - 96px);
+      width: 100%;
+      overflow: auto;
+      background-color: #f0f2f5;
+      .ant-page-header{
+        padding: 0;
+        .ant-page-header-heading{
+          padding: 0 20px;
+          height: 52px;
+        }
+        .ant-page-header-content{
+          padding: 20px;
+        }
+      }
+    }
+    &-footer {
+      height: 44px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.app-layout-compact {
+  display: flex;
+}

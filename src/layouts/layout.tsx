@@ -1,6 +1,13 @@
 import { useState, useEffect } from 'react';
-import ProLayout, { PageContainer, WaterMark } from '@ant-design/pro-layout';
-import { ConfigProvider, Dropdown, Menu, Space, Avatar } from 'antd';
+import ProLayout from '@/components/pro-layout';
+import {
+  ConfigProvider,
+  Dropdown,
+  Menu,
+  Space,
+  Avatar,
+  PageHeader,
+} from 'antd';
 import { useHistory, createBrowserHistory } from 'ice';
 import zhCN from 'antd/lib/locale/zh_CN';
 import store from '@/store';
@@ -45,8 +52,9 @@ export default ({ children }) => {
   };
   return (
     <ConfigProvider locale={zhCN}>
-      <WaterMark
-        {...{
+      <ProLayout
+        iconfontUrl={iconUrl}
+        waterMarkProps={{
           rotate: -20,
           content: name,
           fontColor: 'rgba(0,0,0,.05)',
@@ -54,131 +62,107 @@ export default ({ children }) => {
           gapY: 70,
           zIndex: 999,
         }}
-      >
-        <ProLayout
-          iconfontUrl={iconUrl}
-          location={{ pathname }}
-          collapsed={collapsed}
-          fixSiderbar
-          splitMenus={!compact}
-          fixedHeader={!compact}
-          collapsedButtonRender={compact ? false : undefined}
-          layout={compact ? undefined : 'mix'}
-          title={title}
-          logo={
-            <img
-              src="https://v2.ice.work/img/logo.png"
-              style={{
-                width: 32,
-                height: 32,
-              }}
-            />
+        location={pathname}
+        collapsed={collapsed}
+        onCollapse={setCollapsed}
+        title={title}
+        navTheme={navTheme}
+        menus={menus}
+        menusOnClick={(item) => {
+          history.push(item.path);
+          // 这个地方不能依赖于监听，因为监听是原生事件，原生事件中调用hooks会不同步
+          setPathName();
+          let list = [];
+          const bread = item.locale.split('.');
+          if (bread.length > 2) {
+            // 二级菜单,设置面包屑
+            list = bread.filter((i) => i !== 'menu').map((menu) => menu);
           }
-          navTheme={navTheme}
-          menuDataRender={() => menus}
-          onCollapse={setCollapsed}
-          menuItemRender={(item: any, dom) => (
-            <a
-              onClick={() => {
-                history.push(item.path);
-                // 这个地方不能依赖于监听，因为监听是原生事件，原生事件中调用hooks会不同步
-                setPathName();
-                let list = [];
-                const bread = item.locale.split('.');
-                if (bread.length > 2) {
-                  // 二级菜单,设置面包屑
-                  list = bread.filter((i) => i !== 'menu').map((menu) => menu);
+          breadcrumbDispatcher.update({
+            list,
+            title: item.name,
+          });
+        }}
+        headerContentRender={() => (
+          <HeaderRender
+            compact={compact}
+            collapsed={collapsed}
+            setCollapsed={setCollapsed}
+          />
+        )}
+        rightContentRender={() => (
+          <div className="app-right-header">
+            <Space>
+              <Icon
+                type="icon-pinglun"
+                style={{
+                  fontSize: 20,
+                  marginRight: 20,
+                  position: 'relative',
+                  top: 3,
+                  color: '#999',
+                }}
+              />
+              <Icon
+                type="icon-palette"
+                style={{
+                  fontSize: 20,
+                  marginRight: 20,
+                  position: 'relative',
+                  top: 3,
+                  color: '#999',
+                }}
+                onClick={() => {
+                  uiDispatchers.update({
+                    compact: !compact,
+                  });
+                }}
+              />
+              <Avatar size={32} src={avatarUrl} />
+              <Dropdown
+                placement="bottom"
+                overlay={
+                  <Menu>
+                    <Menu.Item
+                      onClick={logout}
+                      icon={
+                        <Icon
+                          type="icon-tuichudenglu"
+                          style={{ fontSize: 18 }}
+                        />
+                      }
+                    >
+                      退出登录
+                    </Menu.Item>
+                  </Menu>
                 }
-                breadcrumbDispatcher.update({
-                  list,
-                  title: item.name,
-                });
-              }}
-            >
-              {dom}
-            </a>
-          )}
-          headerContentRender={() => (
-            <HeaderRender
-              compact={compact}
-              collapsed={collapsed}
-              setCollapsed={setCollapsed}
-            />
-          )}
-          rightContentRender={() => (
-            <div className="app-right-header">
-              <Space>
-                <Icon
-                  type="icon-pinglun"
+              >
+                <a
                   style={{
-                    fontSize: 20,
-                    marginRight: 20,
-                    position: 'relative',
-                    top: 3,
-                    color: '#999',
+                    whiteSpace: 'nowrap',
+                    fontWeight: 'bold',
                   }}
-                />
-                <Icon
-                  type="icon-palette"
-                  style={{
-                    fontSize: 20,
-                    marginRight: 20,
-                    position: 'relative',
-                    top: 3,
-                    color: '#999',
-                  }}
-                  onClick={() => {
-                    uiDispatchers.update({
-                      compact: !compact,
-                    });
-                  }}
-                />
-                <Avatar size={32} src={avatarUrl} />
-                <Dropdown
-                  placement="bottom"
-                  overlay={
-                    <Menu>
-                      <Menu.Item
-                        onClick={logout}
-                        icon={
-                          <Icon
-                            type="icon-tuichudenglu"
-                            style={{ fontSize: 18 }}
-                          />
-                        }
-                      >
-                        退出登录
-                      </Menu.Item>
-                    </Menu>
-                  }
                 >
-                  <a
-                    style={{
-                      whiteSpace: 'nowrap',
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    {name}
-                  </a>
-                </Dropdown>
-              </Space>
-            </div>
-          )}
-          footerRender={() => <FooterRender />}
+                  {name}
+                </a>
+              </Dropdown>
+            </Space>
+          </div>
+        )}
+        footerRender={() => <FooterRender />}
+      >
+        <PageHeader
+          {...AppBreadcrumb.options()}
+          breadcrumbRender={() => {
+            if (compact) {
+              return <div />;
+            }
+            return <AppBreadcrumb />;
+          }}
         >
-          <PageContainer
-            {...AppBreadcrumb.options()}
-            breadcrumbRender={() => {
-              if (compact) {
-                return <div />;
-              }
-              return <AppBreadcrumb />;
-            }}
-          >
-            {children}
-          </PageContainer>
-        </ProLayout>
-      </WaterMark>
+          {children}
+        </PageHeader>
+      </ProLayout>
     </ConfigProvider>
   );
 };

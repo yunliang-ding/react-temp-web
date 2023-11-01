@@ -1,13 +1,13 @@
-import { SoundOutlined } from '@ant-design/icons';
 import { Alert, Button } from 'antd';
 import Marquee from 'react-fast-marquee';
+import { Icon } from '@/util';
 
 export default () => {
   return (
     <Alert
       type="info"
       showIcon
-      icon={<SoundOutlined />}
+      icon={<Icon type="icon-shengyin" />}
       action={
         <Button size="small" type="link">
           版本号 1.0.0

@@ -18,17 +18,6 @@
   },
   "plugins": [
     [
-      "build-plugin-antd",
-      {
-        "themeConfig": {
-          "@primary-background-color": "#4e61d4",
-          "@font-size-base": "12px",
-          "@font-size-small": "12px",
-          "@primary-color": "#4e61d4"
-        }
-      }
-    ],
-    [
       "build-plugin-moment-locales",
       {
         "locales": [

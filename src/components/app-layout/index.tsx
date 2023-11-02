@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
 import LayoutProps from './type';
 import { Menu, PageHeader } from 'antd';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import WaterMark from './watermark';
 import Breadcrumb from './breadcrumb';
+import { getBreadcrumbByMenus } from './util';
 import './index.less';
 
 const Icon = ({ color, onClick, style }) => (
@@ -44,6 +45,7 @@ const Icon = ({ color, onClick, style }) => (
 );
 
 export default ({
+  layoutRef = useRef({}),
   pathname = '/',
   compact = true,
   className,
@@ -72,10 +74,38 @@ export default ({
   /** horizontal 模式的一级菜单 */
   const [topKey, setTopKey] = useState('');
   const [openKeys, setOpenKeys] = useState(['']);
+  // 监听 hash
+  const listenHash = () => {
+    const path = location.hash.substring(1);
+    const index = location.hash.substring(1).indexOf('?'); // 去除参数
+    const pathName = index === -1 ? path : path.substring(0, index);
+    const clearPath: string[] = pathName.split('/').filter(Boolean);
+    setSelectedKey(`/${clearPath.join('/')}`);
+    setTopKey(`/${clearPath[0]}`);
+    return getBreadcrumbByMenus(menu.items, clearPath);
+  };
+  // 监听外部传入的地址
   useEffect(() => {
     setSelectedKey(pathname);
     setTopKey(`/${pathname.split('/').filter(Boolean)[0]}`);
   }, [pathname]);
+  /** 挂载API */
+  useEffect(() => {
+    Object.assign(layoutRef.current, {
+      listenHashChange: (callBack) => {
+        const listen = () => {
+          callBack?.({
+            currentBreadcrumb: listenHash(),
+          });
+        };
+        listen(); // 进来自动执行一次
+        window.addEventListener('hashchange', listen);
+        return () => {
+          window.removeEventListener('hashchange', listen);
+        };
+      },
+    });
+  }, []);
   if (className) {
     classNames.push(className);
   }

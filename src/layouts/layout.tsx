@@ -2,14 +2,14 @@ import AppLayout from '@/components/app-layout';
 import { Dropdown, Menu, Space, Avatar, Input } from 'antd';
 import store from '@/store';
 import { LayoutProps } from '@/types';
-import { getBreadcrumbByMenus, Icon } from '@/util';
+import { Icon } from '@/util';
 import FooterRender from './footer-render';
 import { outLogin } from '@/services/common';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import './index.less';
 
 export default ({ children, setTheme, theme }) => {
-  const [pathname, setPathName] = useState('');
+  const layoutRef: any = useRef({});
   const [uiState, uiDispatchers] = store.useModel('ui');
   const [breadcrumb, breadcrumbDispatch] = store.useModel('breadcrumb');
   const [userState] = store.useModel('user');
@@ -26,26 +26,17 @@ export default ({ children, setTheme, theme }) => {
       location.reload();
     }
   };
-  // 监听浏览器前进回退
-  const listen = () => {
-    const path = location.hash.substring(1);
-    const index = location.hash.substring(1).indexOf('?'); // 去除参数
-    const pathName = index === -1 ? path : path.substring(0, index);
-    const clearPath: string[] = pathName.split('/').filter(Boolean);
-    setPathName(`/${clearPath.join('/')}`);
-    /** 设置当前路由的默认面包屑 */
-    breadcrumbDispatch.update(getBreadcrumbByMenus(menus, clearPath));
-  };
+  // 使用 AppLayout 内置的 监听 hash 方法
   useEffect(() => {
-    listen();
-    window.addEventListener('hashchange', listen);
-    return () => {
-      window.removeEventListener('hashchange', listen);
-    };
+    const removeListener = layoutRef.current.listenHashChange(({ currentBreadcrumb }) => {
+      /** 设置当前路由的默认面包屑 */
+      breadcrumbDispatch.update(currentBreadcrumb);
+    });
+    return removeListener;
   }, []);
   return (
     <AppLayout
-      pathname={pathname}
+      layoutRef={layoutRef}
       waterMarkProps={{
         content: name,
       }}

@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import type { PageHeaderProps, MenuProps } from 'antd';
 
 export default interface ProLayout {
+  layoutRef?: any;
   pathname?: string;
   children?: ReactNode;
   collapsed?: boolean;

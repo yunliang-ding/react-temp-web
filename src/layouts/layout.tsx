@@ -39,10 +39,12 @@ export default ({ children, setTheme, theme }) => {
         onClick: ({ item }: any) => {
           // console.log(item.props.breadcrumb);
           location.hash = item.props.path;
-          breadcrumbDispatch.update({
-            title: '哈哈',
-            breadcrumb: ['哈哈1', '哈哈2'],
-          });
+          setTimeout(() => {
+            breadcrumbDispatch.update({
+              title: '哈哈',
+              breadcrumb: ['哈哈1', '哈哈2'],
+            });
+          }, 100);
         },
       }}
       rightContentRender={() => (

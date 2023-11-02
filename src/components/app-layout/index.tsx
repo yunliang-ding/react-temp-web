@@ -82,6 +82,7 @@ export default ({
   const content = (
     <PageHeader
       {...pageHeaderProps}
+      title={pageHeaderProps.title || <div />}
       breadcrumbRender={() => {
         if (compact) {
           return <div />;
@@ -136,6 +137,7 @@ export default ({
                       }}
                       color="var(--ant-primary-color)"
                       style={{
+                        display: 'flex',
                         transform: collapsed
                           ? 'rotateY(0deg)'
                           : 'rotateY(180deg)',

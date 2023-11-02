@@ -31,7 +31,7 @@ export default ({ children, setTheme, theme }) => {
         rotate: -20,
         content: name,
         fontColor: 'rgba(0,0,0,.05)',
-        fontSize: 16,
+        fontSize: 12,
         gapY: 70,
         zIndex: 999,
       }}

@@ -30,7 +30,7 @@ export default ({
   rotate = 22,
   content,
   fontColor = 'rgba(0, 0, 0, .15)',
-  fontSize = 12,
+  fontSize = 16,
   zIndex = 999,
   gapX = 212,
   gapY = 222,
@@ -47,7 +47,7 @@ export default ({
     ctx.font = `${fontSize * ratio}px normal`;
     ctx.fillStyle = fontColor;
     ctx.rotate((rotate * Math.PI) / 180);
-    ctx.fillText(content, 0, 120);
+    ctx.fillText(content, 0, 100);
     setImg(canvasRef.current.toDataURL('image/png'));
   };
   useEffect(() => {

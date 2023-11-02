@@ -80,6 +80,7 @@ export default ({
     const index = location.hash.substring(1).indexOf('?'); // 去除参数
     const pathName = index === -1 ? path : path.substring(0, index);
     const clearPath: string[] = pathName.split('/').filter(Boolean);
+    setOpenKeys(clearPath.slice(0, clearPath.length - 1).map((i) => `/${i}`)); // 自动打开父级菜单
     setSelectedKey(`/${clearPath.join('/')}`);
     setTopKey(`/${clearPath[0]}`);
     return getBreadcrumbByMenus(menu.items, clearPath);

@@ -81,7 +81,7 @@
       }
     }
     &-menu {
-      width: calc(100% - 500px);
+      width: calc(100% - 508px);
       overflow: auto;
       transition: 0.3s;
       .ant-menu-horizontal {
@@ -209,9 +209,16 @@
 }
 .app-layout-collapsed {
   .app-layout-left,
+  .app-layout-body-sider-menu,
   .app-layout-body-sider {
     width: 48px;
     transition: 0.3s;
+  }
+  .app-layout-header-logo{
+    width: 48px;
+  }
+  .app-layout-header-menu{
+    width: calc(100% - 348px);
   }
   .app-layout-right {
     width: calc(100% - 48px);
@@ -224,7 +231,9 @@
 }
 .app-layout-dark {
   .app-layout-left-menu,
-  .app-layout-left-logo {
+  .app-layout-body-sider-menu,
+  .app-layout-body-sider-footer,
+  .app-layout-left-logo, .app-layout-header-logo {
     background-color: #001629;
     transition: 0.3s;
     h1 {

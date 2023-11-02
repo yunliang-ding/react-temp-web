@@ -1,24 +1,23 @@
 import AppLayout from '@/components/app-layout';
-import { Dropdown, Menu, Space, Avatar, PageHeader, Input } from 'antd';
+import { Dropdown, Menu, Space, Avatar, Input } from 'antd';
 import store from '@/store';
 import { LayoutProps } from '@/types';
 import { Icon } from '@/util';
-import AppBreadcrumb from '@/components/breadcrumb';
 import FooterRender from './footer-render';
-import HeaderRender from './header-render';
 import { outLogin } from '@/services/common';
 import './index.less';
 
 export default ({ children, setTheme, theme }) => {
   const [uiState, uiDispatchers] = store.useModel('ui');
+  const [breadcrumb, breadcrumbDispatch] = store.useModel('breadcrumb');
   const [userState] = store.useModel('user');
   const { dark, title, compact, collapsed }: LayoutProps = uiState;
+  const { name, avatarUrl, menus } = userState;
   const setCollapsed = (v: boolean) => {
     uiDispatchers.update({
       collapsed: v,
     });
   };
-  const { name, avatarUrl, menus } = userState;
   const logout = async () => {
     const { code } = await outLogin();
     if (code === 200) {
@@ -28,12 +27,7 @@ export default ({ children, setTheme, theme }) => {
   return (
     <AppLayout
       waterMarkProps={{
-        rotate: -20,
         content: name,
-        fontColor: 'rgba(0,0,0,.05)',
-        fontSize: 12,
-        gapY: 70,
-        zIndex: 999,
       }}
       compact={compact}
       collapsed={collapsed}
@@ -43,16 +37,14 @@ export default ({ children, setTheme, theme }) => {
       menu={{
         items: menus,
         onClick: ({ item }: any) => {
+          // console.log(item.props.breadcrumb);
           location.hash = item.props.path;
+          breadcrumbDispatch.update({
+            title: '哈哈',
+            breadcrumb: ['哈哈1', '哈哈2'],
+          });
         },
       }}
-      headerContentRender={() => (
-        <HeaderRender
-          compact={compact}
-          collapsed={collapsed}
-          setCollapsed={setCollapsed}
-        />
-      )}
       rightContentRender={() => (
         <div className="app-right-header">
           <Space>
@@ -122,19 +114,10 @@ export default ({ children, setTheme, theme }) => {
           </Space>
         </div>
       )}
+      pageHeaderProps={breadcrumb}
       footerRender={() => <FooterRender />}
     >
-      <PageHeader
-        {...AppBreadcrumb.options()}
-        breadcrumbRender={() => {
-          if (compact) {
-            return <div />;
-          }
-          return <AppBreadcrumb />;
-        }}
-      >
-        {children}
-      </PageHeader>
+      {children}
     </AppLayout>
   );
 };

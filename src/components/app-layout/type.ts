@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import type { MenuProps } from 'antd';
+import type { PageHeaderProps, MenuProps } from 'antd';
 
 export default interface ProLayout {
   location?: string;
@@ -13,7 +13,7 @@ export default interface ProLayout {
   className?: string;
   children: ReactNode;
   waterMarkProps?: any;
-  headerContentRender: () => ReactNode;
+  pageHeaderProps?: PageHeaderProps;
   rightContentRender: () => ReactNode;
   footerRender: () => ReactNode;
 }

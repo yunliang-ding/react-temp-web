@@ -27,13 +27,13 @@ const getPixelRatio = (context: any) => {
   return (window.devicePixelRatio || 1) / backingStore;
 };
 export default ({
-  rotate = 22,
   content,
+  rotate = -20,
   fontColor = 'rgba(0, 0, 0, .15)',
-  fontSize = 16,
+  fontSize = 12,
   zIndex = 999,
-  gapX = 212,
-  gapY = 222,
+  gapX = 100,
+  gapY = 50,
   width = 120,
   height = 64,
 }: WatermarkProps) => {

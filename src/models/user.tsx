@@ -3,15 +3,25 @@
 import { userInfo } from '@/services/common';
 import { Icon } from '@/util';
 
-const recursion = (menus: any, auths: any) => {
+const recursion = (menus: any, auths: any, breadcrumb: string[] = []) => {
   menus?.forEach((menu: any) => {
+    delete menu.createUser;
+    delete menu.updateUser;
+    delete menu.createTime;
+    delete menu.updateTime;
+    delete menu.crudId;
+    delete menu.disabled;
+    delete menu.appId;
+    delete menu.parentId;
     menu.key = menu.path;
     menu.label = menu.name;
     menu.icon = <Icon type={menu.icon} />;
     if (menu.children?.length > 0) {
-      recursion(menu.children, auths);
+      breadcrumb.push(menu.label);
+      recursion(menu.children, auths, breadcrumb);
     } else {
       delete menu.children;
+      menu.breadcrumb = breadcrumb; // 设置面包屑
       auths[menu.name] = true;
     }
   });
@@ -44,6 +54,7 @@ export default {
         if (code === 200) {
           const auth = {}; // 权限集合
           recursion(data.menus, auth);
+          console.log(data.menus);
           setAuth(auth);
           dispatch.user.update({
             ...data,

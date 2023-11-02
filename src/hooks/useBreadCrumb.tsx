@@ -1,21 +1,14 @@
 import store from '@/store';
-import { PageContainerProps } from '@ant-design/pro-layout';
+import { PageHeaderProps } from 'antd';
 import { useEffect } from 'react';
-
-interface UseBreadCrumbProps extends PageContainerProps {
-  list?: any[];
-  tabList?: any;
-  footer?: any;
-}
 
 export default (
   // 指定清空的属性、默认全部清空
-  destroyProps: UseBreadCrumbProps = {
-    tabList: [],
-    title: '',
-    list: [],
-    footer: '',
-    extra: [],
+  destroyProps: PageHeaderProps = {
+    title: null,
+    footer: null,
+    extra: null,
+    breadcrumb: undefined,
   },
 ) => {
   const [, breadcrumbDispatcher] = store.useModel('breadcrumb');
@@ -25,7 +18,7 @@ export default (
     };
   }, []);
   return {
-    update: (options: UseBreadCrumbProps) => {
+    update: (options: PageHeaderProps) => {
       breadcrumbDispatcher.update(options);
     },
   };

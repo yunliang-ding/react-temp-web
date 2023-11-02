@@ -1,16 +1,37 @@
+/* eslint-disable max-len */
 import LayoutProps from './type';
-import { Menu } from 'antd';
+import { Menu, PageHeader } from 'antd';
 import { useEffect, useState } from 'react';
 import WaterMark from './watermark';
+import Breadcrumb from './breadcrumb';
 import './index.less';
+
+const Icon = ({ color, onClick, style }) => (
+  <span style={style} onClick={onClick}>
+    <svg
+      viewBox="0 0 1024 1024"
+      version="1.1"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+    >
+      <path
+        d="M896 853.333333H128v-85.333333h768v85.333333z m42.666667-490.666666l-196.096 196.096-60.330667-60.330667L818.005333 362.666667 682.24 226.901333l60.330667-60.330666L938.666667 362.666667zM512 554.666667H128v-85.333334h384v85.333334z m0-298.666667H128V170.666667h384v85.333333z"
+        fill={color}
+      />
+    </svg>
+  </span>
+);
 
 export default ({
   compact = true,
   className,
   dark = false,
   collapsed = false,
+  onCollapse = () => {},
   menu = {},
   waterMarkProps,
+  pageHeaderProps = {},
   title = '默认应用标题',
   logo = (
     <img
@@ -21,7 +42,6 @@ export default ({
       }}
     />
   ),
-  headerContentRender = () => null,
   rightContentRender = () => null,
   footerRender = () => null,
   children = null,
@@ -58,6 +78,20 @@ export default ({
   if (compact) {
     classNames.push('app-layout-compact');
   }
+  /** 包裹业务路由 */
+  const content = (
+    <PageHeader
+      {...pageHeaderProps}
+      breadcrumbRender={() => {
+        if (compact) {
+          return <div />;
+        }
+        return <Breadcrumb breadcrumb={pageHeaderProps.breadcrumb} />;
+      }}
+    >
+      {children}
+    </PageHeader>
+  );
   return (
     <>
       <div className={classNames.join(' ')}>
@@ -87,10 +121,33 @@ export default ({
             </div>
             <div className="app-layout-right">
               <div className="app-layout-right-header">
-                {headerContentRender()}
+                {compact && (
+                  <div
+                    style={{
+                      display: 'flex',
+                      gap: 10,
+                      alignItems: 'center',
+                      height: '100%',
+                    }}
+                  >
+                    <Icon
+                      onClick={() => {
+                        onCollapse(!collapsed);
+                      }}
+                      color="var(--ant-primary-color)"
+                      style={{
+                        transform: collapsed
+                          ? 'rotateY(0deg)'
+                          : 'rotateY(180deg)',
+                        transition: '.3s',
+                      }}
+                    />
+                    <Breadcrumb breadcrumb={pageHeaderProps.breadcrumb} />
+                  </div>
+                )}
                 {rightContentRender()}
               </div>
-              <div className="app-layout-right-content">{children}</div>
+              <div className="app-layout-right-content">{content}</div>
               <div className="app-layout-right-footer">{footerRender()}</div>
             </div>
           </>
@@ -146,7 +203,7 @@ export default ({
                 <div className="app-layout-body-sider-footer">footer</div>
               </div>
               <div className="app-layout-body-main">
-                <div className="app-layout-body-main-content">{children}</div>
+                <div className="app-layout-body-main-content">{content}</div>
                 <div className="app-layout-body-main-footer">
                   {footerRender()}
                 </div>

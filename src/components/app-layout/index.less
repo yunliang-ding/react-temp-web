@@ -137,12 +137,15 @@
       z-index: 998;
       transition: 0.3s;
       background-color: #fff;
-      &-menu{
+      &-menu {
         width: 200px;
         height: calc(100% - 44px);
         overflow: auto;
+        .ant-menu-item {
+          font-weight: bold;
+        }
       }
-      &-footer{
+      &-footer {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -200,11 +203,13 @@
   flex-direction: row;
 }
 .app-layout-collapsed {
-  .app-layout-left {
+  .app-layout-left,
+  .app-layout-body-sider {
     width: 48px;
     transition: 0.3s;
   }
-  .app-layout-right {
+  .app-layout-right,
+  .app-layout-body-main {
     width: calc(100% - 48px);
     transition: 0.3s;
   }

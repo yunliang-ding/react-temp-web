@@ -102,7 +102,7 @@ export default ({
               <div className="app-layout-left-logo">
                 <a>
                   {logo}
-                  {!collapsed && <h1>{title}</h1>}
+                  <h1 hidden={collapsed}>{title}</h1>
                 </a>
               </div>
               <div className="app-layout-left-menu">
@@ -122,31 +122,30 @@ export default ({
             </div>
             <div className="app-layout-right">
               <div className="app-layout-right-header">
-                {compact && (
-                  <div
+                <div
+                  hidden={!compact}
+                  style={{
+                    display: 'flex',
+                    gap: 10,
+                    alignItems: 'center',
+                    height: '100%',
+                  }}
+                >
+                  <Icon
+                    onClick={() => {
+                      onCollapse(!collapsed);
+                    }}
+                    color="var(--ant-primary-color)"
                     style={{
                       display: 'flex',
-                      gap: 10,
-                      alignItems: 'center',
-                      height: '100%',
+                      transform: collapsed
+                        ? 'rotateY(0deg)'
+                        : 'rotateY(180deg)',
+                      transition: '.3s',
                     }}
-                  >
-                    <Icon
-                      onClick={() => {
-                        onCollapse(!collapsed);
-                      }}
-                      color="var(--ant-primary-color)"
-                      style={{
-                        display: 'flex',
-                        transform: collapsed
-                          ? 'rotateY(0deg)'
-                          : 'rotateY(180deg)',
-                        transition: '.3s',
-                      }}
-                    />
-                    <Breadcrumb breadcrumb={pageHeaderProps.breadcrumb} />
-                  </div>
-                )}
+                  />
+                  <Breadcrumb breadcrumb={pageHeaderProps.breadcrumb} />
+                </div>
                 {rightContentRender()}
               </div>
               <div className="app-layout-right-content">{content}</div>
@@ -159,7 +158,7 @@ export default ({
               <div className="app-layout-header-logo">
                 <a>
                   {logo}
-                  {!collapsed && <h1>{title}</h1>}
+                  <h1>{title}</h1>
                 </a>
               </div>
               <div className="app-layout-header-menu">
@@ -202,7 +201,21 @@ export default ({
                     theme={dark ? 'dark' : 'light'}
                   />
                 </div>
-                <div className="app-layout-body-sider-footer">footer</div>
+                <div className="app-layout-body-sider-footer">
+                  <Icon
+                    onClick={() => {
+                      onCollapse(!collapsed);
+                    }}
+                    color="var(--ant-primary-color)"
+                    style={{
+                      display: 'flex',
+                      transform: collapsed
+                        ? 'rotateY(0deg)'
+                        : 'rotateY(180deg)',
+                      transition: '.3s',
+                    }}
+                  />
+                </div>
               </div>
               <div className="app-layout-body-main">
                 <div className="app-layout-body-main-content">{content}</div>

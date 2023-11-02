@@ -12,12 +12,32 @@ const Icon = ({ color, onClick, style }) => (
       viewBox="0 0 1024 1024"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="26"
+      height="26"
     >
       <path
-        d="M896 853.333333H128v-85.333333h768v85.333333z m42.666667-490.666666l-196.096 196.096-60.330667-60.330667L818.005333 362.666667 682.24 226.901333l60.330667-60.330666L938.666667 362.666667zM512 554.666667H128v-85.333334h384v85.333334z m0-298.666667H128V170.666667h384v85.333333z"
         fill={color}
+        d="M199.68 300.032m-49.152 0a4.8 4.8 0 1 0 98.304 0 4.8 4.8 0 1 0-98.304 0Z"
+      />
+      <path
+        fill={color}
+        d="M402.432 343.04 829.44 343.04c23.552 0 44.032-19.456 44.032-44.032S852.992 256 829.44 256L402.432 256c-23.552 0-44.032 19.456-44.032 44.032S377.856 343.04 402.432 343.04z"
+      />
+      <path
+        fill={color}
+        d="M199.68 512m-49.152 0a4.8 4.8 0 1 0 98.304 0 4.8 4.8 0 1 0-98.304 0Z"
+      />
+      <path
+        fill={color}
+        d="M829.44 468.992 402.432 468.992c-23.552 0-44.032 19.456-44.032 44.032s19.456 44.032 44.032 44.032L829.44 557.056c23.552 0 44.032-19.456 44.032-44.032S852.992 468.992 829.44 468.992z"
+      />
+      <path
+        fill={color}
+        d="M199.68 724.992m-49.152 0a4.8 4.8 0 1 0 98.304 0 4.8 4.8 0 1 0-98.304 0Z"
+      />
+      <path
+        fill={color}
+        d="M829.44 680.96 402.432 680.96c-23.552 0-44.032 19.456-44.032 44.032s19.456 44.032 44.032 44.032L829.44 769.024c23.552 0 44.032-19.456 44.032-44.032S852.992 680.96 829.44 680.96z"
       />
     </svg>
   </span>
@@ -79,7 +99,7 @@ export default ({
     classNames.push('app-layout-compact');
   }
   /** 包裹业务路由 */
-  const content = (
+  const Children = (
     <PageHeader
       {...pageHeaderProps}
       title={pageHeaderProps.title || <div />}
@@ -138,9 +158,7 @@ export default ({
                     color="var(--ant-primary-color)"
                     style={{
                       display: 'flex',
-                      transform: collapsed
-                        ? 'rotateY(0deg)'
-                        : 'rotateY(180deg)',
+                      transform: collapsed ? 'rotate(180deg)' : 'rotate(0deg)',
                       transition: '.3s',
                     }}
                   />
@@ -148,8 +166,6 @@ export default ({
                 </div>
                 {rightContentRender()}
               </div>
-              <div className="app-layout-right-content">{content}</div>
-              <div className="app-layout-right-footer">{footerRender()}</div>
             </div>
           </>
         ) : (
@@ -210,22 +226,29 @@ export default ({
                     style={{
                       display: 'flex',
                       transform: collapsed
-                        ? 'rotateY(0deg)'
-                        : 'rotateY(180deg)',
+                        ? 'rotate(180deg)'
+                        : 'rotate(0deg)',
                       transition: '.3s',
                     }}
                   />
                 </div>
               </div>
-              <div className="app-layout-body-main">
-                <div className="app-layout-body-main-content">{content}</div>
-                <div className="app-layout-body-main-footer">
-                  {footerRender()}
-                </div>
-              </div>
             </div>
           </>
         )}
+        {/* 公共模块抽离 */}
+        <div className="app-layout-right-body">
+          <div
+            className={
+              compact
+                ? 'app-layout-right-body-compact-content'
+                : 'app-layout-right-body-content'
+            }
+          >
+            {Children}
+          </div>
+          <div className="app-layout-right-body-footer">{footerRender()}</div>
+        </div>
       </div>
       {waterMarkProps && <WaterMark {...waterMarkProps} />}
     </>

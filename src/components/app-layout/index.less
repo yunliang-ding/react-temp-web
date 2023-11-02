@@ -5,7 +5,7 @@
   flex-direction: column;
   /** 模式一 */
   &-left {
-    width: 200px;
+    width: 208px;
     height: 100%;
     background-color: #fff;
     box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05);
@@ -15,13 +15,15 @@
     &-logo {
       padding: 8px 10px !important;
       height: 48px;
+      display: flex;
+      align-items: center;
       a {
         display: flex;
         align-items: center;
         height: 80%;
         gap: 10px;
         h1 {
-          font-size: 15px;
+          font-size: 16px;
           font-weight: bold;
           color: #222 !important;
           margin: 0;
@@ -39,7 +41,7 @@
     }
   }
   &-right {
-    width: calc(100% - 200px);
+    width: calc(100% - 208px);
     transition: 0.3s;
     &-header {
       height: 48px;
@@ -52,36 +54,6 @@
       z-index: 999;
       position: relative;
     }
-    &-content {
-      height: calc(100% - 92px);
-      width: 100%;
-      overflow: auto;
-      background-color: #f0f2f5;
-      .ant-page-header {
-        padding: 0;
-        .ant-page-header-heading {
-          padding: 0 20px;
-          height: 52px;
-          background-color: #fff;
-          .ant-page-header-heading-extra {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-          }
-        }
-        .ant-page-header-content {
-          padding: 20px;
-        }
-      }
-    }
-    &-footer {
-      height: 44px;
-      width: 100%;
-      box-shadow: 0px 0px 4px rgba(0, 21, 41, 0.08);
-      position: relative;
-      z-index: 997;
-      background-color: #fff;
-    }
   }
   /** 模式二 */
   &-header {
@@ -93,14 +65,14 @@
     position: relative;
     &-logo {
       padding: 8px 10px !important;
-      width: 200px;
+      width: 208px;
       a {
         display: flex;
         align-items: center;
         height: 80%;
         gap: 10px;
         h1 {
-          font-size: 15px;
+          font-size: 16px;
           font-weight: bold;
           color: #222 !important;
           margin: 0;
@@ -138,7 +110,7 @@
       transition: 0.3s;
       background-color: #fff;
       &-menu {
-        width: 200px;
+        width: 208px;
         height: calc(100% - 44px);
         overflow: auto;
         .ant-menu-item {
@@ -154,39 +126,72 @@
       }
     }
     &-main {
-      width: calc(100% - 200px);
+      width: calc(100% - 208px);
       height: 100%;
       overflow: auto;
       background-color: #f0f2f5;
-      &-content {
-        height: calc(100% - 44px);
-        overflow: auto;
-        .ant-page-header {
-          padding: 0;
-        }
-        .ant-breadcrumb {
-          padding: 6px 20px;
-          padding-top: 10px;
-          background: #fff;
-        }
+      
+    }
+  }
+  /** 公共主体模块 */
+  .app-layout-right-body {
+    position: absolute;
+    left: 208px;
+    width: calc(100% - 208px);
+    top: 48px;
+    overflow: auto;
+    height: calc(100vh - 48px);
+    &-compact-content {
+      height: calc(100% - 44px);
+      width: 100%;
+      overflow: auto;
+      background-color: #f0f2f5;
+      .ant-page-header {
+        padding: 0;
         .ant-page-header-heading {
-          margin: 0;
           padding: 0 20px;
-          padding-bottom: 8px;
-          background: #fff;
+          height: 52px;
+          background-color: #fff;
+          .ant-page-header-heading-extra {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+          }
         }
         .ant-page-header-content {
           padding: 16px;
         }
       }
-      &-footer {
-        height: 44px;
-        width: 100%;
-        box-shadow: 0px 0px 4px rgba(0, 21, 41, 0.08);
-        position: relative;
-        z-index: 997;
-        background-color: #fff;
+    }
+    &-content {
+      height: calc(100% - 44px);
+      overflow: auto;
+      background-color: #f0f2f5;
+      .ant-page-header {
+        padding: 0;
       }
+      .ant-breadcrumb {
+        padding: 6px 20px;
+        padding-top: 10px;
+        background: #fff;
+      }
+      .ant-page-header-heading {
+        margin: 0;
+        padding: 0 20px;
+        padding-bottom: 8px;
+        background: #fff;
+      }
+      .ant-page-header-content {
+        padding: 16px;
+      }
+    }
+    &-footer {
+      height: 44px;
+      width: 100%;
+      box-shadow: 0px 0px 4px rgba(0, 21, 41, 0.08);
+      position: relative;
+      z-index: 997;
+      background-color: #fff;
     }
   }
   .ant-menu.ant-menu-inline-collapsed {
@@ -208,9 +213,12 @@
     width: 48px;
     transition: 0.3s;
   }
-  .app-layout-right,
-  .app-layout-body-main {
+  .app-layout-right {
     width: calc(100% - 48px);
+  }
+  .app-layout-right-body {
+    width: calc(100% - 48px);
+    left: 48px;
     transition: 0.3s;
   }
 }

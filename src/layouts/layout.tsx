@@ -6,8 +6,10 @@ import { Icon } from '@/util';
 import FooterRender from './footer-render';
 import { outLogin } from '@/services/common';
 import './index.less';
+import { useEffect, useState } from 'react';
 
 export default ({ children, setTheme, theme }) => {
+  const [pathname, setPathName] = useState('');
   const [uiState, uiDispatchers] = store.useModel('ui');
   const [breadcrumb, breadcrumbDispatch] = store.useModel('breadcrumb');
   const [userState] = store.useModel('user');
@@ -24,8 +26,28 @@ export default ({ children, setTheme, theme }) => {
       location.reload();
     }
   };
+  // 监听浏览器前进回退
+  const listen = () => {
+    const path = location.hash.substring(1);
+    const index = location.hash.substring(1).indexOf('?'); // 去除参数
+    const pathName = index === -1 ? path : path.substring(0, index);
+    setPathName(pathName);
+    /** 设置当前路由的默认面包屑 */
+    breadcrumbDispatch.update({
+      title: '哈哈',
+      breadcrumb: ['哈哈1', '哈哈2'],
+    });
+  };
+  useEffect(() => {
+    listen();
+    window.addEventListener('hashchange', listen);
+    return () => {
+      window.removeEventListener('hashchange', listen);
+    };
+  }, []);
   return (
     <AppLayout
+      pathname={pathname}
       waterMarkProps={{
         content: name,
       }}
@@ -37,14 +59,7 @@ export default ({ children, setTheme, theme }) => {
       menu={{
         items: menus,
         onClick: ({ item }: any) => {
-          // console.log(item.props.breadcrumb);
           location.hash = item.props.path;
-          setTimeout(() => {
-            breadcrumbDispatch.update({
-              title: '哈哈',
-              breadcrumb: ['哈哈1', '哈哈2'],
-            });
-          }, 100);
         },
       }}
       rightContentRender={() => (
@@ -74,13 +89,13 @@ export default ({ children, setTheme, theme }) => {
               }}
             />
             <Icon
-              type="icon-palette"
+              type="icon-setting"
               style={{
                 fontSize: 20,
                 marginRight: 20,
                 position: 'relative',
                 top: 3,
-                color: '#999',
+                color: '#666',
               }}
               onClick={() => {
                 uiDispatchers.update({

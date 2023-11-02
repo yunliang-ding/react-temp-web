@@ -44,6 +44,7 @@ const Icon = ({ color, onClick, style }) => (
 );
 
 export default ({
+  pathname = '/',
   compact = true,
   className,
   dark = false,
@@ -71,21 +72,10 @@ export default ({
   /** horizontal 模式的一级菜单 */
   const [topKey, setTopKey] = useState('');
   const [openKeys, setOpenKeys] = useState(['']);
-  // 监听浏览器前进回退
-  const listen = () => {
-    const path = location.hash.substring(1);
-    const index = location.hash.substring(1).indexOf('?'); // 去除参数
-    const pathname = index === -1 ? path : path.substring(0, index);
+  useEffect(() => {
     setSelectedKey(pathname);
     setTopKey(`/${pathname.split('/').filter(Boolean)[0]}`);
-  };
-  useEffect(() => {
-    listen();
-    window.addEventListener('hashchange', listen);
-    return () => {
-      window.removeEventListener('hashchange', listen);
-    };
-  }, []);
+  }, [pathname]);
   if (className) {
     classNames.push(className);
   }
@@ -225,9 +215,7 @@ export default ({
                     color="var(--ant-primary-color)"
                     style={{
                       display: 'flex',
-                      transform: collapsed
-                        ? 'rotate(180deg)'
-                        : 'rotate(0deg)',
+                      transform: collapsed ? 'rotate(180deg)' : 'rotate(0deg)',
                       transition: '.3s',
                     }}
                   />

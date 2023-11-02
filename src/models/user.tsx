@@ -3,8 +3,9 @@
 import { userInfo } from '@/services/common';
 import { Icon } from '@/util';
 
-const recursion = (menus: any, auths: any, breadcrumb: string[] = []) => {
+const recursion = (menus: any, auths: any) => {
   menus?.forEach((menu: any) => {
+    /** 删除多余的属性 */
     delete menu.createUser;
     delete menu.updateUser;
     delete menu.createTime;
@@ -17,11 +18,9 @@ const recursion = (menus: any, auths: any, breadcrumb: string[] = []) => {
     menu.label = menu.name;
     menu.icon = <Icon type={menu.icon} />;
     if (menu.children?.length > 0) {
-      breadcrumb.push(menu.label);
-      recursion(menu.children, auths, breadcrumb);
+      recursion(menu.children, auths);
     } else {
       delete menu.children;
-      menu.breadcrumb = breadcrumb; // 设置面包屑
       auths[menu.name] = true;
     }
   });

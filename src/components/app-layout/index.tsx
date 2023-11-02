@@ -28,12 +28,16 @@ export default ({
 }: LayoutProps) => {
   const classNames: string[] = ['app-layout'];
   const [selectedKey, setSelectedKey] = useState('');
+  /** horizontal 模式的一级菜单 */
+  const [topKey, setTopKey] = useState('');
   const [openKeys, setOpenKeys] = useState(['']);
   // 监听浏览器前进回退
   const listen = () => {
     const path = location.hash.substring(1);
     const index = location.hash.substring(1).indexOf('?'); // 去除参数
-    setSelectedKey(index === -1 ? path : path.substring(0, index));
+    const pathname = index === -1 ? path : path.substring(0, index);
+    setSelectedKey(pathname);
+    setTopKey(`/${pathname.split('/').filter(Boolean)[0]}`);
   };
   useEffect(() => {
     listen();
@@ -54,8 +58,6 @@ export default ({
   if (compact) {
     classNames.push('app-layout-compact');
   }
-  /** horizontal 模式的一级菜单 */
-  const [hSelectedKey, setHSelectedKey] = useState('');
   return (
     <>
       <div className={classNames.join(' ')}>
@@ -104,12 +106,16 @@ export default ({
               <div className="app-layout-header-menu">
                 <Menu
                   {...menu}
+                  // 这里只渲染一级菜单
                   items={menu.items?.map((item: any) => {
-                    delete item.children;
-                    return item;
+                    return {
+                      ...item,
+                      children: undefined,
+                    };
                   })}
                   mode="horizontal"
-                  selectedKeys={[hSelectedKey]}
+                  multiple={false}
+                  selectedKeys={[topKey]}
                 />
               </div>
               <div className="app-layout-header-right">
@@ -119,8 +125,13 @@ export default ({
             <div className="app-layout-body">
               <div className="app-layout-body-sider">
                 <div className="app-layout-body-sider-menu">
+                  {/* 这里渲染当前一级菜单下面的子菜单 */}
                   <Menu
                     {...menu}
+                    items={
+                      (menu.items?.find((item) => item?.key === topKey) as any)
+                        ?.children
+                    }
                     inlineIndent={16}
                     mode="inline"
                     selectedKeys={[selectedKey]}

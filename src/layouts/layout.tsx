@@ -2,11 +2,11 @@ import AppLayout from '@/components/app-layout';
 import { Dropdown, Menu, Space, Avatar, Input } from 'antd';
 import store from '@/store';
 import { LayoutProps } from '@/types';
-import { Icon } from '@/util';
+import { getBreadcrumbByMenus, Icon } from '@/util';
 import FooterRender from './footer-render';
 import { outLogin } from '@/services/common';
-import './index.less';
 import { useEffect, useState } from 'react';
+import './index.less';
 
 export default ({ children, setTheme, theme }) => {
   const [pathname, setPathName] = useState('');
@@ -31,12 +31,10 @@ export default ({ children, setTheme, theme }) => {
     const path = location.hash.substring(1);
     const index = location.hash.substring(1).indexOf('?'); // 去除参数
     const pathName = index === -1 ? path : path.substring(0, index);
-    setPathName(pathName);
+    const clearPath: string[] = pathName.split('/').filter(Boolean);
+    setPathName(`/${clearPath.join('/')}`);
     /** 设置当前路由的默认面包屑 */
-    breadcrumbDispatch.update({
-      title: '哈哈',
-      breadcrumb: ['哈哈1', '哈哈2'],
-    });
+    breadcrumbDispatch.update(getBreadcrumbByMenus(menus, clearPath));
   };
   useEffect(() => {
     listen();

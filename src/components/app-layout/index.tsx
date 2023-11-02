@@ -1,7 +1,8 @@
 import LayoutProps from './type';
-import './index.less';
 import { Menu } from 'antd';
 import { useEffect, useState } from 'react';
+import WaterMark from './watermark';
+import './index.less';
 
 export default ({
   compact = true,
@@ -9,7 +10,7 @@ export default ({
   dark = false,
   collapsed = false,
   menu = {},
-  // waterMarkProps = {},
+  waterMarkProps,
   title = '默认应用标题',
   logo = (
     <img
@@ -25,12 +26,13 @@ export default ({
   footerRender = () => null,
   children = null,
 }: LayoutProps) => {
+  const classNames: string[] = ['app-layout'];
   const [selectedKey, setSelectedKey] = useState('');
   const [openKeys, setOpenKeys] = useState(['']);
   // 监听浏览器前进回退
   const listen = () => {
-    const path = location.hash.substr(1);
-    const index = location.hash.substr(1).indexOf('?'); // 去除参数
+    const path = location.hash.substring(1);
+    const index = location.hash.substring(1).indexOf('?'); // 去除参数
     setSelectedKey(index === -1 ? path : path.substring(0, index));
   };
   useEffect(() => {
@@ -40,7 +42,6 @@ export default ({
       window.removeEventListener('hashchange', listen);
     };
   }, []);
-  const classNames: string[] = ['app-layout'];
   if (className) {
     classNames.push(className);
   }
@@ -54,52 +55,55 @@ export default ({
     classNames.push('app-layout-compact');
   }
   return (
-    <div className={classNames.join(' ')}>
-      {compact ? (
-        <>
-          <div className="app-layout-left">
-            <div className="app-layout-left-logo">
-              <a>
-                {logo}
-                {!collapsed && <h1>{title}</h1>}
-              </a>
+    <>
+      <div className={classNames.join(' ')}>
+        {compact ? (
+          <>
+            <div className="app-layout-left">
+              <div className="app-layout-left-logo">
+                <a>
+                  {logo}
+                  {!collapsed && <h1>{title}</h1>}
+                </a>
+              </div>
+              <div className="app-layout-left-menu">
+                <Menu
+                  {...menu}
+                  inlineIndent={16}
+                  mode="inline"
+                  selectedKeys={[selectedKey]}
+                  openKeys={openKeys}
+                  onOpenChange={(v) => {
+                    setOpenKeys(v);
+                  }}
+                  inlineCollapsed={collapsed}
+                  theme={dark ? 'dark' : 'light'}
+                />
+              </div>
             </div>
-            <div className="app-layout-left-menu">
-              <Menu
-                {...menu}
-                inlineIndent={16}
-                mode="inline"
-                selectedKeys={[selectedKey]}
-                openKeys={openKeys}
-                onOpenChange={(v) => {
-                  setOpenKeys(v);
-                }}
-                inlineCollapsed={collapsed}
-                theme={dark ? 'dark' : 'light'}
-              />
-            </div>
-          </div>
-          <div className="app-layout-right">
-            <div className="app-layout-right-header">
-              {headerContentRender()}
-              {rightContentRender()}
-            </div>
-            <div className="app-layout-right-content">{children}</div>
-            <div className="app-layout-right-footer">{footerRender()}</div>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="app-layout-header">header</div>
-          <div className="app-layout-body">
-            <div className="app-layout-sider">sider</div>
-            <div className="app-layout-main">
+            <div className="app-layout-right">
+              <div className="app-layout-right-header">
+                {headerContentRender()}
+                {rightContentRender()}
+              </div>
               <div className="app-layout-right-content">{children}</div>
-              <div className="app-layout-right-footer">footer</div>
+              <div className="app-layout-right-footer">{footerRender()}</div>
             </div>
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        ) : (
+          <>
+            <div className="app-layout-header">header</div>
+            <div className="app-layout-body">
+              <div className="app-layout-sider">sider</div>
+              <div className="app-layout-main">
+                <div className="app-layout-right-content">{children}</div>
+                <div className="app-layout-right-footer">footer</div>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+      {waterMarkProps && <WaterMark {...waterMarkProps} />}
+    </>
   );
 };

@@ -54,6 +54,8 @@ export default ({
   if (compact) {
     classNames.push('app-layout-compact');
   }
+  /** horizontal 模式的一级菜单 */
+  const [hSelectedKey, setHSelectedKey] = useState('');
   return (
     <>
       <div className={classNames.join(' ')}>
@@ -92,12 +94,51 @@ export default ({
           </>
         ) : (
           <>
-            <div className="app-layout-header">header</div>
+            <div className="app-layout-header">
+              <div className="app-layout-header-logo">
+                <a>
+                  {logo}
+                  {!collapsed && <h1>{title}</h1>}
+                </a>
+              </div>
+              <div className="app-layout-header-menu">
+                <Menu
+                  {...menu}
+                  items={menu.items?.map((item: any) => {
+                    delete item.children;
+                    return item;
+                  })}
+                  mode="horizontal"
+                  selectedKeys={[hSelectedKey]}
+                />
+              </div>
+              <div className="app-layout-header-right">
+                {rightContentRender()}
+              </div>
+            </div>
             <div className="app-layout-body">
-              <div className="app-layout-sider">sider</div>
-              <div className="app-layout-main">
-                <div className="app-layout-right-content">{children}</div>
-                <div className="app-layout-right-footer">footer</div>
+              <div className="app-layout-body-sider">
+                <div className="app-layout-body-sider-menu">
+                  <Menu
+                    {...menu}
+                    inlineIndent={16}
+                    mode="inline"
+                    selectedKeys={[selectedKey]}
+                    openKeys={openKeys}
+                    onOpenChange={(v) => {
+                      setOpenKeys(v);
+                    }}
+                    inlineCollapsed={collapsed}
+                    theme={dark ? 'dark' : 'light'}
+                  />
+                </div>
+                <div className="app-layout-body-sider-footer">footer</div>
+              </div>
+              <div className="app-layout-body-main">
+                <div className="app-layout-body-main-content">{children}</div>
+                <div className="app-layout-body-main-footer">
+                  {footerRender()}
+                </div>
               </div>
             </div>
           </>

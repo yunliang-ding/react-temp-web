@@ -35,6 +35,7 @@ export default ({ children, setTheme, theme }) => {
         gapY: 70,
         zIndex: 999,
       }}
+      compact={compact}
       collapsed={collapsed}
       onCollapse={setCollapsed}
       title={title}

@@ -17,6 +17,6 @@
 
 ## Demo
 
-![mode1](http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/mode1.png)
+![模式1](http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/mode1.png)
 
-![mode2](http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/mode2.png)
+![模式2](http://react-core-form.oss-cn-beijing.aliyuncs.com/assets/mode2.png)

@@ -1,4 +1,4 @@
-import AppLayout from '@/components/app-layout';
+import { AppLayout } from 'react-core-form';
 import { Dropdown, Menu, Space, Avatar, Input } from 'antd';
 import store from '@/store';
 import { LayoutProps } from '@/types';
@@ -28,10 +28,12 @@ export default ({ children, setTheme, theme }) => {
   };
   // 使用 AppLayout 内置的 监听 hash 方法
   useEffect(() => {
-    const removeListener = layoutRef.current.listenHashChange(({ currentBreadcrumb }) => {
-      /** 设置当前路由的默认面包屑 */
-      breadcrumbDispatch.update(currentBreadcrumb);
-    });
+    const removeListener = layoutRef.current.listenHashChange(
+      ({ currentBreadcrumb }) => {
+        /** 设置当前路由的默认面包屑 */
+        breadcrumbDispatch.update(currentBreadcrumb);
+      },
+    );
     return removeListener;
   }, []);
   return (

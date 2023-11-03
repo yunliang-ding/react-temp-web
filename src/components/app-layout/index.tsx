@@ -74,6 +74,16 @@ export default ({
   /** horizontal 模式的一级菜单 */
   const [topKey, setTopKey] = useState('');
   const [openKeys, setOpenKeys] = useState(['']);
+  /** 扩展菜单点击 */
+  const menuClick = (info) => {
+    menu.onClick?.({
+      ...info,
+      currentBreadcrumb: getBreadcrumbByMenus(
+        menu.items,
+        info.key.split('/').filter(Boolean),
+      ),
+    } as any);
+  };
   // 监听 hash
   const listenHash = () => {
     const path = location.hash.substring(1);
@@ -99,7 +109,7 @@ export default ({
             currentBreadcrumb: listenHash(),
           });
         };
-        listen(); // 进来自动执行一次
+        listen(); // 进来自动执行一次，自动打开hash对应的菜单
         window.addEventListener('hashchange', listen);
         return () => {
           window.removeEventListener('hashchange', listen);
@@ -149,6 +159,7 @@ export default ({
               <div className="app-layout-left-menu">
                 <Menu
                   {...menu}
+                  onClick={menuClick}
                   inlineIndent={16}
                   mode="inline"
                   selectedKeys={[selectedKey]}
@@ -201,6 +212,7 @@ export default ({
               <div className="app-layout-header-menu">
                 <Menu
                   {...menu}
+                  onClick={menuClick}
                   // 这里只渲染一级菜单
                   items={menu.items?.map((item: any) => {
                     return {
@@ -223,6 +235,7 @@ export default ({
                   {/* 这里渲染当前一级菜单下面的子菜单 */}
                   <Menu
                     {...menu}
+                    onClick={menuClick}
                     items={
                       (menu.items?.find((item) => item?.key === topKey) as any)
                         ?.children

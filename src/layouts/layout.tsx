@@ -47,8 +47,8 @@ export default ({ children, setTheme, theme }) => {
       dark={dark}
       menu={{
         items: menus,
-        onClick: ({ item }: any) => {
-          location.hash = item.props.path;
+        onClick: ({ key }: any) => {
+          location.hash = key;
         },
       }}
       rightContentRender={() => (

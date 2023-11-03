@@ -53,7 +53,6 @@ export default {
         if (code === 200) {
           const auth = {}; // 权限集合
           recursion(data.menus, auth);
-          console.log(data.menus);
           setAuth(auth);
           dispatch.user.update({
             ...data,

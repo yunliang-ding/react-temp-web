@@ -7,12 +7,12 @@
 
 1. npm start; 启动前端服务 [基于 ice2.x](https://v2.ice.work/)
 2. cd app; 启动后端服务 [基于 thinkjs3.x](https://thinkjs.org/doc/index.html)
-3. 访问后端服务端口 默认 8360;
+3. 访问后端服务端口 默认 8361;
 
 ## 部署
 
 1. npm run build; 构建前端资源
-2. ./deploy; 采用 pm2 部署 默认部署端口 8361;
+2. ./deploy; 采用 pm2 部署 默认部署端口 8360;
 
 
 ## Demo

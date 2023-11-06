@@ -1,6 +1,6 @@
 {
   "apps": [{
-    "name": "react-core-form-admin:8361",
+    "name": "react-core-form-admin:8360",
     "script": "production.js",
     "cwd": "/home/lighthouse/local/react-core-form-admin/app",
     "exec_mode": "fork",

@@ -19,7 +19,9 @@ export default (
   }, []);
   return {
     update: (options: PageHeaderProps) => {
-      breadcrumbDispatcher.update(options);
+      setTimeout(() => {
+        breadcrumbDispatcher.update(options);
+      })
     },
   };
 };

@@ -21,6 +21,7 @@ export default (props: any) => {
     ConfigProvider.config({
       theme: {
         primaryColor,
+        infoColor: primaryColor,
       },
     });
   };

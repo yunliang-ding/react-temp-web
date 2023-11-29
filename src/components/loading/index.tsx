@@ -1,8 +1,8 @@
-import { Spin } from 'antd';
+import { Spin } from '@arco-design/web-react';
 
 export default () => {
   return (
-    <div
+    <Spin
       style={{
         background: '#eee',
         height: '100vh',
@@ -11,8 +11,6 @@ export default () => {
         alignItems: 'center',
         justifyContent: 'center',
       }}
-    >
-      <Spin size="large" />
-    </div>
+    />
   );
 };

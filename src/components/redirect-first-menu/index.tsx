@@ -2,7 +2,8 @@
 /** 默认展示接口下发的第一个菜单  */
 import { Redirect } from 'ice';
 import NoAuthority from '@/pages/403';
-import store from '@/store';
+import user from '@/store/user';
+import { useStore } from 'react-core-form-store';
 
 // 查找指定key
 export const recursionFind = (menus: any, path: string) => {
@@ -26,8 +27,11 @@ export const recursionLoopFind = (menus: any, path: string, currentMenu) => {
 
 export default () => (props) => {
   const { path } = props.match;
-  const [userState]: any = store.useModel('user');
-  const { children } = recursionFind(userState.menus, path === '/' ? userState.menus[0]?.path : path);
+  const { menus }: any = useStore(user);
+  const { children } = recursionFind(
+    menus,
+    path === '/' ? menus[0]?.path : path,
+  );
   if (children?.[0]) {
     return <Redirect to={children[0].path} />;
   } else {

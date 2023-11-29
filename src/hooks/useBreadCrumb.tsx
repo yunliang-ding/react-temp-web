@@ -1,27 +1,23 @@
-import store from '@/store';
-import { PageHeaderProps } from 'antd';
+import store from '@/store/breadcrumb';
+import { PageHeaderProps } from '@arco-design/web-react';
 import { useEffect } from 'react';
 
 export default (
   // 指定清空的属性、默认全部清空
   destroyProps: PageHeaderProps = {
-    title: null,
-    footer: null,
-    extra: null,
+    title: '',
     breadcrumb: undefined,
+    extra: [],
   },
 ) => {
-  const [, breadcrumbDispatcher] = store.useModel('breadcrumb');
   useEffect(() => {
     return () => {
-      breadcrumbDispatcher.update(destroyProps);
+      Object.assign(store, destroyProps);
     };
   }, []);
   return {
     update: (options: PageHeaderProps) => {
-      setTimeout(() => {
-        breadcrumbDispatcher.update(options);
-      })
+      Object.assign(store, options);
     },
   };
 };

@@ -1,69 +1,72 @@
-@import '~antd/dist/antd.variable.min.css';
-
 body {
   div,
-  a,
   span,
-  li {
-    font-size: 12px;
-  }
+  td,
+  th,
+  a,
+  button,
+  p,
+  li,
+  input,
+  textarea,
   label {
+    font-weight: 500 !important;
     font-size: 12px !important;
   }
+  .arco-icon {
+    font-size: 14px !important;
+  }
+  .arco-empty-image .arco-icon {
+    font-size: 48px !important;
+  }
+  .arco-spin-icon .arco-icon {
+    font-size: 20px !important;
+  }
+  h2 {
+    font-size: 18px !important;
+  }
+  a {
+    color: rgb(var(--primary-6));
+    text-decoration: none;
+  }
+  .arco-page-header-content {
+    overflow: auto;
+  }
 }
+
 #ice-container {
   height: 100vh;
   width: 100vw;
 }
+
 body {
   -webkit-font-smoothing: antialiased;
-}
 
-.ant-select-selection-item-content {
-  white-space: normal !important;
-}
-
-.ant-drawer-right {
-  transform: translateX(0) !important;
-}
-
-.core-form-table {
-  .ant-table-wrapper {
-    border: none !important;
+  button {
+    span {
+      font-weight: 600;
+    }
   }
 
-  .ant-table-pagination-right {
-    border: none !important;
+  label {
+    font-weight: 600;
   }
-}
-
-.core-form-search {
-  margin-bottom: 12px;
-}
-
-.td-row-operation-area {
-  .ant-popover-disabled-compatible-wrapper {
-    padding-left: 8px;
-  }
-}
-
-button,
-label,
-.ant-table-cell,
-.table-form-header-left {
-  font-weight: 600 !important;
 }
 
 #nprogress {
   .bar {
-    background: var(--ant-primary-color) !important;
+    background: rgb(var(--primary-6)) !important;
   }
   .peg {
-    box-shadow: 0 0 10px var(--ant-primary-color),
-      0 0 5px var(--ant-primary-color) !important;
+    box-shadow: 0 0 10px rgb(var(--primary-6)), 0 0 5px rgb(var(--primary-6)) !important;
   }
 }
 
-.core-form-table .ant-pagination {
-  align-items: flex-end;
+#ice-container > .arco-result-is-500 {
+  position: relative;
+  top: 100px;
+}
+
+#ice-container > .arco-spin > .arco-spin-icon > .arco-icon-loading {
+  font-size: 40px !important;
 }

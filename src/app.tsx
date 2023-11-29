@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable prefer-promise-reject-errors */
 import { runApp, config } from 'ice';
-import { notification } from 'antd';
+import { Notification } from '@arco-design/web-react';
 import NoAuthority from '@/pages/403';
 import ErrorBoundary from '@/pages/error-boundary';
 import NProgress from 'nprogress';
@@ -60,9 +60,9 @@ const appConfig: any = {
             return response;
           }
           if (code !== 200) {
-            notification.error({
-              message: '提示',
-              description: msg || '接口异常',
+            Notification.error({
+              title: '提示',
+              content: msg || '接口异常',
             });
           }
           return response;

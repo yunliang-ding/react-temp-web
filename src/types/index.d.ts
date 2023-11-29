@@ -4,4 +4,5 @@ export interface LayoutProps {
   compact?: boolean;
   dark?: boolean;
   collapsed?: boolean;
+  primaryColor?: string;
 }

@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { Button } from '@arco-design/web-react';
 import Marquee from 'react-fast-marquee';
 import { Icon } from '@/util';
 
@@ -14,14 +14,14 @@ export default () => {
     >
       <Icon
         type="icon-shengyin"
-        style={{ color: 'var(--ant-primary-color)', fontSize: 20 }}
+        style={{ color: 'rgb(var(--primary-6))', fontSize: 20 }}
       />
       <div style={{ width: 'calc(100% - 100px)', fontWeight: 'bold' }}>
         <Marquee pauseOnHover gradient={false} delay={2}>
           xxx消息通知
         </Marquee>
       </div>
-      <Button size="small" type="link">
+      <Button size="small" type="text">
         版本号 1.0.0
       </Button>
     </div>

@@ -1,24 +1,30 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { AppLayout } from 'react-core-form';
-import { Dropdown, Menu, Space, Avatar, Input } from 'antd';
-import store from '@/store';
-import { LayoutProps } from '@/types';
-import { Icon } from '@/util';
+import { Dropdown, Menu, Space, Avatar, Trigger } from '@arco-design/web-react';
+import uiStore from '@/store/ui';
+import userStore from '@/store/user';
+import breadcrumbStore from '@/store/breadcrumb';
+import { useStore } from 'react-core-form-store';
 import FooterRender from './footer-render';
 import { outLogin } from '@/services/common';
 import { useEffect, useRef } from 'react';
-import './index.less';
+import {
+  IconInteraction,
+  IconMoon,
+  IconSkin,
+  IconSun,
+} from '@arco-design/web-react/icon';
+import { SketchPicker } from 'react-color';
+import { generate, getRgbStr } from '@arco-design/color';
 
-export default ({ children, setTheme, theme }) => {
+export default ({ children }) => {
   const layoutRef: any = useRef({});
-  const [uiState, uiDispatchers] = store.useModel('ui');
-  const [breadcrumb, breadcrumbDispatch] = store.useModel('breadcrumb');
-  const [userState] = store.useModel('user');
-  const { dark, title, compact, collapsed }: LayoutProps = uiState;
+  const { dark, title, compact, collapsed, primaryColor } = useStore(uiStore);
+  const breadcrumb = useStore(breadcrumbStore);
+  const userState = useStore(userStore);
   const { name, avatarUrl, menus } = userState;
   const setCollapsed = (v: boolean) => {
-    uiDispatchers.update({
-      collapsed: v,
-    });
+    uiStore.collapsed = v;
   };
   const logout = async () => {
     const { code } = await outLogin();
@@ -31,7 +37,8 @@ export default ({ children, setTheme, theme }) => {
     const removeListener = layoutRef.current.listenHashChange(
       ({ currentBreadcrumb }) => {
         /** 设置当前路由的默认面包屑 */
-        breadcrumbDispatch.update(currentBreadcrumb);
+        breadcrumbStore.title = currentBreadcrumb.title;
+        breadcrumbStore.breadcrumb = currentBreadcrumb.breadcrumb;
       },
     );
     return removeListener;
@@ -40,7 +47,13 @@ export default ({ children, setTheme, theme }) => {
     <AppLayout
       layoutRef={layoutRef}
       waterMarkProps={{
-        content: name,
+        gap: [200, 200],
+        content: `welcome-${name}`,
+        zIndex: 10,
+        fontStyle: {
+          color: dark ? 'rgba(255, 255, 255, .15)' : 'rgba(0, 0, 0, .15)',
+          fontSize: 12,
+        },
       }}
       compact={compact}
       collapsed={collapsed}
@@ -49,62 +62,65 @@ export default ({ children, setTheme, theme }) => {
       dark={dark}
       menu={{
         items: menus,
-        onClick: ({ key }: any) => {
-          location.hash = key;
+        onClick: ({ path }: any) => {
+          location.hash = path;
         },
       }}
       rightContentRender={() => (
         <div className="app-right-header">
-          <Space>
-            <Icon
-              type={dark ? 'icon-suntaiyang' : 'icon-dark'}
-              style={{
-                fontSize: 20,
-                marginRight: 20,
-                position: 'relative',
-                top: 3,
-                color: '#999',
-              }}
+          <Space size={20}>
+            {dark ? (
+              <IconSun
+                onClick={() => {
+                  uiStore.dark = false;
+                }}
+              />
+            ) : (
+              <IconMoon
+                onClick={() => {
+                  uiStore.dark = true;
+                }}
+              />
+            )}
+            <IconInteraction
               onClick={() => {
-                uiDispatchers.update({
-                  dark: !dark,
-                });
+                uiStore.compact = !compact;
               }}
             />
-            <Input
-              type="color"
-              defaultValue={theme}
-              style={{ padding: 4, width: 32, marginRight: 20 }}
-              onChange={(e) => {
-                setTheme(e.target.value);
-              }}
-            />
-            <Icon
-              type="icon-setting"
-              style={{
-                fontSize: 20,
-                marginRight: 20,
-                position: 'relative',
-                top: 3,
-                color: '#666',
-              }}
-              onClick={() => {
-                uiDispatchers.update({
-                  compact: !compact,
-                });
-              }}
-            />
-            <Avatar size={32} src={avatarUrl} />
+            <Trigger
+              trigger="hover"
+              position="bl"
+              popup={() => (
+                <SketchPicker
+                  color={primaryColor}
+                  onChangeComplete={(color) => {
+                    const newColor = color.hex;
+                    const newList = generate(newColor, {
+                      list: true,
+                      dark,
+                    });
+                    newList.forEach((l, index) => {
+                      const rgbStr = getRgbStr(l);
+                      document.body.style.setProperty(
+                        `--arcoblue-${index + 1}`,
+                        rgbStr,
+                      );
+                    });
+                    uiStore.primaryColor = newColor;
+                  }}
+                />
+              )}
+            >
+              <IconSkin style={{ color: primaryColor }} />
+            </Trigger>
+            <Avatar size={32}>
+              <img alt="avatar" src={avatarUrl} />
+            </Avatar>
             <Dropdown
-              placement="bottom"
-              overlay={
+              position="bottom"
+              droplist={
                 <Menu>
-                  <Menu.Item
-                    onClick={logout}
-                    icon={
-                      <Icon type="icon-tuichudenglu" style={{ fontSize: 18 }} />
-                    }
-                  >
+                  <Menu.Item key="logout" onClick={logout}>
                     退出登录
                   </Menu.Item>
                 </Menu>
@@ -124,6 +140,7 @@ export default ({ children, setTheme, theme }) => {
       )}
       pageHeaderProps={breadcrumb}
       footerRender={() => <FooterRender />}
+      siderFooterRender={() => null}
     >
       {children}
     </AppLayout>

@@ -18,23 +18,19 @@
   },
   "plugins": [
     [
-      "build-plugin-moment-locales",
-      {
-        "locales": [
-          "zh-cn"
-        ]
-      }
-    ],
-    [
       "build-plugin-load-assets",
       {
         "assets": {
           "start": [
+            "https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.css",
+            "https://unpkg.com/@arco-design/web-react@latest/dist/css/arco.min.css",
             "https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/axios.min.js",
             "https://g.alicdn.com/code/lib/react/17.0.2/umd/react.development.min.js",
             "https://g.alicdn.com/code/lib/react-dom/17.0.2/umd/react-dom.development.min.js"
           ],
           "build": [
+            "https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.css",
+            "https://unpkg.com/@arco-design/web-react@latest/dist/css/arco.min.css",
             "https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/axios.min.js",
             "https://g.alicdn.com/code/lib/react/17.0.2/umd/react.production.min.js",
             "https://g.alicdn.com/code/lib/react-dom/17.0.2/umd/react-dom.production.min.js"

@@ -1,42 +1,40 @@
+/* eslint-disable radix */
+/* eslint-disable prefer-template */
 import { useEffect } from 'react';
 import Layout from './layout';
 import Loading from '@/components/loading';
 import Error from '@/components/error';
 import NoPermissions from '@/pages/403';
-import store from '@/store';
+import { useStore } from 'react-core-form-store';
+import uiStore from '@/store/ui';
+import userStore from '@/store/user';
 import { useAuth } from 'ice';
-import { ConfigProvider } from 'antd';
-import zhCN from 'antd/lib/locale/zh_CN';
-
-const defaultPrimaryColor = '#4e61d4';
 
 export default (props: any) => {
   const [, setAuth] = useAuth();
-  const [, userDispatchers] = store.useModel('user');
-  const [uiState] = store.useModel('ui');
+  const { fetchUserInfo } = useStore(userStore);
+  const { dark, status } = useStore(uiStore);
   useEffect(() => {
-    userDispatchers.fetchUserInfo(setAuth);
+    fetchUserInfo(setAuth, uiStore);
   }, []);
-  const setTheme = (primaryColor: string) => {
-    ConfigProvider.config({
-      theme: {
-        primaryColor,
-        infoColor: primaryColor,
-      },
-    });
-  };
   useEffect(() => {
-    setTheme(defaultPrimaryColor);
-  }, []);
+    if (dark) {
+      // 设置为暗黑主题
+      document.body.setAttribute('arco-theme', 'dark');
+    } else {
+      // 恢复亮色主题
+      document.body.removeAttribute('arco-theme');
+    }
+  }, [dark]);
   let Vnode: any = null;
-  if (uiState.status === 'loading') {
+  if (status === 'loading') {
     Vnode = <Loading />;
-  } else if (uiState.status === 'error') {
+  } else if (status === 'error') {
     Vnode = <Error />;
-  } else if (uiState.status === 'noPermissions') {
+  } else if (status === 'noPermissions') {
     Vnode = <NoPermissions />;
   } else {
-    Vnode = <Layout {...props} setTheme={setTheme} theme={defaultPrimaryColor} />;
+    Vnode = <Layout {...props} />;
   }
-  return <ConfigProvider locale={zhCN}>{Vnode}</ConfigProvider>;
+  return Vnode;
 };

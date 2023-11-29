@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-import { Result, Button } from 'antd';
-import { FrownOutlined } from '@ant-design/icons';
+import { Result, Button } from '@arco-design/web-react';
+import { IconRobot } from '@arco-design/web-react/icon';
 import { useEffect } from 'react';
 
 export default (props) => {
@@ -10,7 +10,7 @@ export default (props) => {
   return (
     <Result
       status="warning"
-      icon={<FrownOutlined />}
+      icon={<IconRobot />}
       title="很抱歉，您的操作导致系统出现了一些问题"
       extra={
         <>

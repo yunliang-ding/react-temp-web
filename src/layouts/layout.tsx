@@ -19,10 +19,9 @@ import { generate, getRgbStr } from '@arco-design/color';
 
 export default ({ children }) => {
   const layoutRef: any = useRef({});
-  const { dark, title, compact, collapsed, primaryColor } = useStore(uiStore);
   const breadcrumb = useStore(breadcrumbStore);
-  const userState = useStore(userStore);
-  const { name, avatarUrl, menus } = userState;
+  const { dark, title, compact, collapsed, primaryColor } = useStore(uiStore);
+  const { name, avatarUrl, menus } = useStore(userStore);
   const setCollapsed = (v: boolean) => {
     uiStore.collapsed = v;
   };

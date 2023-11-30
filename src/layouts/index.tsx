@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable radix */
 /* eslint-disable prefer-template */
 import { useEffect } from 'react';
@@ -9,6 +10,7 @@ import { useStore } from 'react-core-form-store';
 import uiStore from '@/store/ui';
 import userStore from '@/store/user';
 import { useAuth } from 'ice';
+import { generate, getRgbStr } from '@arco-design/color';
 
 export default (props: any) => {
   const [, setAuth] = useAuth();
@@ -26,6 +28,21 @@ export default (props: any) => {
       document.body.removeAttribute('arco-theme');
     }
   }, [dark]);
+  // 更新主题
+  const setTheme = (newColor: string | undefined) => {
+    const newList = generate(newColor, {
+      list: true,
+      dark,
+    });
+    newList.forEach((l, index) => {
+      const rgbStr = getRgbStr(l);
+      document.body.style.setProperty(`--arcoblue-${index + 1}`, rgbStr);
+    });
+    uiStore.primaryColor = newColor;
+  };
+  useEffect(() => {
+    setTheme(uiStore.primaryColor);
+  }, [uiStore.primaryColor]);
   let Vnode: any = null;
   if (status === 'loading') {
     Vnode = <Loading />;

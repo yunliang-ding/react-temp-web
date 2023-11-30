@@ -15,7 +15,6 @@ import {
   IconSun,
 } from '@arco-design/web-react/icon';
 import { SketchPicker } from 'react-color';
-import { generate, getRgbStr } from '@arco-design/color';
 
 export default ({ children }) => {
   const layoutRef: any = useRef({});
@@ -92,20 +91,8 @@ export default ({ children }) => {
               popup={() => (
                 <SketchPicker
                   color={primaryColor}
-                  onChangeComplete={(color) => {
-                    const newColor = color.hex;
-                    const newList = generate(newColor, {
-                      list: true,
-                      dark,
-                    });
-                    newList.forEach((l, index) => {
-                      const rgbStr = getRgbStr(l);
-                      document.body.style.setProperty(
-                        `--arcoblue-${index + 1}`,
-                        rgbStr,
-                      );
-                    });
-                    uiStore.primaryColor = newColor;
+                  onChangeComplete={({ hex }) => {
+                    uiStore.primaryColor = hex;
                   }}
                 />
               )}

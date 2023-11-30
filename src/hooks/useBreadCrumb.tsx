@@ -17,7 +17,9 @@ export default (
   }, []);
   return {
     update: (options: PageHeaderProps) => {
-      Object.assign(store, options);
+      setTimeout(() => {
+        Object.assign(store, options);
+      }, 10);
     },
   };
 };

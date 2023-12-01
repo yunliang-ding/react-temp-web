@@ -7,7 +7,10 @@
   "externals": {
     "axios": "window.axios",
     "react": "window.React",
-    "react-dom": "window.ReactDOM"
+    "react-dom": "window.ReactDOM",
+    "@arco-design/web-react": "window.arco",
+    "@arco-design/web-react/icon": "window.arcoicon",
+    "react-color": "window.ReactColor"
   },
   "router": {
     "ignorePaths": [
@@ -23,17 +26,23 @@
         "assets": {
           "start": [
             "https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.css",
-            "https://unpkg.com/@arco-design/web-react@latest/dist/css/arco.min.css",
             "https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/axios.min.js",
-            "https://g.alicdn.com/code/lib/react/17.0.2/umd/react.development.min.js",
-            "https://g.alicdn.com/code/lib/react-dom/17.0.2/umd/react-dom.development.min.js"
+            "https://g.alicdn.com/code/lib/react/17.0.2/umd/react.production.min.js",
+            "https://g.alicdn.com/code/lib/react-dom/17.0.2/umd/react-dom.production.min.js",
+            "https://unpkg.com/@arco-design/web-react@latest/dist/css/arco.min.css",
+            "https://unpkg.com/@arco-design/web-react@latest/dist/arco.min.js",
+            "https://unpkg.com/@arco-design/web-react@latest/dist/arco-icon.min.js",
+            "https://unpkg.com/react-color@3.0.0-beta.3/dist/react-color.min.js"
           ],
           "build": [
             "https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/react-core-form.css",
-            "https://unpkg.com/@arco-design/web-react@latest/dist/css/arco.min.css",
             "https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/axios.min.js",
             "https://g.alicdn.com/code/lib/react/17.0.2/umd/react.production.min.js",
-            "https://g.alicdn.com/code/lib/react-dom/17.0.2/umd/react-dom.production.min.js"
+            "https://g.alicdn.com/code/lib/react-dom/17.0.2/umd/react-dom.production.min.js",
+            "https://unpkg.com/@arco-design/web-react@latest/dist/css/arco.min.css",
+            "https://unpkg.com/@arco-design/web-react@latest/dist/arco.min.js",
+            "https://unpkg.com/@arco-design/web-react@latest/dist/arco-icon.min.js",
+            "https://unpkg.com/react-color@3.0.0-beta.3/dist/react-color.min.js"
           ]
         }
       }

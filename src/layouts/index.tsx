@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
-/* eslint-disable radix */
-/* eslint-disable prefer-template */
 import { useEffect } from 'react';
 import Layout from './layout';
 import Loading from '@/components/loading';
@@ -9,15 +7,13 @@ import NoPermissions from '@/pages/403';
 import { useStore } from 'react-core-form-store';
 import uiStore from '@/store/ui';
 import userStore from '@/store/user';
-import { useAuth } from 'ice';
 import { generate, getRgbStr } from '@arco-design/color';
 
-export default (props: any) => {
-  const [, setAuth] = useAuth();
+export default () => {
   const { fetchUserInfo } = useStore(userStore);
   const { dark, status } = useStore(uiStore);
   useEffect(() => {
-    fetchUserInfo(setAuth, uiStore);
+    fetchUserInfo(uiStore);
   }, []);
   useEffect(() => {
     if (dark) {
@@ -51,7 +47,7 @@ export default (props: any) => {
   } else if (status === 'noPermissions') {
     Vnode = <NoPermissions />;
   } else {
-    Vnode = <Layout {...props} />;
+    Vnode = <Layout />;
   }
   return Vnode;
 };

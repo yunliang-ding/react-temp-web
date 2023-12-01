@@ -34,14 +34,13 @@ export default CreateStore({
   remoteUrl: '',
   menus: [], // 菜单
   // 定义处理该模型副作用的函数
-  async fetchUserInfo(setAuth, uiStore) {
+  async fetchUserInfo(uiStore) {
     try {
       // 查询 userInfo 获取详细信息
-      const { code, data } = await userInfo();
+      const { code, data }: any = await userInfo();
       if (code === 200) {
         const auth = {}; // 权限集合
         recursion(data.menus, auth);
-        setAuth(auth);
         Object.assign(this, data);
         uiStore.status = 'success';
       } else if (code !== 40005) {

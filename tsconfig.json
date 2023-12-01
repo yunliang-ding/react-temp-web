@@ -9,7 +9,10 @@
     "jsx": "react-jsx",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "lib": ["es6", "dom"],
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "sourceMap": true,
     "allowJs": true,
     "rootDir": "./",
@@ -20,14 +23,20 @@
     "importHelpers": true,
     "strictNullChecks": true,
     "strict": true,
-    "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "paths": {
-      "@/*": ["./src/*"],
-      "ice": [".ice/index.ts"]
+      "@/*": [
+        "./src/*"
+      ],
+      "react": [
+        "./node_modules/@types/react"
+      ]
     }
   },
-  // "include": ["src/*", ".ice"],
-  "exclude": ["node_modules", "app", "ice3.x", "plugin"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "app"
+  ]
 }

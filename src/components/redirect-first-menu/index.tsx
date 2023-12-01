@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /** 默认展示接口下发的第一个菜单  */
-import { Redirect } from 'ice';
+import { Navigate } from 'react-router-dom';
 import NoAuthority from '@/pages/403';
 import user from '@/store/user';
 import { useStore } from 'react-core-form-store';
@@ -33,7 +33,7 @@ export default () => (props) => {
     path === '/' ? menus[0]?.path : path,
   );
   if (children?.[0]) {
-    return <Redirect to={children[0].path} />;
+    return <Navigate to={children[0].path} />;
   } else {
     return <NoAuthority />;
   }

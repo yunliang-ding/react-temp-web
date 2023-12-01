@@ -83,8 +83,8 @@ const tableSchema: TableProps = {
         return {
           title: '新增用户',
           schema: formSchema,
-          async onSubmit(v) {
-            const { code } = await saveOrUpdate(v);
+          async onSubmit() {
+            const { code } = await saveOrUpdate();
             if (code === 200) {
               onSearch();
             } else {
@@ -107,8 +107,8 @@ const tableSchema: TableProps = {
               title: '编辑用户',
               initialValues: record,
               schema: formSchema,
-              async onSubmit(v) {
-                const { code } = await saveOrUpdate(v);
+              async onSubmit() {
+                const { code } = await saveOrUpdate();
                 if (code === 200) {
                   onSearch();
                 } else {

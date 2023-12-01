@@ -1,6 +1,9 @@
-import { request } from 'ice';
+import request from '@/request';
 
-export const outLogin = () => {
+export const outLogin = (): Promise<{
+  code: number;
+  data: any;
+}> => {
   return request.post('/user/logout');
 };
 

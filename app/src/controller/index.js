@@ -6,7 +6,7 @@ module.exports = class extends think.Controller {
     const content = readFileSync(
       path.resolve(
         __dirname,
-        think.env === 'production' ? './view/build.html' : './view/start.html',
+        think.env === 'production' ? './view/build.html' : './view/dev.html',
       ),
     ).toString();
     this.ctx.res.end(content);

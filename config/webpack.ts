@@ -21,7 +21,7 @@ module.exports = {
     path:
       process.env.NODE_ENV === 'production'
         ? path.resolve(__dirname, '../app/www/build')
-        : path.resolve(__dirname, '../app/www/dist'),
+        : path.resolve(__dirname, '../app/www/dev'),
     filename: 'app.js',
   },
   resolve: {

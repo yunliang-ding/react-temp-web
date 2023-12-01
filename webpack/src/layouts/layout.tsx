@@ -15,8 +15,9 @@ import {
   IconSun,
 } from '@arco-design/web-react/icon';
 import { SketchPicker } from 'react-color';
+import { Outlet } from 'react-router-dom';
 
-export default ({ children }) => {
+export default () => {
   const layoutRef: any = useRef({});
   const breadcrumb = useStore(breadcrumbStore);
   const { dark, title, compact, collapsed, primaryColor } = useStore(uiStore);
@@ -128,7 +129,7 @@ export default ({ children }) => {
       footerRender={() => <FooterRender />}
       siderFooterRender={() => null}
     >
-      {children}
+      <Outlet />
     </AppLayout>
   );
 };

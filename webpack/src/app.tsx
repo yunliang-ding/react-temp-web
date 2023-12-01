@@ -1,5 +1,11 @@
 import ReactDom from 'react-dom';
-import Layout from './layouts';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
+import routes from '@/routes';
 import './golbal.less';
 
-ReactDom.render(<Layout />, document.querySelector('#root'));
+const App = () => {
+  const element = createHashRouter(routes);
+  return <RouterProvider router={element} />;
+};
+
+ReactDom.render(<App />, document.querySelector('#root'));

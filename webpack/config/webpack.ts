@@ -4,6 +4,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackBar = require('webpackbar');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: './src/app.tsx',
@@ -12,7 +13,6 @@ module.exports = {
     axios: 'axios',
     react: 'React',
     'react-dom': 'ReactDOM',
-    'react-router-dom': 'ReactRouterDOM',
     '@arco-design/web-react': 'arco',
     '@arco-design/web-react/icon': 'arcoicon',
     'react-color': 'ReactColor',
@@ -82,5 +82,6 @@ module.exports = {
       basic: false, // 默认true，启用一个简单的日志报告器
       profile: false, // 默认false，启用探查器。
     }),
+    new CompressionPlugin(),
   ],
 };

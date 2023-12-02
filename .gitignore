@@ -10,12 +10,9 @@ tmp/
 lib/
 
 # misc
-.idea/
-.happypack
 .DS_Store
 *.swp
 *.dia~
-.ice
 
 npm-debug.log*
 yarn-debug.log*

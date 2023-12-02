@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import UserList from '@/pages/user/list';
 import DictList from '@/pages/dict/list';
 import Workbench from '@/pages/workbench/my';
+import NoMatch from '@/pages/404';
 import Layout from './layouts';
 
 export default [
@@ -24,6 +25,10 @@ export default [
       {
         path: '/workbench/my',
         element: <Workbench />,
+      },
+      {
+        path: '*',
+        element: <NoMatch />,
       },
     ],
   },

@@ -1,8 +1,7 @@
 # 忽略目录
 build/
 tests/
-demo/
-.ice/
+app/
 
 # node 覆盖率文件
 coverage/

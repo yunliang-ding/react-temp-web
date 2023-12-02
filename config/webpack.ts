@@ -9,6 +9,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 module.exports = {
   entry: './src/app.tsx',
   mode: process.env.NODE_ENV,
+  performance: false, // 去掉性能上的警告
   externals: {
     axios: 'axios',
     react: 'React',
@@ -36,7 +37,8 @@ module.exports = {
         test: /\.ts[x]?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'ts-loader',
+          // loader: 'ts-loader',
+          loader: 'esbuild-loader', // 构建时间缩短一半
         },
       },
       {

@@ -73,10 +73,5 @@ module.exports = {
       profile: false, // 默认false，启用探查器。
     }),
     new CompressionPlugin(), // 开发资源开启gzip
-    new webpack.DefinePlugin({
-      'process.env': {
-        ROUTER: JSON.stringify({ name: Math.random() }),
-      },
-    }),
   ],
 };

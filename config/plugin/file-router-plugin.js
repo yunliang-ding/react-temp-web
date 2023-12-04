@@ -1,5 +1,5 @@
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const glob = require('glob');
 const chokidar = require('chokidar');
 const encodeStr = (str) => {
@@ -11,7 +11,7 @@ const decodeStr = (str) => {
 let initialFlag = false;
 /** 创建文件路由 */
 const folder = path.resolve(__dirname, '../../src/pages/**/*.tsx');
-const output = path.resolve(__dirname, '../../src/.router.tsx');
+const output = path.resolve(__dirname, '../../src/.app/router.tsx');
 const createFileRouter = (ignorePaths = ['component/', 'components/']) => {
   const files = glob.sync(folder);
   const importArr = [];
@@ -35,7 +35,7 @@ const createFileRouter = (ignorePaths = ['component/', 'components/']) => {
     });
   routerConfig = `export default ${decodeStr(JSON.stringify(routes, null, 2))}`;
   const outputFilePath = path.resolve(output);
-  fs.writeFileSync(
+  fs.outputFile(
     outputFilePath,
     `${importArr.join('\n')}\n\n${routerConfig}`,
   );

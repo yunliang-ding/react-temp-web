@@ -1,6 +1,6 @@
 import ReactDom from 'react-dom';
 import Layout from '@/layouts';
-import router from '@/.router';
+import router from '@/.app/router';
 import AuthRouter from '@/components/auth';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import './golbal.less';

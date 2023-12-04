@@ -5,7 +5,7 @@
 
 ## 开发环境
 
-1. npm start; 监听前端文件编译 [基于 webpack5]
+1. npm start; 启动 webpack --watch [基于 webpack5，支持文件路由]
 2. cd app; 启动后端服务 [基于 thinkjs3.x](https://thinkjs.org/doc/index.html)
 3. 访问后端服务端口 默认 8361;
 

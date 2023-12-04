@@ -26,11 +26,17 @@ const createFileRouter = (ignorePaths = ['component/', 'components/']) => {
       if (filePath.endsWith('/index')) {
         filePath = filePath.substring(0, filePath.length - 6); // 移除 index
       }
-      const CompName = `R${filePath.replaceAll('/', '')}`;
-      importArr.push(`import ${CompName} from '@/pages${filePath}';`); // 添加依赖
+      const CompName = `${filePath.replaceAll('/', '').replaceAll('$', '')}`.split('');
+      // 字母开头
+      if(/[a-zA-Z]/.test(CompName[0])){
+        CompName[0] = CompName[0].toUpperCase();
+      } else {
+        CompName.unshift('R')
+      }
+      importArr.push(`import ${CompName.join('')} from '@/pages${filePath}';`); // 添加依赖
       return {
-        path: filePath,
-        component: encodeStr(`<${CompName} />`),
+        path: filePath.replaceAll('$', ':'),
+        component: encodeStr(`<${CompName.join('')} />`),
       };
     });
   routerConfig = `export default ${decodeStr(JSON.stringify(routes, null, 2))}`;
@@ -40,8 +46,6 @@ const createFileRouter = (ignorePaths = ['component/', 'components/']) => {
     `${importArr.join('\n')}\n\n${routerConfig}`,
   );
 };
-
-createFileRouter(['schema-', 'component/', 'components/']);
 
 class FileRouterPlugin {
   constructor(options) {
@@ -55,12 +59,8 @@ class FileRouterPlugin {
           ignored: /node_modules/,
           ignoreInitial: true,
         });
-        watcher.on('add', (path) => {
-          console.log('新增文件:', path);
-          createFileRouter(this.options.ignorePaths);
-        });
-        watcher.on('unlink', (path) => {
-          console.log('删除文件:', path);
+        watcher.on("add", (path) => {
+          console.log('\x1B[32m%s\x1B[0m', `新增文件: ${path}`)
           createFileRouter(this.options.ignorePaths);
         });
       }

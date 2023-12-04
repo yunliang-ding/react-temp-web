@@ -5,10 +5,23 @@ import Workbench from '@/pages/workbench/my';
 import NoMatch from '@/pages/404';
 import Layout from './layouts';
 
+
+const a = require('/home/lighthouse/local/react-core-form-admin/src/pages/user/list/index.tsx')
+
+console.log(a);
+
 export default [
   {
     path: '/',
     element: <Layout />,
+    loader: async () => {
+      // dataLoader
+      await new Promise(res => {
+        setTimeout(res, 1000)
+      });
+      console.log('HHHH');
+      return [];
+    },
     children: [
       {
         path: '/',

@@ -5,6 +5,19 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const CompressionPlugin = require('compression-webpack-plugin');
+const webpack = require('webpack');
+
+// const requireContext = require.context(
+//   // 组件目录的相对路径
+//   '../src/pages',
+//   // 是否查询子目录
+//   true,
+//   // 组件文件名的正则表达式
+//   // 只会包括以 `.tsx` 结尾的文件
+//   /\.tsx$/
+// )
+
+// console.log(requireContext);
 
 module.exports = {
   entry: './src/app.tsx',
@@ -43,12 +56,7 @@ module.exports = {
       },
       {
         test: /\.less$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'less-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
       },
       {
         test: /\.(svg|png|jpe?g|gif)$/,
@@ -85,5 +93,10 @@ module.exports = {
       profile: false, // 默认false，启用探查器。
     }),
     new CompressionPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        ROUTER: JSON.stringify({ name: Math.random() }),
+      },
+    }),
   ],
 };

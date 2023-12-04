@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import Layout from './layout';
 import Loading from '@/components/loading';
 import Error from '@/components/error';
-import NoPermissions from '@/pages/403';
 import { useStore } from 'react-core-form-store';
 import uiStore from '@/store/ui';
 import userStore from '@/store/user';
@@ -44,8 +43,6 @@ export default () => {
     Vnode = <Loading />;
   } else if (status === 'error') {
     Vnode = <Error />;
-  } else if (status === 'noPermissions') {
-    Vnode = <NoPermissions />;
   } else {
     Vnode = <Layout />;
   }

@@ -5,10 +5,7 @@ import Workbench from '@/pages/workbench/my';
 import NoMatch from '@/pages/404';
 import Layout from './layouts';
 
-
 const a = require('/home/lighthouse/local/react-core-form-admin/src/pages/user/list/index.tsx')
-
-console.log(a);
 
 export default [
   {

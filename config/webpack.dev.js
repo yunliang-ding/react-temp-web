@@ -16,8 +16,11 @@ module.exports = merge(common, {
   plugins: [
     ...common.plugins,
     new FileRouterPlugin({
-      folder: path.resolve(__dirname, '../src/pages'),
-      output: path.resolve(__dirname, '../src/.router.ts'),
+      ignorePaths: [
+        "schema-",
+        "component/",
+        "components/"
+      ]
     }),
   ],
 });

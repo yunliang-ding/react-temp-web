@@ -1,10 +1,18 @@
 import ReactDom from 'react-dom';
+import Layout from '@/layouts';
+import router from '@/.router';
+import AuthRouter from '@/components/auth';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
-import routes from '@/routes';
 import './golbal.less';
 
 const App = () => {
-  const element = createHashRouter(routes);
+  const element = createHashRouter([
+    {
+      path: '/',
+      element: <Layout />,
+      children: router.map((item) => AuthRouter(item)),
+    },
+  ]);
   return <RouterProvider router={element} />;
 };
 

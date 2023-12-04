@@ -12,8 +12,6 @@ const Page = () => {
   return <span>我的工作台</span>;
 };
 
-Page.pageConfig = {
-  // 可选，配置准入权限，若不配置则代表所有角色都可以访问
-  auth: ['我的工作台'],
-};
+Page.auth = '/workbench/my';
+
 export default Page;

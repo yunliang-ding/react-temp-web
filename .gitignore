@@ -20,4 +20,4 @@ yarn-error.log*
 index.module.scss.d.ts
 .vscode/settings.json
 .gitpod.yml
-src/.router.ts
+src/.router.tsx

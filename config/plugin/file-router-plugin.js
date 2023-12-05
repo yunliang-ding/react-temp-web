@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const glob = require('glob');
 const chokidar = require('chokidar');
+const tempCode = require('./template/code');
 const encodeStr = (str) => {
   return `#_#${str}#_#`;
 };
@@ -11,9 +12,16 @@ const decodeStr = (str) => {
 let initialFlag = false;
 /** 创建文件路由 */
 const folder = path.resolve(__dirname, '../../src/pages/**/*.tsx');
-const output = path.resolve(__dirname, '../../src/.app/router.tsx');
+const output = path.resolve(__dirname, '../../src/.app');
+/** 创建主体文件 */
+const createTemplateCode = () => {
+  fs.outputFile(path.resolve(`${output}/index.tsx`), tempCode.index);
+  fs.outputFile(path.resolve(`${output}/auth.tsx`), tempCode.auth);
+};
+/** 创建路由 */
 const createFileRouter = async (
   ignorePaths = ['component/', 'components/'],
+  sleep = true, // 是否等待
 ) => {
   const files = glob.sync(folder);
   const importArr = [];
@@ -30,6 +38,7 @@ const createFileRouter = async (
       const CompName = `${filePath
         .replaceAll('/', '')
         .replaceAll('$', '')
+        .replaceAll('-', '')
         .replaceAll(' ', '')}`.split('');
       // 字母开头
       if (/[a-zA-Z]/.test(CompName[0])) {
@@ -45,9 +54,12 @@ const createFileRouter = async (
     });
   routerConfig = `export default ${decodeStr(JSON.stringify(routes, null, 2))}`;
   const content = `${importArr.join('\n')}\n\n${routerConfig}`;
-  const outputFilePath = path.resolve(output);
+  const outputFilePath = path.resolve(`${output}/router.tsx`);
+  // 为了处理文件重命名的问题，采用了先删除 -> 延迟 -> 创建的兜底方案
   fs.removeSync(outputFilePath);
-  await new Promise((res) => setTimeout(res, 100));
+  if (sleep) {
+    await new Promise((res) => setTimeout(res, 300));
+  }
   fs.outputFile(outputFilePath, content);
 };
 
@@ -58,7 +70,9 @@ class FileRouterPlugin {
   apply(compiler) {
     compiler.hooks.environment.tap('FileRouterPlugin', () => {
       if (initialFlag === false) {
-        createFileRouter(this.options.ignorePaths); // 首次编译先创建一次
+        // 首次编译创建
+        createTemplateCode();
+        createFileRouter(this.options.ignorePaths, false);
         const watcher = chokidar.watch('src/pages', {
           ignored: /node_modules/,
           ignoreInitial: true,

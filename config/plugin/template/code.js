@@ -34,26 +34,26 @@ export const runApp = ({ element = "#root", auth = [''] }) => {
 };
   `,
   auth: `import NoMatch from "../pages/404";
-  import NoAuthority from "../pages/403";
-  import { getAuth } from "./index";
-  
-  export default ({ path, component }: { path: string; component: any }) => {
-    if (path === "/404") {
-      return {
-        path: "*",
-        element: <NoMatch />,
-      };
-    }
+import NoAuthority from "../pages/403";
+import { getAuth } from "./index";
+
+export default ({ path, component }: { path: string; component: any }) => {
+  if (path === "/404") {
     return {
-      path,
-      element:
-        getAuth().includes(component.type.auth) ||
-        component.type.auth === undefined ? (
-          component
-        ) : (
-          <NoAuthority />
-        ),
+      path: "*",
+      element: <NoMatch />,
     };
+  }
+  return {
+    path,
+    element:
+      getAuth().includes(component.type.auth) ||
+      component.type.auth === undefined ? (
+        component
+      ) : (
+        <NoAuthority />
+      ),
   };
+};
   `,
 };

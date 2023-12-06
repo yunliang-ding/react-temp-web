@@ -2692,6 +2692,11 @@ lodash-es@^4.17.15:
   resolved "https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
+lodash.clonedeep@4.5.0:
+  version "4.5.0"
+  resolved "https://registry.npmmirror.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
+  integrity sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==
+
 lodash.clonedeepwith@4.5.0:
   version "4.5.0"
   resolved "https://registry.npmmirror.com/lodash.clonedeepwith/-/lodash.clonedeepwith-4.5.0.tgz#6ee30573a03a1a60d670a62ef33c10cf1afdbdd4"
@@ -3532,11 +3537,12 @@ react-color@2.19.3:
     reactcss "^1.2.0"
     tinycolor2 "^1.4.1"
 
-react-core-form-store@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.npmmirror.com/react-core-form-store/-/react-core-form-store-0.0.1.tgz#0dfcaf352575718547db36cf3c29528a5015e74b"
-  integrity sha512-0p3PorK2VpafZgIMkCRU/O5zQ0/2nLujIAlO2r4YiPAdEG4aziYvEPLlrmw9ldKlU7DnueTOANjJPb0H4mErvQ==
+react-core-form-store@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npmmirror.com/react-core-form-store/-/react-core-form-store-0.0.2.tgz#20d32d1b328742d7f0d2144f8494b463d118ba19"
+  integrity sha512-Q7fUhVjpk1qU6JeCutU3PKo1671lKwv9XVXPwEUK/+o1LM1NONpZ1qHOXID3WuaBlcXmIwvAeaA1PYbuUgoNiA==
   dependencies:
+    lodash.clonedeep "4.5.0"
     use-sync-external-store "^1.2.0"
 
 react-core-form-tools@^1.0.0:
@@ -3553,17 +3559,15 @@ react-core-form-tools@^1.0.0:
     pizzip "^3.1.4"
     react-to-print "2.13.0"
 
-react-core-form@2.0.5:
-  version "2.0.5"
-  resolved "https://registry.npmmirror.com/react-core-form/-/react-core-form-2.0.5.tgz#f82b00470c75aa0c8ea85ce13dfc41c96f80bc79"
-  integrity sha512-LQvPIq2ev6it9Pw9x2Fclk1KIwpXqfa1R6vOuK/dwjI4iRToFkM7TyCsXzNNIEYuomromoLepwjx2tpANs4fwQ==
+react-core-form@2.0.6:
+  version "2.0.6"
+  resolved "https://registry.npmmirror.com/react-core-form/-/react-core-form-2.0.6.tgz#414ce98434a2f47b5a7df9b673f443e9f8d2afa8"
+  integrity sha512-MtIqF7NTpxfVA4o3H5YR80k31thzAl80EUe7OgPTgqJPws2+EmnbOGQj1rtV0s1o8RqjYJSKWgGyH5BLFS8SFQ==
   dependencies:
     dayjs "1.11.10"
     lodash.clonedeepwith "4.5.0"
     lodash.debounce "4.0.8"
     lodash.mergewith "4.6.2"
-    react-core-form-store "^0.0.1"
-    react-core-form-tools "^1.0.0"
     react-draggable "4.4.5"
     react-markdown "8.0.7"
     react-resizable "3.0.4"

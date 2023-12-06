@@ -13,7 +13,9 @@
     "react-dom": "17.0.2",
     "react-router-dom": "6.20.0",
     "@arco-design/web-react": "2.56.0",
-    "react-core-form": "2.0.5",
+    "react-core-form": "2.0.6",
+    "react-core-form-tools": "^1.0.0",
+    "react-core-form-store": "^0.0.2",
     "react-fast-marquee": "1.3.2",
     "nprogress": "^0.2.0",
     "react-color": "2.19.3"

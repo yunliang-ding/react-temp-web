@@ -31,24 +31,33 @@ const createFileRouter = async (
     })
     .map((file) => {
       let filePath = file.split('/src/pages')[1];
+      let CompName = [];
+      let path = '';
       filePath = filePath.substring(0, filePath.lastIndexOf('.'));
-      if (filePath.endsWith('/index')) {
-        filePath = filePath.substring(0, filePath.length - 6); // 移除 index
-      }
-      const CompName = `${filePath
-        .replaceAll('/', '')
-        .replaceAll('$', '')
-        .replaceAll('-', '')
-        .replaceAll(' ', '')}`.split('');
-      // 字母开头
-      if (/[a-zA-Z]/.test(CompName[0])) {
-        CompName[0] = CompName[0].toUpperCase();
+      if (filePath === '/index') {
+        filePath = '/index';
+        path = '/';
+        CompName = ['R'];
       } else {
-        CompName.unshift('R');
+        if (filePath.endsWith('/index')) {
+          filePath = filePath.substring(0, filePath.length - 6); // 移除 index
+        }
+        CompName = `${filePath
+          .replaceAll('/', '')
+          .replaceAll('$', '')
+          .replaceAll('-', '')
+          .replaceAll(' ', '')}`.split('');
+        // 字母开头
+        if (/[a-zA-Z]/.test(CompName[0])) {
+          CompName[0] = CompName[0].toUpperCase();
+        } else {
+          CompName.unshift('R');
+        }
+        path = filePath.replaceAll('$', ':');
       }
       importArr.push(`import ${CompName.join('')} from '@/pages${filePath}';`); // 添加依赖
       return {
-        path: filePath.replaceAll('$', ':'),
+        path,
         component: encodeStr(`<${CompName.join('')} />`),
       };
     });

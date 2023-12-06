@@ -80,7 +80,7 @@ class FileRouterPlugin {
     compiler.hooks.environment.tap('FileRouterPlugin', () => {
       if (initialFlag === false) {
         // 首次编译创建
-        // createTemplateCode();
+        createTemplateCode();
         createFileRouter(this.options.ignorePaths, false);
         const watcher = chokidar.watch('src/pages', {
           ignored: /node_modules/,

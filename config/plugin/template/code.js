@@ -1,19 +1,30 @@
 module.exports = {
-  index: `import ReactDom from "react-dom";
-import { createHashRouter, RouterProvider } from "react-router-dom";
-import Layout from "@/layouts/index";
-import ErrorBoundary from "@/pages/error-boundary";
-import router from "./router";
-import AuthRouter from "./auth";
+  index: `import { ReactElement } from 'react';
+import ReactDom from 'react-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
+import Layout from '@/layouts/index';
+import ErrorBoundary from '@/pages/error-boundary';
+import router from './router';
+import AuthRouter from './auth';
+import axios, { AxiosRequestConfig } from 'axios';
+import '@/golbal.less';
 
 const store = {
-  auth: [''],
+  initData: {
+    auth: [''],
+    userInfo: {},
+  },
+  request: axios.create(),
 };
+
+export const request = () => store.request;
+
+export const initData = () => store.initData;
 
 const App = () => {
   const element = createHashRouter([
     {
-      path: "/",
+      path: '/',
       element: <Layout />,
       children: router.map((item) => ({
         ...AuthRouter(item),
@@ -24,30 +35,57 @@ const App = () => {
   return <RouterProvider router={element} />;
 };
 
-export const getAuth = () => {
-  return store.auth;
+interface AppProps {
+  element?: string;
+  loading?: () => ReactElement;
+  getInitData?: () => Promise<{
+    auth: string[];
+    userInfo: any;
+  }>;
+  axiosConfig?: AxiosRequestConfig & {
+    requestInterceptors?: any;
+    responseInterceptors?: any;
+  };
 }
 
-export const runApp = ({ element = "#root", auth = [''] }) => {
-  store.auth = auth;
+export const runApp = async ({
+  element = '#root',
+  getInitData = async () => ({
+    auth: [''],
+    userInfo: {}
+  }),
+  loading = () => <span>加载中...</span>,
+  axiosConfig = {},
+}: AppProps) => {
+  /** 创建 axios 实例 */
+  const axiosinstance = axios.create(axiosConfig);
+  if (typeof axiosConfig.requestInterceptors === 'function') {
+    axiosinstance.interceptors.request.use(axiosConfig.requestInterceptors);
+  }
+  if (typeof axiosConfig.responseInterceptors === 'function') {
+    axiosinstance.interceptors.response.use(axiosConfig.responseInterceptors);
+  }
+  store.request = axiosinstance;
+  ReactDom.render(loading(), document.querySelector(element));
+  store.initData = await getInitData();
   ReactDom.render(<App />, document.querySelector(element));
 };
-  `,
-  auth: `import NoMatch from "../pages/404";
-import NoAuthority from "../pages/403";
-import { getAuth } from "./index";
+`,
+  auth: `import NoMatch from '@/pages/404';
+import NoAuthority from '@/pages/403';
+import { initData } from './index';
 
 export default ({ path, component }: { path: string; component: any }) => {
-  if (path === "/404") {
+  if (path === '/404') {
     return {
-      path: "*",
+      path: '*',
       element: <NoMatch />,
     };
   }
   return {
     path,
     element:
-      getAuth().includes(component.type.auth) ||
+      initData().auth.includes(component.type.auth) ||
       component.type.auth === undefined ? (
         component
       ) : (
@@ -55,5 +93,5 @@ export default ({ path, component }: { path: string; component: any }) => {
       ),
   };
 };
-  `,
+`,
 };

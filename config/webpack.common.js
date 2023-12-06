@@ -4,7 +4,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackBar = require('webpackbar');
-const CompressionPlugin = require('compression-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -72,6 +71,5 @@ module.exports = {
       basic: false, // 默认true，启用一个简单的日志报告器
       profile: false, // 默认false，启用探查器。
     }),
-    new CompressionPlugin(), // 开发资源开启gzip
   ],
 };

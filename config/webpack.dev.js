@@ -1,6 +1,7 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
+const CompressionPlugin = require('compression-webpack-plugin');
 const FileRouterPlugin = require('./plugin/file-router-plugin.js');
 
 module.exports = merge(common, {
@@ -15,6 +16,7 @@ module.exports = merge(common, {
   },
   plugins: [
     ...common.plugins,
+    new CompressionPlugin(), // 开发资源开启gzip
     new FileRouterPlugin({
       ignorePaths: [
         "schema-",

@@ -1,7 +1,7 @@
-import request from '@/request';
+import { request } from '@/.app';
 
 export const getList = async (): Promise<any> => {
-  return request('http://api-online.yunliang.cloud/react-core-form/table');
+  return request().get('http://api-online.yunliang.cloud/react-core-form/table');
 };
 
 export const saveOrUpdate = async (): Promise<any> => {

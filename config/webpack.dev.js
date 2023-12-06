@@ -3,6 +3,7 @@ const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
 const CompressionPlugin = require('compression-webpack-plugin');
 const FileRouterPlugin = require('./plugin/file-router-plugin.js');
+// const webpack = require('webpack');
 
 module.exports = merge(common, {
   mode: "development",
@@ -16,6 +17,7 @@ module.exports = merge(common, {
   },
   plugins: [
     ...common.plugins,
+    // new webpack.HotModuleReplacementPlugin(),
     new CompressionPlugin(), // 开发资源开启gzip
     new FileRouterPlugin({
       ignorePaths: [

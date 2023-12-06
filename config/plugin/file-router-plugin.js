@@ -88,6 +88,11 @@ class FileRouterPlugin {
       }
       initialFlag = true;
     });
+    // 监听 webpack 构建完成事件
+    compiler.hooks.done.tap('WebpackCompileDonePlugin', () => {
+      // 向客户端发送消息，触发客户端更新
+      console.log('\x1B[32m%s\x1B[0m', `构建完成`);
+    });
   }
 }
 

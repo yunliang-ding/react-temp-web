@@ -6,7 +6,7 @@ const Page = () => {
   const breadCrumb = useBreadCrumb();
   useEffect(() => {
     breadCrumb?.update({
-      extra: <Button type="primary">刷新工作台12</Button>,
+      extra: <Button type="primary">刷新工作台</Button>,
     });
   }, []);
   return <span>我的工作台</span>;

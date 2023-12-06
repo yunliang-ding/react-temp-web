@@ -4,7 +4,6 @@ module.exports = class extends think.Controller {
   }
   openAction() {
     this.emit('opend', 'This client opened successfully!')
-    this.broadcast('joined', 'There is a new client joined successfully!')
   }
   addUserAction() {
     console.log('获取客户端 addUser 事件发送的数据', this.wsData);

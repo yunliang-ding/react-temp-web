@@ -3,6 +3,8 @@ const fs = require('fs-extra');
 const glob = require('glob');
 const chokidar = require('chokidar');
 const tempCode = require('./template/code');
+const chalk = require('chalk');
+
 const encodeStr = (str) => {
   return `#_#${str}#_#`;
 };
@@ -87,11 +89,9 @@ class FileRouterPlugin {
           ignoreInitial: true,
         });
         watcher.on('add', async (path) => {
-          console.log('\x1B[32m%s\x1B[0m', `新增文件: ${path}`);
           createFileRouter(this.options.ignorePaths);
         });
         watcher.on('unlink', async (path) => {
-          console.log('\x1B[31m%s\x1B[0m', `删除文件: ${path}`);
           createFileRouter(this.options.ignorePaths);
         });
       }
@@ -100,7 +100,11 @@ class FileRouterPlugin {
     // 监听 webpack 构建完成事件
     compiler.hooks.done.tap('WebpackCompileDonePlugin', () => {
       // 向客户端发送消息，触发客户端更新
-      console.log('\x1B[32m%s\x1B[0m', `构建完成`);
+      console.log(
+        chalk.hex('#8A2BE2')('构建完成'),
+        chalk.bgMagenta(' WAIT '),
+        chalk.hex('#8A2BE2')('Compiling...'),
+      );
     });
   }
 }

@@ -37,21 +37,18 @@ module.exports = [
     handle: 'router',
     options: {}
   },
-  {
-    handle: cors,
-    options: {
-      origin: function (ctx) {
-        if(ctx.isWebsocket){
-          return '.yunliang-ding.com'
-        } else {
-          return ctx.request.header.origin;
-        }
-      },
-      allowMethods: "GET,POST,PUT,DELETE",
-      allowHeaders: "appid, appkey, content-type",
-      credentials: true,
-    },
-  },
+  // 这里开启会导致，不兼容 socket
+  // {
+  //   handle: cors,
+  //   options: {
+  //     origin: function (ctx) {
+  //       return ctx.request.header.origin;
+  //     },
+  //     allowMethods: "GET,POST,PUT,DELETE",
+  //     allowHeaders: "appid, appkey, content-type",
+  //     credentials: true,
+  //   },
+  // },
   'logic',
   'controller'
 ];

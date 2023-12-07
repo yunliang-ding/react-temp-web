@@ -30,10 +30,6 @@
   "devDependencies": {
     "chokidar": "3.5.3",
     "fs-extra": "11.2.0",
-    "@babel/core": "^7.13.1",
-    "@babel/plugin-transform-runtime": "^7.13.10",
-    "@babel/preset-env": "^7.13.0",
-    "@babel/preset-react": "^7.12.13",
     "esbuild-loader": "4.0.2",
     "css-loader":"6.8.1",
     "file-loader":"6.2.0",
@@ -44,7 +40,6 @@
     "webpack": "5.89.0",
     "webpack-cli": "5.1.4",
     "webpackbar": "5.0.2",
-    "clean-webpack-plugin": "4.0.0",
     "mini-css-extract-plugin": "2.7.6",
     "compression-webpack-plugin": "10.0.0",
     "friendly-errors-webpack-plugin": "1.7.0",

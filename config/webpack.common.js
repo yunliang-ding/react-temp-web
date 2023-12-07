@@ -24,11 +24,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts[x]?$/,
+        test: /\.[jt]sx?$/,
         exclude: /node_modules/,
         use: {
           // loader: 'ts-loader',
           loader: 'esbuild-loader', // 构建时间缩短一半
+          options: {
+            // target: 'es2015'
+          }
         },
       },
       {

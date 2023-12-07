@@ -3,6 +3,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar');
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 
 module.exports = {
   entry: './src/app.tsx',
@@ -44,7 +45,6 @@ module.exports = {
           loader: 'url-loader',
           options: {
             name: '[name].[ext]',
-            publicPath: '../image',
             outputPath: 'image',
             limit: 1024 * 10, // 图片大于阈值 不会转base64,小于会转base64
           },
@@ -56,13 +56,15 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: '[name].[ext]',
-            publicPath: '../', // 资源路径需要从css文件夹跳出去
           },
         },
       },
     ],
   },
   plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerHost: '10.0.28.2'
+    }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',
     }),

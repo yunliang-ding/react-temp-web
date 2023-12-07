@@ -98,12 +98,13 @@ class FileRouterPlugin {
       initialFlag = true;
     });
     // 监听 webpack 构建完成事件
-    compiler.hooks.done.tap('WebpackCompileDonePlugin', () => {
+    compiler.hooks.done.tap('WebpackCompileDonePlugin', (msg) => {
       // 向客户端发送消息，触发客户端更新
       console.log(
         chalk.green('构建完成'),
+        chalk.gray(msg.toString().split('\n')[0]),
         chalk.bgMagenta(' WAIT '),
-        chalk.green('Compiling...'),
+        chalk.green('Compiling...')
       );
     });
   }

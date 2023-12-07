@@ -11,7 +11,7 @@ export default CreateStore({
   // 定义处理该模型副作用的函数
   async fetchUserInfo(uiStore) {
     try {
-      const { userInfo } = initData();
+      const { userInfo } = initData;
       Object.assign(this, userInfo);
       uiStore.status = 'success';
     } catch (error) {

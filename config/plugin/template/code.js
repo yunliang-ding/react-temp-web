@@ -10,16 +10,16 @@ import axios, { AxiosRequestConfig } from 'axios';
 import '@/golbal.less';
 
 const store = {
+  request: axios.create({}),
   initData: {
     auth: [''],
     userInfo: {},
   },
-  request: axios.create(),
 };
 
-export const request = () => store.request;
+export const request = store.request;
 
-export const initData = () => store.initData;
+export const initData = store.initData;
 
 const App = () => {
   const element = createHashRouter([
@@ -65,9 +65,9 @@ export const runApp = async ({
   if (typeof axiosConfig.responseInterceptors === 'function') {
     axiosinstance.interceptors.response.use(axiosConfig.responseInterceptors);
   }
-  store.request = axiosinstance;
+  Object.assign(store.request, axiosinstance); // 覆盖下
   ReactDom.render(loading(), document.querySelector(element));
-  store.initData = await getInitData();
+  Object.assign(store.initData, await getInitData()); // 覆盖下
   ReactDom.render(<App />, document.querySelector(element));
 };
 `,
@@ -85,7 +85,7 @@ export default ({ path, component }: { path: string; component: any }) => {
   return {
     path,
     element:
-      initData().auth.includes(component.type.auth) ||
+      initData.auth.includes(component.type.auth) ||
       component.type.auth === undefined ? (
         component
       ) : (

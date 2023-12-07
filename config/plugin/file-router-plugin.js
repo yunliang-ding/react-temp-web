@@ -101,9 +101,9 @@ class FileRouterPlugin {
     compiler.hooks.done.tap('WebpackCompileDonePlugin', () => {
       // 向客户端发送消息，触发客户端更新
       console.log(
-        chalk.hex('#8A2BE2')('构建完成'),
+        chalk.green('构建完成'),
         chalk.bgMagenta(' WAIT '),
-        chalk.hex('#8A2BE2')('Compiling...'),
+        chalk.green('Compiling...'),
       );
     });
   }

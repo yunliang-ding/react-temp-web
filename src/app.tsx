@@ -1,4 +1,4 @@
-import { runApp } from '@/.app';
+import { runApp } from 'lyr';
 import NProgress from 'nprogress';
 import Loading from '@/components/loading';
 import { Notification } from '@arco-design/web-react';

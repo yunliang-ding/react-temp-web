@@ -29,6 +29,9 @@
       "@/*": [
         "./src/*"
       ],
+      "lyr": [
+        "./src/.lyr"
+      ],
       "react": [
         "./node_modules/@types/react"
       ]

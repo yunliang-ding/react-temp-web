@@ -1,5 +1,5 @@
 import { CreateStore } from 'react-core-form-store';
-import { initData } from '@/.app';
+import { initData } from 'lyr';
 
 export default CreateStore({
   // 定义 model 的初始 state

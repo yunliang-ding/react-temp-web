@@ -1,4 +1,4 @@
-import { request } from '@/.app';
+import { request } from 'lyr';
 
 export const outLogin = (): Promise<{
   code: number;

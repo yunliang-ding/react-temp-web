@@ -1,13 +1,12 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common.js');
-const CompressionPlugin = require('compression-webpack-plugin');
 const FileRouterPlugin = require('./plugin/file-router-plugin.js');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 // const webpack = require('webpack');
 
 module.exports = merge(common, {
-  mode: "development",
+  mode: 'development',
   output: {
     path: path.resolve(__dirname, '../app/www/dev'),
     filename: 'app.js',
@@ -16,19 +15,13 @@ module.exports = merge(common, {
   watchOptions: {
     ignored: /node_modules/,
   },
-  stats: "errors-only",
+  stats: 'errors-only',
   plugins: [
     ...common.plugins,
     // new webpack.HotModuleReplacementPlugin(),
-    new CompressionPlugin(), // 开发资源开启gzip
     new FriendlyErrorsWebpackPlugin(),
     new FileRouterPlugin({
-      ignorePaths: [
-        "schema-",
-        "component/",
-        "components/"
-      ]
+      ignorePaths: ['schema-', 'component/', 'components/'],
     }),
   ],
 });
-

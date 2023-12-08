@@ -4,6 +4,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackBar = require('webpackbar');
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: './src/app.tsx',
@@ -12,6 +13,7 @@ module.exports = {
     axios: 'axios',
     react: 'React',
     'react-dom': 'ReactDOM',
+    // 'react-router-dom': 'ReactRouterDOM',
     'react-core-form': 'ReactCoreForm',
     '@arco-design/web-react': 'arco',
     '@arco-design/web-react/icon': 'arcoicon',
@@ -73,5 +75,6 @@ module.exports = {
       basic: false, // 默认true，启用一个简单的日志报告器
       profile: false, // 默认false，启用探查器。
     }),
+    new CompressionPlugin(), // 开发资源开启gzip
   ],
 };

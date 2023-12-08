@@ -7,7 +7,7 @@ import ErrorBoundary from '@/pages/error-boundary';
 import router from './router';
 import AuthRouter from './auth';
 import axios, { AxiosRequestConfig } from 'axios';
-import '@/golbal.less';
+import '@/global.less';
 
 const store = {
   request: axios.create({}),

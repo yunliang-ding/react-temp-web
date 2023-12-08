@@ -26,6 +26,7 @@ const App = () => {
     {
       path: '/',
       element: <Layout />,
+      errorElement: <ErrorBoundary />,
       children: router.map((item) => ({
         ...AuthRouter(item),
         errorElement: <ErrorBoundary />,

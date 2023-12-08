@@ -8,7 +8,7 @@ build/
 dist/
 tmp/
 lib/
-
+lyr/
 # misc
 .DS_Store
 *.swp
@@ -20,4 +20,4 @@ yarn-error.log*
 index.module.scss.d.ts
 .vscode/settings.json
 .gitpod.yml
-src/.app
+src/.lyr

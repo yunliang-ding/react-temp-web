@@ -25,6 +25,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "paths": {
       "@/*": [
         "./src/*"

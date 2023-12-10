@@ -7,18 +7,21 @@ export default defineConfig({
   bundleAnalyzer: {
     // host: '',
   },
-  devCdn: [
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react.development.min.js',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-dom.development.min.js',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css',
-  ],
-  buildCdn: [
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-dom.production.min.js',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css',
-    'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css',
-  ],
+  cdn: (mode) => {
+    return mode === 'dev'
+      ? [
+          'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react.development.min.js',
+          'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-dom.development.min.js',
+          'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css',
+          'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css',
+        ]
+      : [
+          'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react.production.min.js',
+          'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-dom.production.min.js',
+          'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/arco.min.css',
+          'https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.css',
+        ];
+  },
   ossConfig: {
     bucket: 'react-core-form',
     region: 'oss-cn-beijing',

@@ -2,6 +2,8 @@
   "name": "react-core-form-admin",
   "version": "0.0.1",
   "description": "全栈通用模版",
+  "keywords": ["全栈通用模版"],
+  "author": "yunliang-ding",
   "scripts": {
     "start": "lyr dev",
     "build": "lyr build"
@@ -18,8 +20,6 @@
     "nprogress": "^0.2.0",
     "react-color": "2.19.3"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "typescript": "5.3.2",

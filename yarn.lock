@@ -2192,11 +2192,13 @@ lru-cache@^6.0.0:
   resolved "https://registry.npmmirror.com/lru-cache/-/lru-cache-10.1.0.tgz#2098d41c2dc56500e6c88584aa656c84de7d0484"
   integrity sha512-/1clY/ui8CzjKFyjdvwPWJUYKiFVXG2I2cY0ssG7h4+hwk+XOIX7ZSG9Q7TW8TW3Kp3BUSqgFWBLgL4PJ+Blag==
 
-lyr-cli@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.npmmirror.com/lyr-cli/-/lyr-cli-0.0.4.tgz#f38cab2de20ae9e714430e201328284d6fd0f639"
-  integrity sha512-2UI5iaEC5KecKxf26jRqkGLibDYJ4AsKFU/MSfYuewPAJTMC6JEt5rT21wHhBtrBWsXE8LLC66Ie87eCuQ7Fbw==
+lyr-cli@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.npmmirror.com/lyr-cli/-/lyr-cli-0.0.5.tgz#f13eb019b5b36e6f5e0af2a29e2ec5b9ebb113c7"
+  integrity sha512-XxMgPwSP/EZbyU3G3xePnW9RRBhyXxRxJs/k5OgKo/NbG2G3hxcQIhLQ5hJdF+Qafgiz3HVXXVvS0ewWX+vvSw==
   dependencies:
+    "@babel/core" "7.23.5"
+    babel-preset-env "1.7.0"
     chalk "^4.0.0"
     chokidar "3.5.3"
     commander "^5.0.0"

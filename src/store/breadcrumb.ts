@@ -1,6 +1,6 @@
-import { CreateStore } from 'react-core-form-store';
+import { create } from 'react-core-form-store';
 
-export default CreateStore({
+export default create({
   title: '', // 大标题
   breadcrumb: undefined, // 面包屑
   extra: null,

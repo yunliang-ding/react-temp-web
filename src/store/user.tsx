@@ -1,7 +1,7 @@
-import { CreateStore } from 'react-core-form-store';
+import { create } from 'react-core-form-store';
 import { initData } from 'lyr';
 
-export default CreateStore({
+export default create({
   // 定义 model 的初始 state
   name: '',
   avatarUrl: '',

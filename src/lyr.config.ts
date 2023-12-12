@@ -23,10 +23,10 @@ export default defineConfig({
         ];
   },
   ossConfig: {
-    bucket: 'react-core-form',
-    region: 'oss-cn-beijing',
-    accessKeyId: 'TFRBSTV0N1RZaU1QTGo1VlVQVVlETDEy',
-    accessKeySecret: 'Nll5ck1BdG9xUktidHRHdkFPSk1GNkRadHROV2M3',
+    bucket: 'xxx',
+    region: 'xxx',
+    accessKeyId: 'xxx',
+    accessKeySecret: 'xxx',
   },
   webpackConfig: (mode) => ({
     externals: {

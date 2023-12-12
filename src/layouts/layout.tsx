@@ -4,7 +4,6 @@ import { Dropdown, Menu, Space, Avatar, Trigger } from '@arco-design/web-react';
 import uiStore from '@/store/ui';
 import userStore from '@/store/user';
 import breadcrumbStore from '@/store/breadcrumb';
-import { useStore } from 'react-core-form-store';
 import FooterRender from './footer-render';
 import { outLogin } from '@/services/common';
 import { useEffect, useRef } from 'react';
@@ -19,9 +18,9 @@ import { Outlet } from 'react-router-dom';
 
 export default () => {
   const layoutRef: any = useRef({});
-  const breadcrumb = useStore(breadcrumbStore);
-  const { dark, title, compact, collapsed, primaryColor } = useStore(uiStore);
-  const { name, avatarUrl, menus } = useStore(userStore);
+  const breadcrumb = breadcrumbStore.use();
+  const { dark, title, compact, collapsed, primaryColor } = uiStore.use();
+  const { name, avatarUrl, menus } = userStore.use();
   const setCollapsed = (v: boolean) => {
     uiStore.collapsed = v;
   };

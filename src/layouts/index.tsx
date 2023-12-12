@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import Layout from './layout';
 import Loading from '@/components/loading';
 import Error from '@/components/error';
-import { useStore } from 'react-core-form-store';
 import uiStore from '@/store/ui';
 import userStore from '@/store/user';
 import { generate, getRgbStr } from '@arco-design/color';
@@ -16,8 +15,8 @@ socket.on('opend', (data) => {
 });
 
 export default () => {
-  const { fetchUserInfo } = useStore(userStore);
-  const { dark, status } = useStore(uiStore);
+  const { fetchUserInfo } = userStore.use();
+  const { dark, status } = uiStore.use();
   useEffect(() => {
     fetchUserInfo(uiStore);
   }, []);

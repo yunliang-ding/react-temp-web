@@ -2547,6 +2547,14 @@ react-core-form-store@^0.0.2:
     lodash.clonedeep "4.5.0"
     use-sync-external-store "^1.2.0"
 
+react-core-form-store@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.npmmirror.com/react-core-form-store/-/react-core-form-store-0.0.3.tgz#6b716b21603faceeb53d0c1667fcd3f4a88756f6"
+  integrity sha512-/eMPiPXjE0Par/vcnJpADNHjFGknrw8NrfGbwVQp1jSB0g4P8fa3SOerp6XcuokinUnvRItXZeJtvMI0rqCiNQ==
+  dependencies:
+    lodash.clonedeep "4.5.0"
+    use-sync-external-store "^1.2.0"
+
 react-core-form@2.1.0:
   version "2.1.0"
   resolved "https://registry.npmmirror.com/react-core-form/-/react-core-form-2.1.0.tgz#9ce476b4477e87406035c26a57e730720e18b70b"

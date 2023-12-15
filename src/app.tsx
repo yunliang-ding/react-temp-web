@@ -39,7 +39,6 @@ runApp({
     if(code === 200){
       recursion(data.menus, auth);
     }
-    console.log(data.menus);
     return {
       auth,
       userInfo: data,

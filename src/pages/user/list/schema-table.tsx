@@ -5,6 +5,9 @@ import { getList, saveOrUpdate } from './services';
 
 const tableSchema: TableProps = {
   title: '用户列表',
+  scroll: {
+    y: 'calc(100vh - 420px)',
+  },
   searchSchema: {
     column: 3,
     schema: [
@@ -131,8 +134,8 @@ const tableSchema: TableProps = {
       ];
     },
   },
-  request: async () => {
-    const { code, list, total } = await getList();
+  request: async (params) => {
+    const { code, list, total } = await getList(params);
     return {
       success: code === 200,
       list,

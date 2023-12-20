@@ -1,8 +1,8 @@
 {
   "apps": [{
-    "name": "react-core-form-admin:8360",
+    "name": "lyr-template-pro:8360",
     "script": "production.js",
-    "cwd": "/home/lighthouse/local/react-core-form-admin/app",
+    "cwd": "/home/lighthouse/local/lyr-template-pro/app",
     "exec_mode": "fork",
     "max_memory_restart": "100M",
     "autorestart": true,

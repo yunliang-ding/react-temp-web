@@ -5,6 +5,11 @@ export default () => {
     <Result
       status="404"
       title="资源不存在"
+      style={{
+        position: 'absolute',
+        top: '50%',
+        transform: 'translate(0, -50%)',
+      }}
     />
   );
 };

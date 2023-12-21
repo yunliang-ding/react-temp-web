@@ -5,6 +5,11 @@ export default () => {
     <Result
       status="403"
       title="暂无权限"
+      style={{
+        position: 'absolute',
+        top: '50%',
+        transform: 'translate(0, -50%)',
+      }}
     />
   );
 };

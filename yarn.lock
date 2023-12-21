@@ -2121,10 +2121,10 @@ lru-cache@^6.0.0:
   resolved "https://registry.npmmirror.com/lru-cache/-/lru-cache-10.1.0.tgz#2098d41c2dc56500e6c88584aa656c84de7d0484"
   integrity sha512-/1clY/ui8CzjKFyjdvwPWJUYKiFVXG2I2cY0ssG7h4+hwk+XOIX7ZSG9Q7TW8TW3Kp3BUSqgFWBLgL4PJ+Blag==
 
-lyr-cli@^0.0.17:
-  version "0.0.17"
-  resolved "https://registry.npmmirror.com/lyr-cli/-/lyr-cli-0.0.17.tgz#46f469691b9189a2fc949b767ea049b43b4f7cb2"
-  integrity sha512-mfDiqbc3TJmtSgWIArNJwuufgH38uDB/rUMEW2xlywSXbBWwrwzuoHj1WHyEcRo4vag1IF83Kr6RPse/9bQzcg==
+lyr-cli@0.0.20:
+  version "0.0.20"
+  resolved "https://registry.npmmirror.com/lyr-cli/-/lyr-cli-0.0.20.tgz#99d1c3bc94a5cb59dfcb028af32e48f30ced1d23"
+  integrity sha512-Naa7Cig6JdATYRnVobN2yXbBeRosaxp+ulSPHIu8pIk1S5r5Aw07x4pjLPpd95Q5Op0Octlq1VnUkz8TCnvYLQ==
   dependencies:
     "@babel/core" "7.23.5"
     babel-preset-env "1.7.0"

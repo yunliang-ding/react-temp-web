@@ -1,4 +1,4 @@
-import { defineConfig } from "lyr-cli";
+import { defineConfig } from "lyr";
 
 export default defineConfig({
   title: "中后台项目模版",

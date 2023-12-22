@@ -5,7 +5,7 @@
 
 ## 开发环境
 
-1. npm start; 启动前端基于 [lyr-cli](http://dev-ops.yunliang.cloud/website/lyr-cli)
+1. npm run watch; 启动前端基于 [lyr-cli](http://dev-ops.yunliang.cloud/website/lyr-cli)
 2. cd app; 启动后端服务 [基于 thinkjs3.x](https://thinkjs.org/doc/index.html)
 3. 访问后端服务端口 默认 8361;
 

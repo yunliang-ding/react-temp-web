@@ -8,7 +8,6 @@ build/
 dist/
 tmp/
 lib/
-lyr/
 # misc
 .DS_Store
 *.swp
@@ -22,3 +21,4 @@ index.module.scss.d.ts
 .gitpod.yml
 src/.lyr
 yarn.lock
+www

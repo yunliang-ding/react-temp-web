@@ -39,4 +39,5 @@ export default defineConfig({
     "https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/react-core-form.min.js",
     "https://react-core-form.oss-cn-beijing.aliyuncs.com/cdn/socket.io.min.js"
   ],
+  ignoreRouter: ['schema-', 'component/', 'components/'],
 });

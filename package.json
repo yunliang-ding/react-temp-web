@@ -4,7 +4,7 @@
   "description": "全栈通用模版",
   "author": "yunliang-ding",
   "scripts": {
-    "start": "lyr dev",
+    "start": "node development.js & lyr dev",
     "build": "lyr build"
   },
   "dependencies": {

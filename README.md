@@ -1,13 +1,11 @@
 # 安装依赖
 
-1. yarn 前端
-2. cd app; yarn 后端
+yarn
 
 ## 开发环境
 
-1. npm start; 启动前端基于 [lyr-cli](http://dev-ops.yunliang.cloud/website/lyr-cli)
-2. cd app & npm start 启动后端服务 [基于 thinkjs3.x](https://thinkjs.org/doc/index.html)
-3. 访问后端服务端口 默认 8361;
+1. npm start; 启动服务 [基于 thinkjs3.x](https://thinkjs.org/doc/index.html)
+2. 访问后端服务端口 默认 8361;
 
 ## 部署
 

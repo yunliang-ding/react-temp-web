@@ -4,7 +4,7 @@ import { Dropdown, Menu, Space, Avatar, Trigger } from '@arco-design/web-react';
 import uiStore from '@/store/ui';
 import userStore from '@/store/user';
 import breadcrumbStore from '@/store/breadcrumb';
-import FooterRender from './footer-render';
+import Footer from './footer';
 import { outLogin } from '@/services/common';
 import { useEffect, useRef } from 'react';
 import {
@@ -125,7 +125,7 @@ export default () => {
         </div>
       )}
       pageHeaderProps={breadcrumb}
-      footerRender={() => <FooterRender />}
+      footerRender={() => <Footer />}
       siderFooterRender={() => null}
     >
       <Outlet />

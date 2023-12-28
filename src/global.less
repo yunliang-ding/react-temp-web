@@ -1,7 +1,7 @@
 body {
   padding: 0;
   margin: 0;
-  div{
+  div {
     box-sizing: border-box;
   }
 }
@@ -30,11 +30,11 @@ body {
   width: 100px;
   height: 100%;
   box-shadow: 0 0 10px rgb(var(--primary-6)), 0 0 5px rgb(var(--primary-6));
-  opacity: 1.0;
+  opacity: 1;
 
   -webkit-transform: rotate(3deg) translate(0px, -4px);
-      -ms-transform: rotate(3deg) translate(0px, -4px);
-          transform: rotate(3deg) translate(0px, -4px);
+  -ms-transform: rotate(3deg) translate(0px, -4px);
+  transform: rotate(3deg) translate(0px, -4px);
 }
 
 /* Remove these to get rid of the spinner */
@@ -57,7 +57,7 @@ body {
   border-radius: 50%;
 
   -webkit-animation: nprogress-spinner 400ms linear infinite;
-          animation: nprogress-spinner 400ms linear infinite;
+  animation: nprogress-spinner 400ms linear infinite;
 }
 
 .nprogress-custom-parent {
@@ -71,12 +71,20 @@ body {
 }
 
 @-webkit-keyframes nprogress-spinner {
-  0%   { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 @keyframes nprogress-spinner {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 body {
@@ -143,8 +151,8 @@ body {
   font-size: 40px !important;
 }
 
-.arco-menu-vertical{
-  .arco-icon{
+.arco-menu-vertical {
+  .arco-icon {
     margin-right: 0 !important;
   }
 }

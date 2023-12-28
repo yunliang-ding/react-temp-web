@@ -1,7 +1,6 @@
 import { defineConfig } from "lyr";
 
 export default defineConfig({
-  fullStack: true,
   title: "中后台项目模版",
   favicon:
     "https://react-core-form.oss-cn-beijing.aliyuncs.com/assets/favicon.ico",

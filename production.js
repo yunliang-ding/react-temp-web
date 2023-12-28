@@ -1,4 +1,3 @@
-//@ts-ignore
 const Application = require('thinkjs');
 
 new Application({

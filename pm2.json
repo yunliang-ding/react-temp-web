@@ -1,7 +1,7 @@
 {
   "apps": [{
     "name": "lyr-template-pro:8360",
-    "script": "production.js",
+    "script": "production.ts",
     "cwd": "./",
     "exec_mode": "fork",
     "max_memory_restart": "100M",

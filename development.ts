@@ -1,12 +1,10 @@
-const path = require('path');
+//@ts-ignore
 const Application = require('thinkjs');
 const watcher = require('think-watcher');
 
-const instance = new Application({
+new Application({
   ROOT_PATH: __dirname,
-  APP_PATH: path.join(__dirname, 'src'),
+  APP_PATH: `${__dirname}/src`,
   watcher: watcher,
   env: 'development'
-});
-
-instance.run();
+}).run();

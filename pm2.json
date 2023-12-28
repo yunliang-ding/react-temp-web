@@ -1,6 +1,6 @@
 {
   "apps": [{
-    "name": "lyr-template-pro:8360",
+    "name": "lyr-react-template:8360",
     "script": "production.js",
     "cwd": "./",
     "exec_mode": "fork",

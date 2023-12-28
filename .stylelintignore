@@ -1,6 +1,0 @@
-# 忽略目录
-build/
-app/
-
-# node 覆盖率文件
-coverage/

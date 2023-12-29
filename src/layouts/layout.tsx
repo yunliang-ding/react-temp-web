@@ -5,7 +5,7 @@ import uiStore from '@/store/ui';
 import userStore from '@/store/user';
 import breadcrumbStore from '@/store/breadcrumb';
 import Footer from './footer';
-import { outLogin } from '@/services/common';
+import { outLogin } from '@/services';
 import { useEffect, useRef } from 'react';
 import {
   IconInteraction,

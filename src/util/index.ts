@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { Icon as ArcoIcon } from '@arco-design/web-react';
 /**
  * iconUrl

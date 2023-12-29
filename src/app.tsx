@@ -4,6 +4,7 @@ import Loading from '@/components/loading';
 import { Notification } from '@arco-design/web-react';
 import { Icon } from './util';
 import { userInfo } from '@/services/common';
+import 'nprogress/nprogress.css';
 
 export const APPID = 11;
 
@@ -36,7 +37,7 @@ runApp({
     // 查询 userInfo 获取详细信息
     const { code, data }: any = await userInfo();
     const auth = [];
-    if(code === 200){
+    if (code === 200) {
       recursion(data.menus, auth);
     }
     return {

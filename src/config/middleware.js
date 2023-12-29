@@ -1,14 +1,14 @@
 const path = require('path');
 const isDev = think.env === 'development';
-const cors = require("@koa/cors");
+const cors = require('@koa/cors');
 
 module.exports = [
   {
     handle: 'meta',
     options: {
       logRequest: isDev,
-      sendResponseTime: isDev
-    }
+      sendResponseTime: isDev,
+    },
   },
   {
     handle: 'resource',
@@ -17,25 +17,25 @@ module.exports = [
       root: path.join(think.ROOT_PATH, 'www'),
       publicPath: /^\/(build|dev|favicon\.ico)/,
       gzip: true,
-    }
+    },
   },
   {
     handle: 'trace',
     enable: !think.isCli,
     options: {
-      debug: isDev
-    }
+      debug: isDev,
+    },
   },
   {
     handle: 'payload',
     options: {
       keepExtensions: true,
-      limit: '5mb'
-    }
+      limit: '5mb',
+    },
   },
   {
     handle: 'router',
-    options: {}
+    options: {},
   },
   // 这里开启会导致，不兼容 socket
   // {
@@ -50,5 +50,5 @@ module.exports = [
   //   },
   // },
   'logic',
-  'controller'
+  'controller',
 ];

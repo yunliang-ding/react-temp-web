@@ -9,5 +9,5 @@ module.exports = [
   model(think.app),
   websocket(think.app),
   cache,
-  session
+  session,
 ];

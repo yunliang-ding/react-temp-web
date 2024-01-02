@@ -5,7 +5,8 @@
   "author": "yunliang-ding",
   "scripts": {
     "start": "lyr dev",
-    "build": "lyr build"
+    "build": "lyr build",
+    "deploy": "pm2 startOrReload pm2.json"
   },
   "dependencies": {
     "react": "17.0.2",

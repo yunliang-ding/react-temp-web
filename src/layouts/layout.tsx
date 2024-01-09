@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { AppLayout } from 'lyr-design';
-import { Dropdown, Menu, Space, Avatar, Trigger } from '@arco-design/web-react';
+import { Dropdown, Menu, Space, Avatar, ColorPicker } from '@arco-design/web-react';
 import uiStore from '@/store/ui';
 import userStore from '@/store/user';
 import breadcrumbStore from '@/store/breadcrumb';
@@ -10,10 +10,8 @@ import { useEffect, useRef } from 'react';
 import {
   IconInteraction,
   IconMoon,
-  IconSkin,
   IconSun,
 } from '@arco-design/web-react/icon';
-import { SketchPicker } from 'react-color';
 import { Outlet } from 'react-router-dom';
 
 export default () => {
@@ -85,20 +83,13 @@ export default () => {
                 uiStore.compact = !compact;
               }}
             />
-            <Trigger
-              trigger="hover"
-              position="bl"
-              popup={() => (
-                <SketchPicker
-                  color={primaryColor}
-                  onChangeComplete={({ hex }) => {
-                    uiStore.primaryColor = hex;
-                  }}
-                />
-              )}
-            >
-              <IconSkin style={{ color: primaryColor }} />
-            </Trigger>
+            <ColorPicker
+              size="mini"
+              defaultValue={primaryColor}
+              onChange={(newColor) => {
+                uiStore.primaryColor = newColor;
+              }}
+            />
             <Avatar size={32}>
               <img alt="avatar" src={avatarUrl} />
             </Avatar>

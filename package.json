@@ -14,10 +14,9 @@
     "lyr-design": "^0.0.1",
     "lyr-store": "^0.0.1",
     "react-router-dom": "6.20.0",
-    "@arco-design/web-react": "2.56.0",
+    "@arco-design/web-react": "2.58.2",
     "react-fast-marquee": "1.3.2",
-    "nprogress": "^0.2.0",
-    "react-color": "2.19.3"
+    "nprogress": "^0.2.0"
   },
   "devDependencies": {
     "lyr-cli": "1.0.2",

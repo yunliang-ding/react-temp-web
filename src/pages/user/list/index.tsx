@@ -1,4 +1,4 @@
-import { Table } from 'react-core-form';
+import { Table } from 'lyr-design';
 import tableSchema from './schema-table';
 
 const Page = () => {

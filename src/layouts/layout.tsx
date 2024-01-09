@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
-import { AppLayout } from 'react-core-form';
+import { AppLayout } from 'lyr-design';
 import { Dropdown, Menu, Space, Avatar, Trigger } from '@arco-design/web-react';
 import uiStore from '@/store/ui';
 import userStore from '@/store/user';

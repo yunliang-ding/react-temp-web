@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { TableProps } from 'react-core-form';
+import { TableProps } from 'lyr-design';
 import formSchema from './schema-form';
 import { getList, saveOrUpdate } from './services';
 

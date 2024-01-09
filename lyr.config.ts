@@ -18,7 +18,6 @@ export default defineConfig({
     "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/jsx-runtime.polyfill.js",
     "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco.min.js",
     "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco-icon.min.js",
-    "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react-color.min.js",
     "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js",
     "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.js",
     "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/socket.io.min.js"
@@ -33,7 +32,6 @@ export default defineConfig({
     "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/jsx-runtime.polyfill.js",
     "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco.min.js",
     "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/arco-icon.min.js",
-    "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/react-color.min.js",
     "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/aliyun-oss-sdk.min.js",
     "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/lyr-design.min.js",
     "https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/cdn/socket.io.min.js"

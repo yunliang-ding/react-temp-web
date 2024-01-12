@@ -22,12 +22,6 @@ export default () => {
   const setCollapsed = (v: boolean) => {
     uiStore.collapsed = v;
   };
-  const logout = async () => {
-    const { code } = await outLogin();
-    if (code === 200) {
-      location.reload();
-    }
-  };
   // 使用 AppLayout 内置的 监听 hash 方法
   useEffect(() => {
     const removeListener = layoutRef.current.listenHashChange(
@@ -97,7 +91,7 @@ export default () => {
               position="bottom"
               droplist={
                 <Menu>
-                  <Menu.Item key="logout" onClick={logout}>
+                  <Menu.Item key="logout" onClick={outLogin}>
                     退出登录
                   </Menu.Item>
                 </Menu>

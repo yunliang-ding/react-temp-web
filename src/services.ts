@@ -1,10 +1,8 @@
 import { request } from 'lyr';
 
-export const outLogin = (): Promise<{
-  code: number;
-  data: any;
-}> => {
-  return request.post('/user/logout');
+export const outLogin = () => {
+  localStorage.removeItem("token");
+  location.reload();
 };
 
 export const userInfo = () => {

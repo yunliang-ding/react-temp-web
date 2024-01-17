@@ -15,6 +15,6 @@ yarn
 
 ## Demo
 
-![模式1](http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/mode3.png)
+![模式1](https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/mode3.png)
 
-![模式2](http://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/mode4.png)
+![模式2](https://lyr-cli-oss.oss-cn-beijing.aliyuncs.com/assets/mode4.png)

@@ -1,4 +1,4 @@
-import { Table } from 'lyr-design';
+import { Button, Table } from 'lyr-design';
 import tableSchema from './schema-table';
 
 const Page = () => {
@@ -7,6 +7,11 @@ const Page = () => {
 
 // 可选，配置准入权限，若不配置则代表所有角色都可以访问
 Page.auth = '/user/list';
+
+// 配置面包屑
+Page.breadCrumb = {
+  extra: <Button type="primary">新增用户</Button>,
+}
 
 export default Page;
 

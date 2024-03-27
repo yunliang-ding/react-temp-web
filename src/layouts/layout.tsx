@@ -1,17 +1,12 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { AppLayout } from 'lyr-design';
-import { Dropdown, Menu, Space, Avatar, ColorPicker } from '@arco-design/web-react';
+import { Menu } from '@arco-design/web-react';
 import uiStore from '@/store/ui';
 import userStore from '@/store/user';
 import breadcrumbStore from '@/store/breadcrumb';
 import Footer from './footer';
 import { outLogin } from '@/services';
 import { useEffect, useRef } from 'react';
-import {
-  IconInteraction,
-  IconMoon,
-  IconSun,
-} from '@arco-design/web-react/icon';
 import { Outlet } from 'react-router-dom';
 
 export default () => {
@@ -56,59 +51,27 @@ export default () => {
           location.hash = path;
         },
       }}
-      rightContentRender={() => (
-        <div className="app-right-header">
-          <Space size={20}>
-            {dark ? (
-              <IconSun
-                onClick={() => {
-                  uiStore.dark = false;
-                }}
-              />
-            ) : (
-              <IconMoon
-                onClick={() => {
-                  uiStore.dark = true;
-                }}
-              />
-            )}
-            <IconInteraction
-              onClick={() => {
-                uiStore.compact = !compact;
-              }}
-            />
-            <ColorPicker
-              size="mini"
-              defaultValue={primaryColor}
-              onChange={(newColor) => {
-                uiStore.primaryColor = newColor;
-              }}
-            />
-            <Avatar size={32}>
-              <img alt="avatar" src={avatarUrl} />
-            </Avatar>
-            <Dropdown
-              position="bottom"
-              droplist={
-                <Menu>
-                  <Menu.Item key="logout" onClick={outLogin}>
-                    退出登录
-                  </Menu.Item>
-                </Menu>
-              }
-            >
-              <a
-                style={{
-                  whiteSpace: 'nowrap',
-                  fontWeight: 'bold',
-                }}
-              >
-                {name}
-              </a>
-            </Dropdown>
-          </Space>
-        </div>
-      )}
+      rightContentProps={{
+        userName: name,
+        droplist: (
+          <Menu>
+            <Menu.Item key="logout" onClick={outLogin}>
+              切换用户
+            </Menu.Item>
+          </Menu>
+        ),
+        avatarUrl,
+        themeColor: primaryColor,
+        onThemeColorChange: (newColor) => {
+          uiStore.primaryColor = newColor;
+        },
+        onDarkChange: (dark) => {
+          uiStore.dark = dark;
+        },
+        onCompactChange: (compact) => {
+          uiStore.compact = compact;
+        },
+      }}
       pageHeaderProps={breadcrumb}
       footerRender={() => <Footer />}
       siderFooterRender={() => null}

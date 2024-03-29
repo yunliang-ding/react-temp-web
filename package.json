@@ -12,7 +12,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "lyr-design": "^0.0.2",
-    "lyr-store": "^0.0.1",
+    "lyr-hooks": "0.0.1",
     "react-router-dom": "6.20.0",
     "@arco-design/web-react": "2.58.2",
     "react-fast-marquee": "1.3.2",

@@ -15,8 +15,8 @@ socket.on('opend', (data) => {
 });
 
 export default () => {
-  const { fetchUserInfo } = userStore.use();
-  const { dark, status } = uiStore.use();
+  const { fetchUserInfo } = userStore.useSnapshot();
+  const { dark, status } = uiStore.useSnapshot();
   useEffect(() => {
     fetchUserInfo(uiStore);
   }, []);

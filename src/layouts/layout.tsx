@@ -11,9 +11,9 @@ import { Outlet } from 'react-router-dom';
 
 export default () => {
   const layoutRef: any = useRef({});
-  const breadcrumb = breadcrumbStore.use();
-  const { dark, title, compact, collapsed, primaryColor } = uiStore.use();
-  const { name, avatarUrl, menus } = userStore.use();
+  const breadcrumb = breadcrumbStore.useSnapshot();
+  const { dark, title, compact, collapsed, primaryColor } = uiStore.useSnapshot();
+  const { name, avatarUrl, menus } = userStore.useSnapshot();
   const setCollapsed = (v: boolean) => {
     uiStore.collapsed = v;
   };

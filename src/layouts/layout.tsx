@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
-import { AppLayout } from 'lyr-design';
+import { AppLayout } from 'lyr-component';
 import { Menu } from '@arco-design/web-react';
 import uiStore from '@/store/ui';
 import userStore from '@/store/user';

@@ -1,4 +1,4 @@
-import { Button, Table } from 'lyr-design';
+import { Button, Table } from 'lyr-component';
 import tableSchema from './schema-table';
 
 const Page = () => {

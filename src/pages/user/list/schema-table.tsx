@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { TableProps } from 'lyr-design';
+import { TableProps } from 'lyr-component';
 import formSchema from './schema-form';
 import { getList, saveOrUpdate } from './services';
 

@@ -11,7 +11,7 @@
   "dependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "lyr-component": "^1.0.0",
+    "lyr-component": "^1.0.3",
     "lyr-hooks": "0.0.3",
     "react-router-dom": "6.20.0",
     "@arco-design/web-react": "2.58.2",

@@ -2,13 +2,13 @@ import { SchemaProps } from 'lyr-component';
 
 export default [
   {
-    type: 'Input',
+    widget: 'Input',
     label: '姓名',
     name: 'name',
     required: true,
   },
   {
-    type: 'Select',
+    widget: 'Select',
     label: '性别',
     name: 'sex',
     props: {

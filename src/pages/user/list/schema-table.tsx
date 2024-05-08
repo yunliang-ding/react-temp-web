@@ -12,12 +12,12 @@ const tableSchema: TableProps = {
     column: 3,
     schema: [
       {
-        type: 'Input',
+        widget: 'Input',
         label: '用户姓名',
         name: 'name',
       },
       {
-        type: 'Select',
+        widget: 'Select',
         label: '用户性别',
         name: 'sex',
         props: {

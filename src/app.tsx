@@ -1,12 +1,14 @@
 import { runApp } from 'lyr';
 import NProgress from 'nprogress';
-import Loading from '@/components/loading';
+import Loading from '@/.theme/loading';
 import { Notification } from '@arco-design/web-react';
 import { Icon } from './util';
 import { userInfo } from '@/services';
 import 'nprogress/nprogress.css';
 
 export const APPID = 11;
+
+export const socket = window.io(location.origin);
 
 const recursion = (menus: any, auths: any) => {
   menus?.forEach((menu: any) => {
@@ -34,6 +36,10 @@ runApp({
   loading: () => <Loading />,
   /** 加载勾子 */
   getInitData: async () => {
+    /** 支持 socket */
+    socket.on('opend', (data) => {
+      console.log(`%c 建立 socket ${data}`, 'color:green;');
+    });
     /** 处理统一登录回跳逻辑 */
     const { pathname, search, hash } = location;
     const urlSearchParams = new URLSearchParams(search);

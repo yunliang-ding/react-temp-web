@@ -9,9 +9,9 @@ interface Window {
 
 interface LayoutProps {
   title: string;
-  status: 'login' | 'loading' | 'error' | 'noPermissions' | 'userDisabled';
-  compact?: boolean;
+  status: 'login' | 'loading' | 'error';
   dark?: boolean;
   collapsed?: boolean;
   primaryColor?: string;
+  layout: string;
 }

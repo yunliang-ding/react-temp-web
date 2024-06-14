@@ -13,5 +13,5 @@ interface LayoutProps {
   dark?: boolean;
   collapsed?: boolean;
   primaryColor?: string;
-  layout: string;
+  layout: 'horizontal' | 'vertical' | 'inline';
 }

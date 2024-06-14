@@ -11,7 +11,7 @@
   "dependencies": {
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "lyr-component": "^1.0.3",
+    "lyr-component": "^1.1.0",
     "lyr-hooks": "0.0.3",
     "react-router-dom": "6.20.0",
     "@arco-design/web-react": "2.58.2",
@@ -19,7 +19,7 @@
     "nprogress": "^0.2.0"
   },
   "devDependencies": {
-    "lyr-cli": "1.0.17",
+    "lyr-cli": "1.0.18",
     "typescript": "5.3.2",
     "@types/react": "17.0.2",
     "@types/react-dom": "17.0.2"

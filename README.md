@@ -1,6 +1,6 @@
 # 安装依赖
 
-yarn
+yarn/pnpm
 
 ## 开发环境
 

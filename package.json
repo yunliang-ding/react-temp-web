@@ -9,7 +9,7 @@
     "deploy": "lyr deploy"
   },
   "devDependencies": {
-    "lyr-cli": "1.0.24"
+    "lyr-cli": "1.0.25"
   },
   "license": "ISC"
 }

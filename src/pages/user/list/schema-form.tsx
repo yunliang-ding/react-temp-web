@@ -1,4 +1,4 @@
-import { SchemaProps } from 'lyr-component';
+import { SchemaProps } from '@yl-d/components';
 
 export default [
   {

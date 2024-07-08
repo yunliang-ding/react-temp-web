@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
-  "name": "lyr-react-web",
+  "name": "react-temp-web",
   "description": "全栈通用模版",
   "author": "yunliang-ding",
   "scripts": {
@@ -9,7 +9,7 @@
     "deploy": "lyr deploy"
   },
   "devDependencies": {
-    "lyr-cli": "1.0.25"
+    "@yl-d/cli": "1.0.0"
   },
   "license": "ISC"
 }
